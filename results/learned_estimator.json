@@ -1,0 +1,135 @@
+{
+  "tolerance": 0.05,
+  "conditions": {
+    "trained_above_the_bound": [
+      {
+        "cycles": 0.5,
+        "accuracy": 0.0,
+        "median_abs_error": 1.6992149353027344,
+        "median_reported_sd": 0.044538773596286774,
+        "calibration": 38.058753967285156
+      },
+      {
+        "cycles": 1.0,
+        "accuracy": 0.0,
+        "median_abs_error": 0.6619656085968018,
+        "median_reported_sd": 0.015660647302865982,
+        "calibration": 41.99594497680664
+      },
+      {
+        "cycles": 1.5,
+        "accuracy": 0.0,
+        "median_abs_error": 0.32271090149879456,
+        "median_reported_sd": 0.013352110981941223,
+        "calibration": 24.25921630859375
+      },
+      {
+        "cycles": 2.0,
+        "accuracy": 0.0,
+        "median_abs_error": 0.14829447865486145,
+        "median_reported_sd": 0.010949239134788513,
+        "calibration": 12.646100997924805
+      },
+      {
+        "cycles": 2.5,
+        "accuracy": 0.921,
+        "median_abs_error": 0.012410476803779602,
+        "median_reported_sd": 0.00957559049129486,
+        "calibration": 1.2767541408538818
+      },
+      {
+        "cycles": 3.0,
+        "accuracy": 0.9985,
+        "median_abs_error": 0.003651052713394165,
+        "median_reported_sd": 0.008044859394431114,
+        "calibration": 0.4316732883453369
+      },
+      {
+        "cycles": 4.0,
+        "accuracy": 0.947,
+        "median_abs_error": 0.0031294822692871094,
+        "median_reported_sd": 0.007525298278778791,
+        "calibration": 0.4073507785797119
+      },
+      {
+        "cycles": 6.0,
+        "accuracy": 0.9905,
+        "median_abs_error": 0.002242535352706909,
+        "median_reported_sd": 0.006388729438185692,
+        "calibration": 0.34360694885253906
+      },
+      {
+        "cycles": 8.0,
+        "accuracy": 0.7865,
+        "median_abs_error": 0.0035092420876026154,
+        "median_reported_sd": 0.007704668212682009,
+        "calibration": 0.4338844418525696
+      }
+    ],
+    "trained_across_the_boundary": [
+      {
+        "cycles": 0.5,
+        "accuracy": 0.071,
+        "median_abs_error": 0.2848735451698303,
+        "median_reported_sd": 0.23910340666770935,
+        "calibration": 1.39766263961792
+      },
+      {
+        "cycles": 1.0,
+        "accuracy": 0.2235,
+        "median_abs_error": 0.08316454291343689,
+        "median_reported_sd": 0.08989012241363525,
+        "calibration": 0.899147093296051
+      },
+      {
+        "cycles": 1.5,
+        "accuracy": 0.519,
+        "median_abs_error": 0.03230404853820801,
+        "median_reported_sd": 0.05780039727687836,
+        "calibration": 0.4930284321308136
+      },
+      {
+        "cycles": 2.0,
+        "accuracy": 0.852,
+        "median_abs_error": 0.012087613344192505,
+        "median_reported_sd": 0.03554626554250717,
+        "calibration": 0.3421632647514343
+      },
+      {
+        "cycles": 2.5,
+        "accuracy": 0.859,
+        "median_abs_error": 0.008910715579986572,
+        "median_reported_sd": 0.028338486328721046,
+        "calibration": 0.31208086013793945
+      },
+      {
+        "cycles": 3.0,
+        "accuracy": 0.8685,
+        "median_abs_error": 0.00653231143951416,
+        "median_reported_sd": 0.03215811401605606,
+        "calibration": 0.20839032530784607
+      },
+      {
+        "cycles": 4.0,
+        "accuracy": 0.679,
+        "median_abs_error": 0.008748792111873627,
+        "median_reported_sd": 0.03289775550365448,
+        "calibration": 0.2587248384952545
+      },
+      {
+        "cycles": 6.0,
+        "accuracy": 0.6855,
+        "median_abs_error": 0.005028344690799713,
+        "median_reported_sd": 0.050127770751714706,
+        "calibration": 0.11033450067043304
+      },
+      {
+        "cycles": 8.0,
+        "accuracy": 0.14,
+        "median_abs_error": 0.0138683021068573,
+        "median_reported_sd": 0.032808735966682434,
+        "calibration": 0.39886635541915894
+      }
+    ]
+  }
+}
