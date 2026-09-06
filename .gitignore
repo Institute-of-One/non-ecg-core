@@ -11,3 +11,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 *.py.backup
+
+# Downloaded imaging. Never committed: the protocol says no imaging is redistributed, and
+# series are identified by UID in results/pilot_series.json so the pilot can be repeated
+# from the archive rather than from here.
+data_cache/
+*.dcm

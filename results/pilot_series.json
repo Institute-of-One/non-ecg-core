@@ -1,0 +1,41 @@
+[
+  {
+    "collection": "Anti-PD-1_Lung",
+    "patient": "PD-1-Lung-00036",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.255233784459974523053948388235",
+    "model": "SOMATOM Definition Flash",
+    "licence": "Creative Commons Attribution 3.0 Unported License",
+    "images": 782,
+    "file_size_mb": 413.1,
+    "reconstruction_interval_mm": 0.6,
+    "table_speed_mm_s": 33.6,
+    "contrast_agent": "None",
+    "chosen_because": "slow: 33.6 mm/s, threshold 42 bpm at the cardiac border"
+  },
+  {
+    "collection": "RIDER Lung CT",
+    "patient": "RIDER-2073083717",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.163122808057818939042789346917260475509",
+    "model": "LightSpeed16",
+    "licence": "Creative Commons Attribution 4.0 International License",
+    "images": 407,
+    "file_size_mb": 214.4,
+    "reconstruction_interval_mm": 1.25,
+    "table_speed_mm_s": 55.0,
+    "contrast_agent": null,
+    "chosen_because": "middle: 55.0 mm/s, threshold 69 bpm"
+  },
+  {
+    "collection": "COVID-19-NY-SBU",
+    "patient": "A656786",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.22057899911939185439442654142508",
+    "model": "LightSpeed VCT",
+    "licence": "Creative Commons Attribution 4.0 International License",
+    "images": 796,
+    "file_size_mb": 421.3,
+    "reconstruction_interval_mm": 1.25,
+    "table_speed_mm_s": 78.75,
+    "contrast_agent": null,
+    "chosen_because": "fast: 129.0 mm/s, threshold 161 bpm -- predicted to fail"
+  }
+]
