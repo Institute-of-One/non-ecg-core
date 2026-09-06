@@ -183,6 +183,24 @@ def threshold_heart_rate_bpm(protocol: Protocol, heart_mm=HEART_EXTENT_MM,
     return 60.0 / longest_cycle, 60.0 / shortest_cycle
 
 
+def threshold_over_heart_size(protocol: Protocol, cycles_needed: float,
+                              extents_mm=(100.0, 110.0, 120.0, 130.0, 140.0)):
+    """The threshold rate across plausible hearts, because L is not one number.
+
+    `threshold = 60 x S x N_min / L` is inversely proportional to the craniocaudal extent
+    of the heart, so it moves as much with anatomy as with the estimator. A small heart
+    raises the threshold and a large one lowers it: the same scan records the beat of a
+    dilated heart and misses that of a small one, at the same heart rate.
+
+    That is not a nuisance term. It says the boundary is patient-specific in two ways at
+    once, and both are measurable on the image the question is being asked about.
+    """
+    return {
+        extent: 60.0 * protocol.table_speed_mm_s * cycles_needed / extent
+        for extent in extents_mm
+    }
+
+
 def verdict(protocol: Protocol, cardiac_cycle_s: float) -> str:
     cycles = cycles_written(protocol, cardiac_cycle_s)
     samples = samples_per_cycle(protocol, cardiac_cycle_s)

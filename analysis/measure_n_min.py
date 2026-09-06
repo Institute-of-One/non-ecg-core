@@ -242,6 +242,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quick", action="store_true", help="central condition only")
     parser.add_argument("--trials", type=int, default=TRIALS)
+    parser.add_argument("--estimator", choices=ESTIMATORS, default="matched",
+                        help="matched is the floor; fundamental is the headline")
     arguments = parser.parse_args()
 
     RESULTS.mkdir(exist_ok=True)
@@ -250,7 +252,7 @@ def main() -> int:
 
     headline, curve = n_min_for(
         CENTRAL["samples_per_cycle"], CENTRAL["noise"], CENTRAL["baseline"],
-        CENTRAL["variability"], arguments.trials,
+        CENTRAL["variability"], arguments.trials, estimator=arguments.estimator,
     )
     print("=== central condition "
           f"(noise {CENTRAL['noise']}, baseline {CENTRAL['baseline']}, "
@@ -262,6 +264,7 @@ def main() -> int:
     print(f"\n    N_min = {headline}")
 
     output = {
+        "estimator": arguments.estimator,
         "criterion": {"tolerance": TOLERANCE, "success_rate": SUCCESS_RATE,
                       "trials": arguments.trials, "root_seed": ROOT_SEED},
         "central_condition": CENTRAL,
@@ -278,7 +281,8 @@ def main() -> int:
                 for samples in SAMPLES_PER_CYCLE:
                     for variability in VARIABILITY:
                         value, _ = n_min_for(samples, noise, baseline, variability,
-                                             arguments.trials)
+                                             arguments.trials,
+                                             estimator=arguments.estimator)
                         output["sensitivity"].append(
                             {"noise": noise, "baseline": baseline,
                              "samples_per_cycle": samples, "variability": variability,
@@ -288,7 +292,7 @@ def main() -> int:
                         print(f"    {noise:>6.2f} {baseline:>9.1f} {samples:>8d} "
                               f"{variability:>11.0%} {shown:>7}")
 
-    destination = RESULTS / "n_min.json"
+    destination = RESULTS / f"n_min_{arguments.estimator}.json"
     destination.write_text(json.dumps(output, indent=2), encoding="utf-8")
     print(f"\nwritten: {destination}")
     return 0
