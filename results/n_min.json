@@ -1,0 +1,58 @@
+{
+  "criterion": {
+    "tolerance": 0.05,
+    "success_rate": 0.9,
+    "trials": 200,
+    "root_seed": 20260906
+  },
+  "central_condition": {
+    "noise": 0.1,
+    "baseline": 1.0,
+    "samples_per_cycle": 16,
+    "variability": 0.05
+  },
+  "headline_n_min": 1.5,
+  "central_curve": [
+    {
+      "cycles": 1.0,
+      "success_rate": 0.155
+    },
+    {
+      "cycles": 1.5,
+      "success_rate": 0.925
+    },
+    {
+      "cycles": 2.0,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 2.5,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 3.0,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 3.5,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 4.0,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 5.0,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 6.0,
+      "success_rate": 1.0
+    },
+    {
+      "cycles": 8.0,
+      "success_rate": 1.0
+    }
+  ],
+  "sensitivity": []
+}
