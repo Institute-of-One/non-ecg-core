@@ -1,0 +1,249 @@
+[
+  {
+    "collection": "LIDC-IDRI",
+    "model": "Sensation 64",
+    "images": 764,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "190",
+      "Exposure": "95",
+      "SliceThickness": "1",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "NSCLC-Radiomics",
+    "model": "Sensation 16",
+    "images": 297,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "327",
+      "Exposure": "131",
+      "SliceThickness": "3",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "NSCLC Radiogenomics",
+    "model": null,
+    "images": 769,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "804",
+      "XRayTubeCurrent": "200",
+      "Exposure": "11602",
+      "SliceThickness": "1.25",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "LungCT-Diagnosis",
+    "model": "Sensation 16",
+    "images": 150,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "280",
+      "Exposure": "140",
+      "SliceThickness": "3",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "QIN LUNG CT",
+    "model": "LightSpeed VCT",
+    "images": 170,
+    "tags": {
+      "SpiralPitchFactor": "1.375",
+      "TableSpeed": "110.0",
+      "TableFeedPerRotation": "55.0",
+      "RevolutionTime": "0.5",
+      "TotalCollimationWidth": "40.0",
+      "SingleCollimationWidth": "0.625",
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "252",
+      "Exposure": "5",
+      "SliceThickness": "2.500000",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": true
+  },
+  {
+    "collection": "CPTAC-LUAD",
+    "model": "Discovery IQ",
+    "images": 1011,
+    "tags": {
+      "SpiralPitchFactor": "1.375",
+      "TableSpeed": "45.833333333333336",
+      "TableFeedPerRotation": "27.5",
+      "RevolutionTime": "0.6",
+      "TotalCollimationWidth": "20.0",
+      "SingleCollimationWidth": "1.25",
+      "ExposureTime": "606",
+      "XRayTubeCurrent": "99",
+      "Exposure": "2",
+      "SliceThickness": "1.250000",
+      "SpacingBetweenSlices": "3.260000"
+    },
+    "has_window_parameters": true
+  },
+  {
+    "collection": "COVID-19-NY-SBU",
+    "model": "Aquilion ONE",
+    "images": 2464,
+    "tags": {
+      "SpiralPitchFactor": "0.806",
+      "TableSpeed": null,
+      "TableFeedPerRotation": "64.5",
+      "RevolutionTime": "0.5",
+      "TotalCollimationWidth": "80.0",
+      "SingleCollimationWidth": "0.5",
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "535",
+      "Exposure": "267",
+      "SliceThickness": "0.5",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": true
+  },
+  {
+    "collection": "COVID-19-AR",
+    "model": "Brilliance 64",
+    "images": 789,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "842",
+      "XRayTubeCurrent": "206",
+      "Exposure": "173",
+      "SliceThickness": "1.00",
+      "SpacingBetweenSlices": "1"
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "Anti-PD-1_Lung",
+    "model": "SOMATOM Definition Flash",
+    "images": 782,
+    "tags": {
+      "SpiralPitchFactor": "0.5",
+      "TableSpeed": "33.6",
+      "TableFeedPerRotation": "9.6",
+      "RevolutionTime": null,
+      "TotalCollimationWidth": "19.2",
+      "SingleCollimationWidth": "0.6",
+      "ExposureTime": "285",
+      "XRayTubeCurrent": "162",
+      "Exposure": "92",
+      "SliceThickness": "0.6",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": true
+  },
+  {
+    "collection": "TCGA-LUAD",
+    "model": "LightSpeed16",
+    "images": 594,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": "526",
+      "XRayTubeCurrent": "300",
+      "Exposure": "4204",
+      "SliceThickness": "1.250000",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "RIDER Lung CT",
+    "model": "LightSpeed16",
+    "images": 407,
+    "tags": {
+      "SpiralPitchFactor": "1.375",
+      "TableSpeed": "55.0",
+      "TableFeedPerRotation": "27.5",
+      "RevolutionTime": "0.5",
+      "TotalCollimationWidth": "20.0",
+      "SingleCollimationWidth": "1.25",
+      "ExposureTime": "478",
+      "XRayTubeCurrent": "399",
+      "Exposure": "9",
+      "SliceThickness": "1.25",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": true
+  },
+  {
+    "collection": "SPIE-AAPM Lung CT Challenge",
+    "model": "Brilliance16",
+    "images": 469,
+    "tags": {
+      "SpiralPitchFactor": null,
+      "TableSpeed": null,
+      "TableFeedPerRotation": null,
+      "RevolutionTime": null,
+      "TotalCollimationWidth": null,
+      "SingleCollimationWidth": null,
+      "ExposureTime": null,
+      "XRayTubeCurrent": "259",
+      "Exposure": "216",
+      "SliceThickness": "1.0",
+      "SpacingBetweenSlices": "1.0"
+    },
+    "has_window_parameters": false
+  },
+  {
+    "collection": "Lung-PET-CT-Dx",
+    "model": "Biograph 64",
+    "images": 852,
+    "tags": {
+      "SpiralPitchFactor": "1.0",
+      "TableSpeed": "38.4",
+      "TableFeedPerRotation": "19.2",
+      "RevolutionTime": null,
+      "TotalCollimationWidth": "19.2",
+      "SingleCollimationWidth": "0.6",
+      "ExposureTime": "500",
+      "XRayTubeCurrent": "199",
+      "Exposure": "99",
+      "SliceThickness": "1",
+      "SpacingBetweenSlices": null
+    },
+    "has_window_parameters": true
+  }
+]
