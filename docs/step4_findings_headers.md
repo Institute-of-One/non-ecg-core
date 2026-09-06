@@ -79,3 +79,31 @@ survives, and is now supported rather than assumed:
 - A larger header harvest across these six collections, to replace six single series with
   a distribution.
 - The pulse-wave phase delay along the descending aorta.
+
+## The sweep, crossed against the real headers
+
+The 144-cell sensitivity sweep for the headline estimator finished after the harvest, and
+the two together say something neither says alone.
+
+`N_min`, worst case over baseline strength and rhythm variability:
+
+| | 8 samples/cycle | 16 | 32 |
+|---|---:|---:|---:|
+| sigma 0.05 | 2.5 | 2.5 | 2.5 |
+| sigma 0.10 | 2.5 | 2.5 | 2.5 |
+| sigma 0.20 | 3.0 | 2.5 | 2.5 |
+| sigma 0.40 | 3.5 | 3.0 | **2.5** |
+
+116 of the 144 cells give 2.5 exactly. `N_min` degrades only where the waveform is coarsely
+sampled, and every real protocol is far from that: at 60 bpm they give **33 to 129
+reconstructed samples per cardiac cycle**.
+
+**So the noise branch of the frozen decision rule is closed before the images are opened.**
+Whatever the measured `sigma` turns out to be, up to 0.40, `N_min` stays at 2.5 for these
+protocols, because all of them sit in the well-sampled regime.
+
+This is the budget identity showing up in practice. `N x n = L / dz`, and real chest
+protocols spend that budget lopsidedly: enormous resolution within each cycle, and very few
+cycles. They are not short of detail about the waveform. They are short of waveform. The
+lever that helps is therefore not a finer reconstruction but a longer `L`, which is exactly
+what the aortic route buys.

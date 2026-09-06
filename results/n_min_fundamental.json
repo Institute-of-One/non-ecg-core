@@ -3,7 +3,7 @@
   "criterion": {
     "tolerance": 0.05,
     "success_rate": 0.9,
-    "trials": 50,
+    "trials": 200,
     "root_seed": 20260906
   },
   "central_condition": {
@@ -16,15 +16,15 @@
   "central_curve": [
     {
       "cycles": 1.0,
-      "success_rate": 0.0
+      "success_rate": 0.005
     },
     {
       "cycles": 1.5,
-      "success_rate": 0.14
+      "success_rate": 0.195
     },
     {
       "cycles": 2.0,
-      "success_rate": 0.8
+      "success_rate": 0.875
     },
     {
       "cycles": 2.5,
@@ -55,5 +55,1014 @@
       "success_rate": 1.0
     }
   ],
-  "sensitivity": []
+  "sensitivity": [
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.05,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.0
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.1,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.2,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 3.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 3.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 0.5,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 3.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 1.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.0,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.05,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 8,
+      "variability": 0.1,
+      "n_min": 3.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 16,
+      "variability": 0.1,
+      "n_min": 3.0
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.0,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.05,
+      "n_min": 2.5
+    },
+    {
+      "noise": 0.4,
+      "baseline": 2.0,
+      "samples_per_cycle": 32,
+      "variability": 0.1,
+      "n_min": 2.5
+    }
+  ]
 }
