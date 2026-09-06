@@ -109,7 +109,13 @@ def simulate(cycles: float, samples_per_cycle: int, noise: float, baseline: floa
 # ------------------------------------------------------------------------- estimator
 
 
-def _residual_for_period(trace: Trace, period: float) -> float:
+#: Amendment v1.1. The matched estimator's model spans exactly the terms the waveform is
+#: built from, so it measures a floor rather than what a method would really need. These
+#: two do not know the shape: one assumes only periodicity, the other only repetition.
+ESTIMATORS = ("matched", "fundamental", "autocorrelation")
+
+
+def _residual_for_period(trace: Trace, period: float, harmonics: int = 2) -> float:
     """Best achievable residual at this period, with everything else solved exactly.
 
     Amplitude, phase and the quadratic baseline all enter linearly once the period is
@@ -119,29 +125,74 @@ def _residual_for_period(trace: Trace, period: float) -> float:
     u = trace.z / period
     total = trace.z[-1] - trace.z[0]
     v = trace.z / total if total > 0 else trace.z
-    columns = [
-        np.cos(2 * np.pi * u),
-        np.sin(2 * np.pi * u),
-        np.cos(4 * np.pi * u),
-        np.sin(4 * np.pi * u),
-        np.ones_like(v),
-        v,
-        v**2,
-    ]
+    columns = [np.cos(2 * np.pi * u), np.sin(2 * np.pi * u)]
+    if harmonics >= 2:
+        columns += [np.cos(4 * np.pi * u), np.sin(4 * np.pi * u)]
+    columns += [np.ones_like(v), v, v**2]
     design = np.column_stack(columns)
     solution, *_ = np.linalg.lstsq(design, trace.b, rcond=None)
     return float(np.sum((trace.b - design @ solution) ** 2))
 
 
-def estimate_period(trace: Trace, true_period: float) -> float:
+def _detrended(trace: Trace) -> np.ndarray:
+    """Remove the quadratic anatomical envelope, leaving whatever repeats.
+
+    The baseline is part of the problem, not part of what an estimator is allowed to be
+    ignorant of, so every estimator here removes it the same way.
+    """
+    total = trace.z[-1] - trace.z[0]
+    v = trace.z / total if total > 0 else trace.z
+    design = np.column_stack([np.ones_like(v), v, v**2])
+    solution, *_ = np.linalg.lstsq(design, trace.b, rcond=None)
+    return trace.b - design @ solution
+
+
+def _period_by_autocorrelation(trace: Trace, true_period: float) -> float:
+    """The first prominent peak of the autocorrelation, knowing nothing about the shape.
+
+    An autocorrelation cannot see a lag longer than the trace, so below two written cycles
+    this method has nowhere to find the period. That is a real limitation of the method
+    and is left in rather than patched around.
+    """
+    signal = _detrended(trace)
+    if signal.size < 8 or not np.any(signal):
+        return float("nan")
+    signal = signal - signal.mean()
+    correlation = np.correlate(signal, signal, mode="full")[signal.size - 1:]
+    if correlation[0] <= 0:
+        return float("nan")
+    correlation = correlation / correlation[0]
+    step = trace.z[1] - trace.z[0]
+    lowest = max(int(np.ceil(0.3 * true_period / step)), 2)
+    highest = min(int(np.floor(3.0 * true_period / step)), correlation.size - 2)
+    if highest <= lowest:
+        return float("nan")
+    window = correlation[lowest:highest + 1]
+    peaks = [
+        index for index in range(1, window.size - 1)
+        if window[index] > window[index - 1] and window[index] >= window[index + 1]
+    ]
+    if not peaks:
+        return float("nan")
+    best = max(peaks, key=lambda index: window[index]) + lowest
+    left, middle, right = correlation[best - 1], correlation[best], correlation[best + 1]
+    denominator = left - 2 * middle + right
+    offset = 0.5 * (left - right) / denominator if denominator != 0 else 0.0
+    return float((best + offset) * step)
+
+
+def estimate_period(trace: Trace, true_period: float, estimator: str = "matched") -> float:
     """Search a wide grid of periods, then refine parabolically about the best.
 
     The grid spans 0.3 to 3.0 times the truth so that a wrong period is an answer the
     estimator is able to give. A search bracketing only the right answer would measure
     nothing.
     """
+    if estimator == "autocorrelation":
+        return _period_by_autocorrelation(trace, true_period)
+    harmonics = 2 if estimator == "matched" else 1
     grid = np.geomspace(0.3 * true_period, 3.0 * true_period, 400)
-    residuals = np.array([_residual_for_period(trace, period) for period in grid])
+    residuals = np.array([_residual_for_period(trace, period, harmonics) for period in grid])
     best = int(np.argmin(residuals))
     if 0 < best < len(grid) - 1:
         left, middle, right = residuals[best - 1], residuals[best], residuals[best + 1]
@@ -158,7 +209,8 @@ def estimate_period(trace: Trace, true_period: float) -> float:
 
 
 def success_rate(cycles: float, samples_per_cycle: int, noise: float, baseline: float,
-                 variability: float, trials: int = TRIALS, seed: int = ROOT_SEED) -> float:
+                 variability: float, trials: int = TRIALS, seed: int = ROOT_SEED,
+                 estimator: str = "matched") -> float:
     rng = np.random.default_rng(
         [seed, int(cycles * 10), samples_per_cycle, int(noise * 100),
          int(baseline * 10), int(variability * 100)]
@@ -166,19 +218,20 @@ def success_rate(cycles: float, samples_per_cycle: int, noise: float, baseline: 
     hits = 0
     for _ in range(trials):
         trace = simulate(cycles, samples_per_cycle, noise, baseline, variability, rng)
-        estimated = estimate_period(trace, trace.true_period)
-        if abs(estimated - trace.true_period) / trace.true_period <= TOLERANCE:
+        estimated = estimate_period(trace, trace.true_period, estimator)
+        if np.isfinite(estimated) and abs(estimated - trace.true_period) / trace.true_period <= TOLERANCE:
             hits += 1
     return hits / trials
 
 
 def n_min_for(samples_per_cycle: int, noise: float, baseline: float, variability: float,
-              trials: int = TRIALS) -> tuple[float | None, list]:
+              trials: int = TRIALS, estimator: str = "matched") -> tuple[float | None, list]:
     """The smallest N on the grid reaching the fixed success rate, and the curve."""
     curve = []
     found = None
     for cycles in CYCLE_GRID:
-        rate = success_rate(cycles, samples_per_cycle, noise, baseline, variability, trials)
+        rate = success_rate(cycles, samples_per_cycle, noise, baseline, variability,
+                            trials, estimator=estimator)
         curve.append({"cycles": cycles, "success_rate": rate})
         if found is None and rate >= SUCCESS_RATE:
             found = cycles
