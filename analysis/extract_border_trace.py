@@ -91,20 +91,27 @@ def load_series(directory: Path) -> Volume:
 def left_border_trace(volume: Volume, coronal_row: int) -> np.ndarray:
     """The left edge of the mediastinal silhouette, in millimetres, for each slice.
 
-    At each slice the widest run of soft tissue crossing the midline is taken as the
-    mediastinum and its left-hand edge recorded. Taking the widest run rather than the
-    first transition keeps a vessel in the lung field from being mistaken for the border.
+    Tracked with a continuity constraint rather than chosen independently per slice. The
+    first version took the widest soft-tissue run crossing the midline at each slice on its
+    own, and it jumped between the aorta, the heart, the hilum and the chest wall: the
+    border swung 168 mm over the scan with twenty jumps larger than 5 mm, while the median
+    slice-to-slice change was 0.00 mm. The signal was there and a handful of catastrophic
+    jumps were sitting on top of it.
+
+    So the border is followed: each slice takes the candidate closest to where the border
+    was on the last one, and a slice with no candidate within reach is left empty rather
+    than filled with the nearest available structure.
     """
     _, column_mm = volume.spacing_xy_mm
     minimum_run = int(MIN_MEDIASTINUM_MM / column_mm)
+    jump_limit_mm = 6.0
     coronal = volume.array[:, coronal_row, :]
     trace = np.full(coronal.shape[0], np.nan)
 
-    for index, row in enumerate(coronal):
+    def candidates(row: np.ndarray) -> list[float]:
         solid = row > LUNG_THRESHOLD_HU
         if not solid.any():
-            continue
-        # Find contiguous runs of soft tissue and keep the widest that spans the middle.
+            return []
         edges = np.diff(solid.astype(np.int8))
         starts = list(np.flatnonzero(edges == 1) + 1)
         ends = list(np.flatnonzero(edges == -1) + 1)
@@ -113,14 +120,31 @@ def left_border_trace(volume: Volume, coronal_row: int) -> np.ndarray:
         if solid[-1]:
             ends.append(solid.size)
         middle = solid.size // 2
-        candidates = [
-            (start, end) for start, end in zip(starts, ends)
+        return [
+            start * column_mm
+            for start, end in zip(starts, ends)
             if end - start >= minimum_run and start <= middle <= end
         ]
-        if not candidates:
+
+    # Start in the middle of the scan, where the mediastinum is widest and least ambiguous,
+    # and track outwards in both directions.
+    order = list(range(coronal.shape[0] // 2, coronal.shape[0])) +         list(range(coronal.shape[0] // 2 - 1, -1, -1))
+    previous = None
+    for count, index in enumerate(order):
+        options = candidates(coronal[index])
+        if not options:
             continue
-        start, end = max(candidates, key=lambda pair: pair[1] - pair[0])
-        trace[index] = start * column_mm
+        if count == len(order) - coronal.shape[0] // 2:
+            previous = None  # restarting the downward pass from the middle
+        if previous is None:
+            chosen = max(options)
+        else:
+            nearest = min(options, key=lambda value: abs(value - previous))
+            if abs(nearest - previous) > jump_limit_mm:
+                continue
+            chosen = nearest
+        trace[index] = chosen
+        previous = chosen
 
     return trace
 
@@ -143,9 +167,12 @@ def fit_period(z_mm: np.ndarray, trace: np.ndarray, period_grid: np.ndarray):
     best = None
     for period in period_grid:
         u = (z - z[0]) / period
+        # A quartic baseline. The anatomical envelope varies on scales of 100 mm and more
+        # while the band being searched is 17 to 80 mm, so this is flexible enough to
+        # absorb anatomy and far too stiff to imitate the oscillation being looked for.
         design = np.column_stack([
             np.cos(2 * np.pi * u), np.sin(2 * np.pi * u),
-            np.ones_like(v), v, v**2,
+            np.ones_like(v), v, v**2, v**3, v**4,
         ])
         solution, *_ = np.linalg.lstsq(design, values, rcond=None)
         residual = values - design @ solution
@@ -175,9 +202,14 @@ def analyse(directory: Path) -> dict:
     levels = [int(height * fraction) for fraction in (0.45, 0.50, 0.55, 0.60, 0.65, 0.70)]
 
     span = float(volume.z_mm[-1] - volume.z_mm[0])
-    # A period longer than half the scanned length cannot be seen twice, and one shorter
-    # than a few slices cannot be resolved; the grid stops at both.
-    grid = np.linspace(max(8 * float(np.median(np.diff(volume.z_mm))), 10.0), span / 2, 300)
+    # The period band is fixed by physiology and by the table speed in the header, not by
+    # what the data prefers: W = S x 60 / rate, over 40 to 120 bpm. The first version
+    # searched up to half the scanned length and the anatomical envelope won every time,
+    # pinning the fit at 156 and 249 mm and implying heart rates of 13 to 38 bpm.
+    speed = volume.table_speed_mm_s or 0.0
+    shortest = speed * 60.0 / 120.0
+    longest = speed * 60.0 / 40.0
+    grid = np.linspace(shortest, longest, 300)
 
     findings = []
     for level in levels:

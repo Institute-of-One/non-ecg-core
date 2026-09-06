@@ -1,0 +1,243 @@
+[
+  {
+    "patient": "RIDER-2073083717",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.163122808057818939042789346917260475509",
+    "table_speed_mm_s": 55.0,
+    "slices": 407,
+    "z_span_mm": 290.0,
+    "levels": [
+      {
+        "coronal_row": 230,
+        "usable": true,
+        "cycles_written": 5.180868739615476,
+        "implied_heart_rate_bpm": 93.68146214099217,
+        "period_mm": 35.225752508361204,
+        "pulsation_peak_to_peak_mm": 3.6448861230277645,
+        "residual_sd_mm": 1.380553258018523,
+        "sigma": 0.378764441856338,
+        "samples": 135,
+        "z_span_mm": 182.5
+      },
+      {
+        "coronal_row": 256,
+        "usable": false
+      },
+      {
+        "coronal_row": 281,
+        "usable": true,
+        "cycles_written": 3.830721003134796,
+        "implied_heart_rate_bpm": 53.793103448275865,
+        "period_mm": 61.34615384615385,
+        "pulsation_peak_to_peak_mm": 14.976327570082896,
+        "residual_sd_mm": 2.067852100623152,
+        "sigma": 0.13807471096946006,
+        "samples": 81,
+        "z_span_mm": 235.0
+      },
+      {
+        "coronal_row": 307,
+        "usable": true,
+        "cycles_written": 3.655351801274549,
+        "implied_heart_rate_bpm": 51.330472103004304,
+        "period_mm": 64.28929765886286,
+        "pulsation_peak_to_peak_mm": 4.876215261068609,
+        "residual_sd_mm": 1.7429046349709083,
+        "sigma": 0.3574297978364794,
+        "samples": 106,
+        "z_span_mm": 235.0
+      },
+      {
+        "coronal_row": 332,
+        "usable": true,
+        "cycles_written": 3.8449319213313164,
+        "implied_heart_rate_bpm": 54.28139183055976,
+        "period_mm": 60.7943143812709,
+        "pulsation_peak_to_peak_mm": 2.497745369810367,
+        "residual_sd_mm": 1.7605353356529012,
+        "sigma": 0.704849804520532,
+        "samples": 115,
+        "z_span_mm": 233.75
+      },
+      {
+        "coronal_row": 358,
+        "usable": true,
+        "cycles_written": 3.21935746711675,
+        "implied_heart_rate_bpm": 45.94110115236876,
+        "period_mm": 71.83110367892976,
+        "pulsation_peak_to_peak_mm": 1.719146523813844,
+        "residual_sd_mm": 1.802917200681126,
+        "sigma": 1.048728061108742,
+        "samples": 314,
+        "z_span_mm": 231.25
+      }
+    ],
+    "collection": "RIDER Lung CT",
+    "chosen_because": "middle: 55.0 mm/s, threshold 69 bpm"
+  },
+  {
+    "patient": "PD-1-Lung-00036",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.255233784459974523053948388235",
+    "table_speed_mm_s": 33.6,
+    "slices": 782,
+    "z_span_mm": 312.4,
+    "levels": [
+      {
+        "coronal_row": 230,
+        "usable": true,
+        "cycles_written": 4.4680215182307235,
+        "implied_heart_rate_bpm": 50.04184100418411,
+        "period_mm": 40.286287625418055,
+        "pulsation_peak_to_peak_mm": 2.7257686858426067,
+        "residual_sd_mm": 1.4206189683364692,
+        "sigma": 0.5211810436135077,
+        "samples": 451,
+        "z_span_mm": 180.0
+      },
+      {
+        "coronal_row": 256,
+        "usable": true,
+        "cycles_written": 5.272265391512255,
+        "implied_heart_rate_bpm": 50.04184100418411,
+        "period_mm": 40.286287625418055,
+        "pulsation_peak_to_peak_mm": 2.6337625469718935,
+        "residual_sd_mm": 1.3980245771904243,
+        "sigma": 0.5308088911803268,
+        "samples": 490,
+        "z_span_mm": 212.4
+      },
+      {
+        "coronal_row": 281,
+        "usable": true,
+        "cycles_written": 2.5887445887445892,
+        "implied_heart_rate_bpm": 98.84297520661157,
+        "period_mm": 20.39598662207358,
+        "pulsation_peak_to_peak_mm": 2.13036910859553,
+        "residual_sd_mm": 0.6422174593974145,
+        "sigma": 0.30145830448170724,
+        "samples": 96,
+        "z_span_mm": 52.80000000000001
+      },
+      {
+        "coronal_row": 307,
+        "usable": true,
+        "cycles_written": 9.354894944490319,
+        "implied_heart_rate_bpm": 69.13294797687861,
+        "period_mm": 29.161204013377926,
+        "pulsation_peak_to_peak_mm": 5.356430187127119,
+        "residual_sd_mm": 1.8404261476381254,
+        "sigma": 0.34359192285584966,
+        "samples": 273,
+        "z_span_mm": 272.79999999999995
+      },
+      {
+        "coronal_row": 332,
+        "usable": true,
+        "cycles_written": 0.4444444444444446,
+        "implied_heart_rate_bpm": 40.0,
+        "period_mm": 50.4,
+        "pulsation_peak_to_peak_mm": 7635.768667574105,
+        "residual_sd_mm": 0.7077934580454902,
+        "sigma": 9.269446061811577e-05,
+        "samples": 57,
+        "z_span_mm": 22.400000000000006
+      },
+      {
+        "coronal_row": 358,
+        "usable": true,
+        "cycles_written": 4.563492063492063,
+        "implied_heart_rate_bpm": 40.0,
+        "period_mm": 50.4,
+        "pulsation_peak_to_peak_mm": 2.119318603013998,
+        "residual_sd_mm": 2.27189099409043,
+        "sigma": 1.071991247969725,
+        "samples": 570,
+        "z_span_mm": 230.0
+      }
+    ],
+    "collection": "Anti-PD-1_Lung",
+    "chosen_because": "slow: 33.6 mm/s, threshold 42 bpm at the cardiac border"
+  },
+  {
+    "patient": "A656786",
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.22057899911939185439442654142508",
+    "table_speed_mm_s": 78.75,
+    "slices": 796,
+    "z_span_mm": 498.25,
+    "levels": [
+      {
+        "coronal_row": 230,
+        "usable": true,
+        "cycles_written": 3.8624338624338623,
+        "implied_heart_rate_bpm": 40.0,
+        "period_mm": 118.125,
+        "pulsation_peak_to_peak_mm": 9.10383822038445,
+        "residual_sd_mm": 4.51579337686983,
+        "sigma": 0.49603181290705434,
+        "samples": 430,
+        "z_span_mm": 456.25
+      },
+      {
+        "coronal_row": 256,
+        "usable": true,
+        "cycles_written": 1.161904761904762,
+        "implied_heart_rate_bpm": 120.0,
+        "period_mm": 39.375,
+        "pulsation_peak_to_peak_mm": 11.640188733915394,
+        "residual_sd_mm": 2.0422988314471437,
+        "sigma": 0.1754523812398855,
+        "samples": 62,
+        "z_span_mm": 45.75
+      },
+      {
+        "coronal_row": 281,
+        "usable": true,
+        "cycles_written": 2.6210343061955967,
+        "implied_heart_rate_bpm": 46.29677419354839,
+        "period_mm": 102.05894648829431,
+        "pulsation_peak_to_peak_mm": 2.2459025506569996,
+        "residual_sd_mm": 1.9886750643583213,
+        "sigma": 0.8854681000191077,
+        "samples": 234,
+        "z_span_mm": 267.5
+      },
+      {
+        "coronal_row": 307,
+        "usable": true,
+        "cycles_written": 3.566137566137566,
+        "implied_heart_rate_bpm": 40.0,
+        "period_mm": 118.125,
+        "pulsation_peak_to_peak_mm": 3.012199955415913,
+        "residual_sd_mm": 2.096536968894282,
+        "sigma": 0.6960152048089385,
+        "samples": 502,
+        "z_span_mm": 421.25
+      },
+      {
+        "coronal_row": 332,
+        "usable": true,
+        "cycles_written": 4.147487615003539,
+        "implied_heart_rate_bpm": 45.70700636942676,
+        "period_mm": 103.37583612040133,
+        "pulsation_peak_to_peak_mm": 1.5785349872313095,
+        "residual_sd_mm": 1.8928690461918307,
+        "sigma": 1.1991302451343515,
+        "samples": 548,
+        "z_span_mm": 428.75
+      },
+      {
+        "coronal_row": 358,
+        "usable": true,
+        "cycles_written": 3.8433442610805506,
+        "implied_heart_rate_bpm": 41.86697782963827,
+        "period_mm": 112.8574414715719,
+        "pulsation_peak_to_peak_mm": 0.7609644517840142,
+        "residual_sd_mm": 1.7060382840171544,
+        "sigma": 2.2419421564535607,
+        "samples": 591,
+        "z_span_mm": 433.75
+      }
+    ],
+    "collection": "COVID-19-NY-SBU",
+    "chosen_because": "fast: 129.0 mm/s, threshold 161 bpm -- predicted to fail"
+  }
+]
