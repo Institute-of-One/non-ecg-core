@@ -1,0 +1,13 @@
+# The 2003 source material lives in ../NonECG-Paper and stays there. It contains patient
+# names and hospital identifiers in YamamotoPaper.txt, and its figures, phantom data and
+# software belong to fourteen co-authors and two companies. Nothing from it is used here.
+# These patterns are a second line only -- that directory is outside this repository.
+NonECG-Paper/
+YamamotoPaper.txt
+*.STA
+*.kyp
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.py.backup

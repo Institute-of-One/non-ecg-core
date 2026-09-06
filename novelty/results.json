@@ -1,0 +1,1523 @@
+{
+  "searched_on": "2026-09-06",
+  "queries": [
+    {
+      "label": "A. image-based cardiac gating in CT",
+      "what_a_hit_means": "Crowded field expected. Hits here are prior art for the mechanism, not for the bound. What matters is whether any of them work on a NON-cardiac protocol.",
+      "pubmed_term": "(cardiac[Title/Abstract] AND (self-gating[Title/Abstract] OR self-gated[Title/Abstract] OR kymogram[Title/Abstract] OR \"image-based gating\"[Title/Abstract]) AND (CT[Title/Abstract] OR tomography[Title/Abstract]))",
+      "europe_pmc_term": "TITLE_ABS:(cardiac AND (self-gating OR self-gated OR kymogram OR \"image-based gating\") AND (CT OR tomography))",
+      "pubmed": {
+        "total": 10,
+        "returned": 10,
+        "records": [
+          {
+            "id": "39311616",
+            "year": "2024",
+            "journal": "J Vis Exp",
+            "title": "Pulmonary Structural MRI using Free-Breathing, Self-Gated Ultra-short Echo Time Imaging."
+          },
+          {
+            "id": "38549741",
+            "year": "2021",
+            "journal": "Am Heart J Plus",
+            "title": "Why high intensity plaque is bright on MRI?"
+          },
+          {
+            "id": "26054381",
+            "year": "2016",
+            "journal": "Mol Imaging Biol",
+            "title": "Automatic Cardiac Self-Gating of Small-Animal PET Data."
+          },
+          {
+            "id": "25659483",
+            "year": "2015",
+            "journal": "Am J Physiol Heart Circ Physiol",
+            "title": "Noninvasive pulmonary artery wave intensity analysis in pulmonary hypertension."
+          },
+          {
+            "id": "21518683",
+            "year": "2011",
+            "journal": "EuroIntervention",
+            "title": "Retrospective image-based gating of intracoronary optical coherence tomography: implications for quantitative analysis."
+          },
+          {
+            "id": "19808548",
+            "year": "2008",
+            "journal": "Circ Cardiovasc Imaging",
+            "title": "Intrinsic gating for small-animal computed tomography: a robust ECG-less paradigm for deriving cardiac phase information and functional imaging."
+          },
+          {
+            "id": "18838356",
+            "year": "2009",
+            "journal": "Phys Med",
+            "title": "Real-time determination of the optimal reconstruction phase to control ECG pulsing in spiral cardiac CT."
+          },
+          {
+            "id": "18008075",
+            "year": "2008",
+            "journal": "Eur Radiol",
+            "title": "Validation of a raw data-based synchronization signal (kymogram) for phase-correlated cardiac image reconstruction."
+          },
+          {
+            "id": "15721594",
+            "year": "2005",
+            "journal": "Acad Radiol",
+            "title": "Image quality of volume rendering of the bronchial tree: Kymogram-gated versus retrospectively ECG-gated and non-gated multi-row detector CT."
+          },
+          {
+            "id": "12148730",
+            "year": "2002",
+            "journal": "Med Phys",
+            "title": "Kymogram detection and kymogram-correlated image reconstruction from subsecond spiral computed tomography scans of the heart."
+          }
+        ]
+      },
+      "europe_pmc": {
+        "total": 28,
+        "returned": 28,
+        "records": [
+          {
+            "id": "42317845",
+            "year": "2026",
+            "journal": "AMIA Jt Summits Transl Sci Proc",
+            "title": "A Framework for Cross-Domain Generalization in Coronary Artery Calcium Scoring Across Gated and Non-Gated Computed Tomography."
+          },
+          {
+            "id": "42019537",
+            "year": "2026",
+            "journal": "Phys Med Biol",
+            "title": "Nonperiodic dynamic CT reconstruction using backward-warping implicit neural representation with diffeomorphism regularization<sup/>."
+          },
+          {
+            "id": "39311616",
+            "year": "2024",
+            "journal": "J Vis Exp",
+            "title": "Pulmonary Structural MRI using Free-Breathing, Self-Gated Ultra-short Echo Time Imaging."
+          },
+          {
+            "id": "37651491",
+            "year": "2023",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "TT U-Net: Temporal Transformer U-Net for Motion Artifact Reduction Using PAD (Pseudo All-Phase Clinical-Dataset) in Cardiac CT."
+          },
+          {
+            "id": "39033502",
+            "year": "2025",
+            "journal": "Vascular",
+            "title": "&lt;i&gt;In vitro&lt;/i&gt; quantification of stent-graft behaviour during chimney thoracic endovascular aortic repair."
+          },
+          {
+            "id": "41482498",
+            "year": "2026",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Distribution of coronary artery calcium volume and density by age, sex, and race using AI-based quantification algorithm."
+          },
+          {
+            "id": "39609345",
+            "year": "2024",
+            "journal": "EJNMMI Res",
+            "title": "Impact of cognitive impairment on heart failure prognosis: insights into central nervous system mechanism."
+          },
+          {
+            "id": "38814529",
+            "year": "2024",
+            "journal": "Int J Comput Assist Radiol Surg",
+            "title": "Heart and great vessels segmentation in congenital heart disease via CNN and conditioned energy function postprocessing."
+          },
+          {
+            "id": "32972842",
+            "year": "2021",
+            "journal": "Acad Radiol",
+            "title": "Evaluation of ECG-gated and Fast Low-Angle Shot (FLASH) Dual Source Computed Tomography Scanning Protocols for Transcatheter Aortic Valve Replacement."
+          },
+          {
+            "id": "36502547",
+            "year": "2023",
+            "journal": "Comput Methods Programs Biomed",
+            "title": "An automatic segmentation method with self-attention mechanism on left ventricle in gated PET/CT myocardial perfusion imaging."
+          },
+          {
+            "id": "37492382",
+            "year": "2023",
+            "journal": "Front Radiol",
+            "title": "Deep learning-based left ventricular segmentation demonstrates improved performance on respiratory motion-resolved whole-heart reconstructions."
+          },
+          {
+            "id": "32012138",
+            "year": "2020",
+            "journal": "J Cardiovasc Med (Hagerstown)",
+            "title": "Role of computed tomography in transcatheter aortic valve implantation and valve-in-valve implantation: complete review of preprocedural and postprocedural imaging."
+          },
+          {
+            "id": "26054381",
+            "year": "2016",
+            "journal": "Mol Imaging Biol",
+            "title": "Automatic Cardiac Self-Gating of Small-Animal PET Data."
+          },
+          {
+            "id": "38549741",
+            "year": "2021",
+            "journal": "Am Heart J Plus",
+            "title": "Why high intensity plaque is bright on MRI?"
+          },
+          {
+            "id": "PPR100324",
+            "year": "2019",
+            "journal": {
+              "publisher": "bioRxiv",
+              "yearOfPublication": 2019
+            },
+            "title": "Recruiting RyRs to open in a Ca  <sup>2+</sup>  release unit: Single-RyR gating properties make RyR group dynamics"
+          },
+          {
+            "id": "29544371",
+            "year": "2018",
+            "journal": "J Endovasc Ther",
+            "title": "In Vitro Quantification of Gutter Formation and Chimney Graft Compression in Chimney EVAR Stent-Graft Configurations Using Electrocardiography-Gated Computed Tomography."
+          },
+          {
+            "id": "18008075",
+            "year": "2008",
+            "journal": "Eur Radiol",
+            "title": "Validation of a raw data-based synchronization signal (kymogram) for phase-correlated cardiac image reconstruction."
+          },
+          {
+            "id": "29309547",
+            "year": "2018",
+            "journal": "Eur J Cardiothorac Surg",
+            "title": "Impact of the type of transcatheter heart valve on the incidence of early subclinical leaflet thrombosis."
+          },
+          {
+            "id": "15721594",
+            "year": "2005",
+            "journal": "Acad Radiol",
+            "title": "Image quality of volume rendering of the bronchial tree: Kymogram-gated versus retrospectively ECG-gated and non-gated multi-row detector CT."
+          },
+          {
+            "id": "19808548",
+            "year": "2008",
+            "journal": "Circ Cardiovasc Imaging",
+            "title": "Intrinsic gating for small-animal computed tomography: a robust ECG-less paradigm for deriving cardiac phase information and functional imaging."
+          },
+          {
+            "id": "21518683",
+            "year": "2011",
+            "journal": "EuroIntervention",
+            "title": "Retrospective image-based gating of intracoronary optical coherence tomography: implications for quantitative analysis."
+          },
+          {
+            "id": "12148730",
+            "year": "2002",
+            "journal": "Med Phys",
+            "title": "Kymogram detection and kymogram-correlated image reconstruction from subsecond spiral computed tomography scans of the heart."
+          },
+          {
+            "id": "22178898",
+            "year": "2012",
+            "journal": "Circ Cardiovasc Imaging",
+            "title": "Reference values for normal pulmonary artery dimensions by noncontrast cardiac computed tomography: the Framingham Heart Study."
+          },
+          {
+            "id": "29195844",
+            "year": "2018",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Leaflet thrombosis following transcatheter aortic valve implantation."
+          },
+          {
+            "id": "29909590",
+            "year": "2018",
+            "journal": "Int J Cardiovasc Imaging",
+            "title": "Do CTA measurements of annular diameter, perimeter and area result in different TAVI prosthesis sizes?"
+          },
+          {
+            "id": "18838356",
+            "year": "2009",
+            "journal": "Phys Med",
+            "title": "Real-time determination of the optimal reconstruction phase to control ECG pulsing in spiral cardiac CT."
+          },
+          {
+            "id": "25659483",
+            "year": "2015",
+            "journal": "Am J Physiol Heart Circ Physiol",
+            "title": "Noninvasive pulmonary artery wave intensity analysis in pulmonary hypertension."
+          },
+          {
+            "id": "11530377",
+            "year": "2001",
+            "journal": "Kaku Igaku",
+            "title": "[Clinical application of gated SPECT imaging to regional function assessment: current status and limitations]."
+          }
+        ]
+      }
+    },
+    {
+      "label": "B. cardiac phase or heart rate recovered from a non-gated CT",
+      "what_a_hit_means": "The closest neighbours. A hit that RECOVERS timing (rather than correcting for motion) on a routine scan would be direct prior art.",
+      "pubmed_term": "((non-gated[Title/Abstract] OR nongated[Title/Abstract] OR \"without electrocardiogram\"[Title/Abstract] OR \"without ECG\"[Title/Abstract]) AND (cardiac[Title/Abstract] AND (phase[Title/Abstract] OR gating[Title/Abstract] OR \"heart rate\"[Title/Abstract])) AND (CT[Title/Abstract] OR tomography[Title/Abstract]))",
+      "europe_pmc_term": "TITLE_ABS:((non-gated OR nongated OR \"without electrocardiogram\" OR \"without ECG\") AND cardiac AND (phase OR gating OR \"heart rate\") AND (CT OR tomography))",
+      "pubmed": {
+        "total": 55,
+        "returned": 40,
+        "records": [
+          {
+            "id": "41966903",
+            "year": "2026",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Matching the protocol to the clinical question in pediatric coronary CT - one size doesn't have to fit all."
+          },
+          {
+            "id": "41608731",
+            "year": "2025",
+            "journal": "Stroke Vasc Interv Neurol",
+            "title": "Nongated Photon-Counting Computed Tomography Angiography Detects Cardioembolic Stroke Sources and Thoracic Pathology: A Retrospective Cohort Study."
+          },
+          {
+            "id": "41314866",
+            "year": "2026",
+            "journal": "Cardiovasc Revasc Med",
+            "title": "OPENing a new ECLECTIC approach to NSTEMI and cardiac arrest using ECG-less coronary computed tomography angiography. Study design and rationale of two prospective clinical studies."
+          },
+          {
+            "id": "39335734",
+            "year": "2024",
+            "journal": "Diagnostics (Basel)",
+            "title": "Device-Less Data-Driven Cardiac and Respiratory Gating Using LAFOV PET Histo Images."
+          },
+          {
+            "id": "39270155",
+            "year": "2024",
+            "journal": "Neurology",
+            "title": "Cardiac CT vs Echocardiography for Intracardiac Thrombus Detection in Ischemic Stroke: A Systematic Review and Meta-Analysis of 43 Studies."
+          },
+          {
+            "id": "38934136",
+            "year": "2025",
+            "journal": "Cerebrovasc Dis",
+            "title": "Neurologists Preferences on Basic and Advanced Cardiac Imaging Utilization in Ischemic Stroke Patients."
+          },
+          {
+            "id": "38842629",
+            "year": "2024",
+            "journal": "Ann Nucl Med",
+            "title": "Deep generative denoising networks enhance quality and accuracy of gated cardiac PET data."
+          },
+          {
+            "id": "38644747",
+            "year": "2024",
+            "journal": "Acta Radiol",
+            "title": "Epicardial adipose tissue (EAT) thickness on non-gated chest CT as an alternative to EAT volume on cardiac CT."
+          },
+          {
+            "id": "37835891",
+            "year": "2023",
+            "journal": "Diagnostics (Basel)",
+            "title": "Improved [(18)F]FDG PET/CT Diagnostic Accuracy for Infective Endocarditis Using Conventional Cardiac Gating or Combined Cardiac and Respiratory Motion Correction (CardioFreeze(TM))."
+          },
+          {
+            "id": "36918460",
+            "year": "2023",
+            "journal": "J Nucl Cardiol",
+            "title": "Impact of respiratory gating and ECG gating on (18)F-FDG PET/CT for cardiac sarcoidosis."
+          },
+          {
+            "id": "36037455",
+            "year": "2023",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "A Deep Learning Method for Motion Artifact Correction in Intravascular Photoacoustic Image Sequence."
+          },
+          {
+            "id": "35526225",
+            "year": "2022",
+            "journal": "Med Phys",
+            "title": "Dual gating myocardial perfusion SPECT denoising using a conditional generative adversarial network."
+          },
+          {
+            "id": "35303820",
+            "year": "2022",
+            "journal": "BMC Med Imaging",
+            "title": "The impact of cardiopulmonary hemodynamic factors in volumetry for pulmonary nodule management."
+          },
+          {
+            "id": "34667967",
+            "year": "2021",
+            "journal": "Heart Rhythm O2",
+            "title": "Computational ECG mapping and respiratory gating to optimize stereotactic ablative radiotherapy workflow for refractory ventricular tachycardia."
+          },
+          {
+            "id": "34476780",
+            "year": "2022",
+            "journal": "J Nucl Cardiol",
+            "title": "Effect of respiratory motion correction and CT-based attenuation correction on dual-gated cardiac PET image quality and quantification."
+          },
+          {
+            "id": "34268474",
+            "year": "2021",
+            "journal": "Eur Heart J Case Rep",
+            "title": "Clinical utility of two-phase computed tomography angiography for the detection of myocardial perfusion defects related to acute coronary syndrome in patients with acute chest pain: a case series."
+          },
+          {
+            "id": "34148273",
+            "year": "2021",
+            "journal": "Vet Radiol Ultrasound",
+            "title": "The vertebral heart scale on CT is correlated to radiographs in dogs."
+          },
+          {
+            "id": "33751990",
+            "year": "2021",
+            "journal": "J Stroke Cerebrovasc Dis",
+            "title": "Early Triage of Cardioembolic Sources Using Chest Spectral Computed Tomography in Acute Ischemic Stroke."
+          },
+          {
+            "id": "33703860",
+            "year": "2021",
+            "journal": "Minerva Cardiol Angiol",
+            "title": "Cardiovascular thrombotic complications in acute ischemic stroke assessed by chest spectral computed tomography during COVID-19."
+          },
+          {
+            "id": "33606342",
+            "year": "2021",
+            "journal": "Acad Emerg Med",
+            "title": "Early head-to-pelvis computed tomography in out-of-hospital circulatory arrest without obvious etiology."
+          },
+          {
+            "id": "33168859",
+            "year": "2020",
+            "journal": "Sci Rep",
+            "title": "Estimation of optimal number of gates in dual gated (18)F-FDG cardiac PET."
+          },
+          {
+            "id": "32444933",
+            "year": "2020",
+            "journal": "Heart Vessels",
+            "title": "Coronary artery calcification scoring system based on the coronary artery calcium data and reporting system (CAC-DRS) predicts major adverse cardiovascular events or all-cause death in patients with potentially curable lung cancer without a history of cardiovascular disease."
+          },
+          {
+            "id": "32198657",
+            "year": "2020",
+            "journal": "Insights Imaging",
+            "title": "Imaging of the aortic root on high-pitch non-gated and ECG-gated CT: awareness is the key!"
+          },
+          {
+            "id": "31990986",
+            "year": "2020",
+            "journal": "Med Phys",
+            "title": "Clinical comparison of the positron emission tracking (PeTrack) algorithm with the real-time position management system for respiratory gating in cardiac positron emission tomography."
+          },
+          {
+            "id": "31974129",
+            "year": "2020",
+            "journal": "J Neurol Neurosurg Psychiatry",
+            "title": "Non-gated cardiac CT angiography for detection of cardio-aortic sources of embolism in the acute phase of ischaemic stroke."
+          },
+          {
+            "id": "31895756",
+            "year": "2020",
+            "journal": "Nucl Med Commun",
+            "title": "Study of novel deformable image registration in myocardial perfusion single-photon emission computed tomography."
+          },
+          {
+            "id": "30763289",
+            "year": "2019",
+            "journal": "Nucl Med Commun",
+            "title": "Usefulness of respiratory-gated 18F-FDG PET/CT scan protocol in patients having positive myocardial 18F-FDG uptake."
+          },
+          {
+            "id": "30575047",
+            "year": "2019",
+            "journal": "Med Phys",
+            "title": "Cardiac motion and spillover correction for quantitative PET imaging using dynamic MRI."
+          },
+          {
+            "id": "29866350",
+            "year": "2018",
+            "journal": "Phys Med",
+            "title": "Low-dose paediatric cardiac and thoracic computed tomography with prospective triggering: Is it possible at any heart rate?"
+          },
+          {
+            "id": "28437443",
+            "year": "2017",
+            "journal": "PLoS One",
+            "title": "Relative predictive value of lung cancer screening CT versus myocardial perfusion attenuation correction CT in the evaluation of coronary calcium."
+          },
+          {
+            "id": "28416358",
+            "year": "2017",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Non-gated high-pitch computed tomography aortic angiography: Myocardial perfusion defects in patients with suspected aortic dissection."
+          },
+          {
+            "id": "28411031",
+            "year": "2017",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Prognostic value of visually detected coronary artery calcification on unenhanced non-gated thoracic computed tomography for prediction of non-fatal myocardial infarction and all-cause mortality."
+          },
+          {
+            "id": "27127219",
+            "year": "2016",
+            "journal": "J Nucl Med",
+            "title": "Automatic Extraction of Myocardial Mass and Volume Using Parametric Images from Dynamic Nongated PET."
+          },
+          {
+            "id": "27039002",
+            "year": "2018",
+            "journal": "J Am Coll Radiol",
+            "title": "Detection of Cardiac Incidental Findings on Routine Chest CT: The Impact of Dedicated Training in Cardiac Imaging."
+          },
+          {
+            "id": "26781150",
+            "year": "2016",
+            "journal": "Eur J Radiol",
+            "title": "Cardiac findings on non-gated chest computed tomography: A clinical and pictorial review."
+          },
+          {
+            "id": "26340814",
+            "year": "2016",
+            "journal": "Eur Radiol",
+            "title": "Coronary calcium screening with dual-source CT: reliability of ungated, high-pitch chest CT in comparison with dedicated calcium-scoring CT."
+          },
+          {
+            "id": "25832085",
+            "year": "2015",
+            "journal": "Med Phys",
+            "title": "Cardiorespiratory motion-compensated micro-CT image reconstruction using an artifact model-based motion estimation."
+          },
+          {
+            "id": "23436832",
+            "year": "2013",
+            "journal": "Acta Radiol",
+            "title": "Pertinent reportable incidental cardiac findings on chest CT without electrocardiography gating: review of 268 consecutive cases."
+          },
+          {
+            "id": "23129238",
+            "year": "2012",
+            "journal": "Insights Imaging",
+            "title": "A pictorial review of acute aortic syndrome: discriminating and overlapping features as revealed by ECG-gated multidetector-row CT angiography."
+          },
+          {
+            "id": "22434629",
+            "year": "2012",
+            "journal": "Contrast Media Mol Imaging",
+            "title": "Improved quantification in pinhole gated myocardial perfusion SPECT using micro-CT and ultrasound information."
+          }
+        ]
+      },
+      "europe_pmc": {
+        "total": 194,
+        "returned": 40,
+        "records": [
+          {
+            "id": "41296252",
+            "year": "2026",
+            "journal": "Radiol Med",
+            "title": "Ultrafast non-ECG-gated cardiac spectral CT scanning for myocardial late iodine enhancement assessment: a feasibility study."
+          },
+          {
+            "id": "PMC13146276",
+            "year": "2026",
+            "journal": "Eur Stroke J",
+            "title": "ABSTRACT NUMBER: ESOC2026A2164 VENOUS-PHASE NON-ECG-GATED CARDIAC CT TO DETECT INTRACARDÍAC THROMBOSIS IN THE ACUTE PHASE OF STROKE"
+          },
+          {
+            "id": "PPR1171253",
+            "year": "2026",
+            "journal": {
+              "publisher": "Research Square",
+              "yearOfPublication": 2026
+            },
+            "title": "AI-Based Low-Dose Chest CT Assessment of Coronary Artery Calcification Score: An Analysis of Accuracy-Relating Factors"
+          },
+          {
+            "id": "42114402",
+            "year": "2026",
+            "journal": "Phys Med",
+            "title": "Non-invasive cardiac radioablation for ventricular tachycardia: A feasibility dosimetric in silico study based on a prospective cohort of patients to compare photon to proton radiotherapy: Results of the Italian CARA-VT study."
+          },
+          {
+            "id": "41608731",
+            "year": "2025",
+            "journal": "Stroke Vasc Interv Neurol",
+            "title": "Nongated Photon-Counting Computed Tomography Angiography Detects Cardioembolic Stroke Sources and Thoracic Pathology: A Retrospective Cohort Study."
+          },
+          {
+            "id": "41966903",
+            "year": "2026",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "Matching the protocol to the clinical question in pediatric coronary CT - one size doesn't have to fit all."
+          },
+          {
+            "id": "42019537",
+            "year": "2026",
+            "journal": "Phys Med Biol",
+            "title": "Nonperiodic dynamic CT reconstruction using backward-warping implicit neural representation with diffeomorphism regularization<sup/>."
+          },
+          {
+            "id": "41314866",
+            "year": "2026",
+            "journal": "Cardiovasc Revasc Med",
+            "title": "OPENing a new ECLECTIC approach to NSTEMI and cardiac arrest using ECG-less coronary computed tomography angiography. Study design and rationale of two prospective clinical studies."
+          },
+          {
+            "id": "40031322",
+            "year": "2025",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "Cardiac Phase Estimation Using Deep Learning Analysis of Pulsed-Mode Projections: Toward Autonomous Cardiac CT Imaging."
+          },
+          {
+            "id": "41648908",
+            "year": "2026",
+            "journal": "Mil Med",
+            "title": "A Descriptive Analysis of Coronary Computed Tomography Angiography Results among Patients Presenting with Chest Pain in a Deployed Combat Environment."
+          },
+          {
+            "id": "41891715",
+            "year": "2026",
+            "journal": "J Thorac Imaging",
+            "title": "ECG-Gated Retrospective Coronary CT Angiography With Deep Learning Reconstruction on 8-cm Detector CT Scanners: Pushing Radiation Dose Towards Prospective Acquisition on 16-cm Wide-Detector Scanners."
+          },
+          {
+            "id": "41301151",
+            "year": "2025",
+            "journal": "Bioengineering (Basel)",
+            "title": "Investigation of Attenuation Correction Methods for Dual-Gated Single Photon Emission Computed Tomography (DG-SPECT)."
+          },
+          {
+            "id": "40328582",
+            "year": "2026",
+            "journal": "Curr Probl Diagn Radiol",
+            "title": "Coronary computed tomography angiography without ECG leads; A feasibility study."
+          },
+          {
+            "id": "38627013",
+            "year": "2024",
+            "journal": "J Nucl Med Technol",
+            "title": "Study of Attenuation Correction Using a Cardiac Dynamic Phantom: Synchronized Time-Phase-Gated Attenuation Correction Method."
+          },
+          {
+            "id": "41367728",
+            "year": "2025",
+            "journal": "Quant Imaging Med Surg",
+            "title": "Feasibility of alternative trigger deletion to improve 64-slice coronary computed tomography angiography quality in patients with increased heart rate."
+          },
+          {
+            "id": "36918460",
+            "year": "2023",
+            "journal": "J Nucl Cardiol",
+            "title": "Impact of respiratory gating and ECG gating on <sup>18</sup>F-FDG PET/CT for cardiac sarcoidosis."
+          },
+          {
+            "id": "41655146",
+            "year": "2026",
+            "journal": "Radiol Phys Technol",
+            "title": "Robustness of heart dose against cardiac cycle in breast cancer radiotherapy with deep inspiration breath-hold."
+          },
+          {
+            "id": "41086750",
+            "year": "2025",
+            "journal": "Comput Biol Med",
+            "title": "Towards patient-specific hemodynamics of the aorta: A comprehensive CT-guided approach for moving boundary CFD simulations."
+          },
+          {
+            "id": "40391672",
+            "year": "2025",
+            "journal": "Pacing Clin Electrophysiol",
+            "title": "Texture Analysis of SPECT-MPI Provides Prognostic Value in Improving Cardiac Resynchronization Therapy Response."
+          },
+          {
+            "id": "38413684",
+            "year": "2024",
+            "journal": "Sci Rep",
+            "title": "Virtual non-iodine photon-counting CT-angiography for aortic valve calcification scoring."
+          },
+          {
+            "id": "36513994",
+            "year": "2022",
+            "journal": "BMC Cardiovasc Disord",
+            "title": "Comparison of epicardial adipose tissue volume quantification between ECG-gated cardiac and non-ECG-gated chest computed tomography scans."
+          },
+          {
+            "id": "37835891",
+            "year": "2023",
+            "journal": "Diagnostics (Basel)",
+            "title": "Improved [<sup>18</sup>F]FDG PET/CT Diagnostic Accuracy for Infective Endocarditis Using Conventional Cardiac Gating or Combined Cardiac and Respiratory Motion Correction (CardioFreeze<sup>TM</sup>)."
+          },
+          {
+            "id": "39335734",
+            "year": "2024",
+            "journal": "Diagnostics (Basel)",
+            "title": "Device-Less Data-Driven Cardiac and Respiratory Gating Using LAFOV PET Histo Images."
+          },
+          {
+            "id": "39911878",
+            "year": "2025",
+            "journal": "Phys Imaging Radiat Oncol",
+            "title": "Electrocardiogram-gated cardiac computed tomography-based patient- and segment-specific cardiac motion estimation method in stereotactic arrhythmia radioablation for ventricular tachycardia."
+          },
+          {
+            "id": "41232771",
+            "year": "2025",
+            "journal": "Clin Nutr ESPEN",
+            "title": "Gender-specific associations between metabolic dysfunction-associated fatty liver disease with atherosclerosis, inflammation, and eating habits."
+          },
+          {
+            "id": "40021521",
+            "year": "2025",
+            "journal": "Heart Vessels",
+            "title": "Prognostic value of stress phase entropy for predicting major cardiac events in patients with known or suspected stable coronary artery disease."
+          },
+          {
+            "id": "37689744",
+            "year": "2023",
+            "journal": "Sci Rep",
+            "title": "Consistency of spectral results in cardiac dual-source photon-counting CT."
+          },
+          {
+            "id": "38389028",
+            "year": "2025",
+            "journal": "Int J Cardiovasc Imaging",
+            "title": "Effect of temporal resolution on calcium scoring: insights from photon-counting detector CT."
+          },
+          {
+            "id": "39752041",
+            "year": "2025",
+            "journal": "J Interv Card Electrophysiol",
+            "title": "Identifying non-responders to cardiac resynchronization therapy in the non-left bundle branch block."
+          },
+          {
+            "id": "38101318",
+            "year": "2024",
+            "journal": "J Vet Cardiol",
+            "title": "Development of a three-dimensional computer model of the equine heart using a polyurethane casting technique and in vivo contrast-enhanced computed tomography."
+          },
+          {
+            "id": "36318187",
+            "year": "2023",
+            "journal": "Vet Med Sci",
+            "title": "Clinical utility of a new protocol of cardiac computed tomography in dogs."
+          },
+          {
+            "id": "34148273",
+            "year": "2021",
+            "journal": "Vet Radiol Ultrasound",
+            "title": "The vertebral heart scale on CT is correlated to radiographs in dogs."
+          },
+          {
+            "id": "PPR823434",
+            "year": "2024",
+            "journal": {
+              "publisher": "Research Square",
+              "yearOfPublication": 2024
+            },
+            "title": "Repeatability analysis of cardiac function parameters in gated SPECT myocardial perfusion imaging"
+          },
+          {
+            "id": "35317242",
+            "year": "2022",
+            "journal": "World J Radiol",
+            "title": "Acute coronary syndrome on non-electrocardiogram-gated contrast-enhanced computed tomography."
+          },
+          {
+            "id": "39270155",
+            "year": "2024",
+            "journal": "Neurology",
+            "title": "Cardiac CT vs Echocardiography for Intracardiac Thrombus Detection in Ischemic Stroke: A Systematic Review and Meta-Analysis of 43 Studies."
+          },
+          {
+            "id": "34087004",
+            "year": "2021",
+            "journal": "Med Phys",
+            "title": "Ultrasound-gated computed tomography coronary angiography: Development of ultrasound transducers with improved computed tomography compatibility."
+          },
+          {
+            "id": "PPR583574",
+            "year": "2022",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2022
+            },
+            "title": "Stability of spectral results in cardiac dual-source photon-counting CT"
+          },
+          {
+            "id": "IND609263243",
+            "year": "2025",
+            "journal": "Data in Brief",
+            "title": "4D-CTA image and geometry dataset for kinematic analysis of abdominal aortic aneurysms"
+          },
+          {
+            "id": "37612232",
+            "year": "2023",
+            "journal": "J Cardiovasc Comput Tomogr",
+            "title": "AI-based, automated chamber volumetry from gated, non-contrast CT."
+          },
+          {
+            "id": "34476780",
+            "year": "2022",
+            "journal": "J Nucl Cardiol",
+            "title": "Effect of respiratory motion correction and CT-based attenuation correction on dual-gated cardiac PET image quality and quantification."
+          }
+        ]
+      }
+    },
+    {
+      "label": "C. the sampling bound itself",
+      "what_a_hit_means": "The claim. A hit stating a feasibility condition in terms of pitch, rotation time and heart rate would end this project, and should.",
+      "pubmed_term": "((helical[Title/Abstract] OR spiral[Title/Abstract]) AND CT[Title/Abstract] AND (pitch[Title/Abstract] AND (sampling[Title/Abstract] OR Nyquist[Title/Abstract] OR aliasing[Title/Abstract])) AND (cardiac[Title/Abstract] OR heart[Title/Abstract]))",
+      "europe_pmc_term": "TITLE_ABS:((helical OR spiral) AND CT AND pitch AND (sampling OR Nyquist OR aliasing) AND (cardiac OR heart))",
+      "pubmed": {
+        "total": 1,
+        "returned": 1,
+        "records": [
+          {
+            "id": "15573292",
+            "year": "2004",
+            "journal": "Rofo",
+            "title": "Performance evaluation of a 64-slice CT system with z-flying focal spot."
+          }
+        ]
+      },
+      "europe_pmc": {
+        "total": 1,
+        "returned": 1,
+        "records": [
+          {
+            "id": "15573292",
+            "year": "2004",
+            "journal": "Rofo",
+            "title": "Performance evaluation of a 64-slice CT system with z-flying focal spot."
+          }
+        ]
+      }
+    },
+    {
+      "label": "D. opportunistic cardiac assessment on routine chest CT",
+      "what_a_hit_means": "The genre the new paper would sit in. Expected to be busy and structural -- calcium, infarct, anatomy. A FUNCTIONAL or temporal hit would be the competitor.",
+      "pubmed_term": "(opportunistic[Title/Abstract] AND (cardiac[Title/Abstract] OR cardiovascular[Title/Abstract]) AND (\"chest CT\"[Title/Abstract] OR \"thoracic CT\"[Title/Abstract] OR \"computed tomography\"[Title/Abstract]))",
+      "europe_pmc_term": "TITLE_ABS:(opportunistic AND (cardiac OR cardiovascular) AND (\"chest CT\" OR \"thoracic CT\" OR \"computed tomography\"))",
+      "pubmed": {
+        "total": 94,
+        "returned": 40,
+        "records": [
+          {
+            "id": "42696681",
+            "year": "2026",
+            "journal": "JCO Clin Cancer Inform",
+            "title": "Deep Learning to Quantify Body Composition in Lung Cancer Screening-Eligible Individuals."
+          },
+          {
+            "id": "42643135",
+            "year": "2026",
+            "journal": "G Ital Cardiol (Rome)",
+            "title": "[Artificial intelligence in cardiovascular prevention: a strategic opportunity for risk prediction and early diagnosis]."
+          },
+          {
+            "id": "42622827",
+            "year": "2026",
+            "journal": "Abdom Radiol (NY)",
+            "title": "Abdominal vascular calcification at CT: opportunistic quantification and imaging-based risk stratification."
+          },
+          {
+            "id": "42621348",
+            "year": "2026",
+            "journal": "Int J Cardiol Heart Vasc",
+            "title": "Turning routine chest CT into a cardiovascular risk test: weston score-based CAC in Hawai'i."
+          },
+          {
+            "id": "42605347",
+            "year": "2026",
+            "journal": "Digit Health",
+            "title": "Assessing the prognostic value of artificial intelligence for opportunistic prediction of coronary artery calcium score on routine non-gated computed tomography in patients treated with immune checkpoint inhibitors."
+          },
+          {
+            "id": "42559150",
+            "year": "2026",
+            "journal": "Eur Heart J Imaging Methods Pract",
+            "title": "Extracellular volume fraction by cardiac computed tomography (ECV(CT)): opportunities and challenges for clinical implementation."
+          },
+          {
+            "id": "42515986",
+            "year": "2026",
+            "journal": "J Endovasc Ther",
+            "title": "Preoperative Osteosarcopenia Predicts Long-term Mortality and Cardiovascular Events After Endovascular Aneurysm Repair."
+          },
+          {
+            "id": "42464155",
+            "year": "2026",
+            "journal": "BMC Cardiovasc Disord",
+            "title": "Thoracic vertebral CT-based bone health indicator from coronary calcium scoring: correlation with CAD and prognostic impact."
+          },
+          {
+            "id": "42433512",
+            "year": "2026",
+            "journal": "Quant Imaging Med Surg",
+            "title": "Quantifying the impact of slice thickness on cardiovascular risk stratification in lung cancer screening: a multi-center \"RESCUE\" study."
+          },
+          {
+            "id": "42389791",
+            "year": "2026",
+            "journal": "Circ Cardiovasc Imaging",
+            "title": "Automated AI-Based Aortic Measurements From Attenuation Correction CT as an Adjunctive Cardiovascular Risk Biomarker: An International Multicenter Study."
+          },
+          {
+            "id": "42356097",
+            "year": "2026",
+            "journal": "Medicina (Kaunas)",
+            "title": "Calculation of Ejection Fraction Using Cardiac Computed Tomography: Clinical Evolution, Reliability, and Technological Challenges-A Narrative Review."
+          },
+          {
+            "id": "42285162",
+            "year": "2026",
+            "journal": "Semin Musculoskelet Radiol",
+            "title": "Opportunistic Screening Based on Computed Tomography in Musculoskeletal Radiology: How and Why."
+          },
+          {
+            "id": "42238410",
+            "year": "2026",
+            "journal": "medRxiv",
+            "title": "Opportunistic CT Attenuation Biomarkers of Anemia Are Associated With Impaired Myocardial Flow Reserve and Cardiovascular Outcomes."
+          },
+          {
+            "id": "42225573",
+            "year": "2026",
+            "journal": "Korean J Radiol",
+            "title": "Opportunistic Assessment of Coronary Artery Calcium Volume and Density From Non-Electrocardiogram-Gated Chest CT Using Artificial Intelligence: Prognostic Implications in a Screening Cohort."
+          },
+          {
+            "id": "42220813",
+            "year": "2026",
+            "journal": "Cureus",
+            "title": "Hepatic Duct Perforation Following Mitral Valve Replacement for Infectious Endocarditis: A Case Report."
+          },
+          {
+            "id": "42200595",
+            "year": "2026",
+            "journal": "J Am Coll Cardiol",
+            "title": "Wherever, Whenever, and However It Is Found: Atherosclerosis Is Informative."
+          },
+          {
+            "id": "42079702",
+            "year": "2026",
+            "journal": "Front Cardiovasc Med",
+            "title": "Opportunistic coronary calcium progression on routine chest CT improves cardiovascular risk stratification in patients with inflammatory bowel disease: a multicenter study."
+          },
+          {
+            "id": "42053927",
+            "year": "2026",
+            "journal": "Egypt Heart J",
+            "title": "Aortic response to cancer therapy: a narrative review of the radiotherapy paradox and clinical implications."
+          },
+          {
+            "id": "42033770",
+            "year": "2026",
+            "journal": "Br J Radiol",
+            "title": "Coronary artery calcium score - emerging role for opportunistic screening and novel applications."
+          },
+          {
+            "id": "41949519",
+            "year": "2026",
+            "journal": "J Am Coll Cardiol",
+            "title": "Early Prediction of Heart Failure From Routine Cardiac CT Using Radiomic Phenotyping of Epicardial Fat."
+          },
+          {
+            "id": "41949516",
+            "year": "2026",
+            "journal": "J Am Coll Cardiol",
+            "title": "Opportunistic Cardiovascular Risk Assessment Using Routine Head CT in the Emergency Department."
+          },
+          {
+            "id": "41912957",
+            "year": "2026",
+            "journal": "J Imaging Inform Med",
+            "title": "Quantification of Abdominal Aortic Calcification on CT: Clinical Validation for Assessment Of Cardiovascular Risk in Oncology."
+          },
+          {
+            "id": "41899605",
+            "year": "2026",
+            "journal": "Cancers (Basel)",
+            "title": "Impact of C3 Vertebra-Based Sarcopenia and Clinical Factors on Postoperative Complications in Oral Cancer Patients."
+          },
+          {
+            "id": "41899154",
+            "year": "2026",
+            "journal": "J Clin Med",
+            "title": "Obstructive Sleep Apnea Risk and Incidental Coronary Artery Calcification on Routine Chest Computed Tomography."
+          },
+          {
+            "id": "41890626",
+            "year": "2026",
+            "journal": "Radiol Adv",
+            "title": "Artificial intelligence-enabled cardiac volumetry for opportunistic screening of cardiomegaly on chest CT: clinical validation with echocardiography."
+          },
+          {
+            "id": "41827422",
+            "year": "2026",
+            "journal": "J Clin Med",
+            "title": "Application of the Novel Two-Compartmental Model to Quantify Coronary Artery Calcium: A Pilot Study."
+          },
+          {
+            "id": "41822507",
+            "year": "2026",
+            "journal": "Front Immunol",
+            "title": "Case Report: Native aortic valve Listeria monocytogenes endocarditis in an adult with Evans syndrome."
+          },
+          {
+            "id": "41790064",
+            "year": "2026",
+            "journal": "JACC Cardiovasc Imaging",
+            "title": "From Segmentation to MACE Prediction: Opportunistic Cardiovascular Screening From Noncardiac CT."
+          },
+          {
+            "id": "41772492",
+            "year": "2026",
+            "journal": "BMC Med Imaging",
+            "title": "Automated opportunistic cardiovascular risk assessment in non-small cell lung cancer patients on routine chest CT using an optimised nnU-net framework."
+          },
+          {
+            "id": "41718510",
+            "year": "2026",
+            "journal": "JACC Cardiovasc Imaging",
+            "title": "Aortic and Cardiac Structure From Routine CT Predict Cardiovascular Risk Beyond PREVENT and Coronary Calcium."
+          },
+          {
+            "id": "41624493",
+            "year": "2026",
+            "journal": "Int J Cardiol Heart Vasc",
+            "title": "Visual coronary calcium scoring to support opportunistic CAD screening: comparative evaluation of three established systems and introduction of a novel scoring system."
+          },
+          {
+            "id": "41585543",
+            "year": "2026",
+            "journal": "IDCases",
+            "title": "Mycobacterium avium complex causing transverse pericardial sinus infection: A case report."
+          },
+          {
+            "id": "41527261",
+            "year": "2026",
+            "journal": "Br J Radiol",
+            "title": "Extracardiac imaging biomarkers of cardiovascular health: a comprehensive review."
+          },
+          {
+            "id": "41488930",
+            "year": "2025",
+            "journal": "Front Physiol",
+            "title": "Low skeletal muscle density is independently associated with cardiac valve calcification in dialysis patients."
+          },
+          {
+            "id": "41377215",
+            "year": "2025",
+            "journal": "Ann Med Surg (Lond)",
+            "title": "Pulmonary mucormycosis and Achromobacter xylosoxidans co-infection in an immunocompromised host: a case report."
+          },
+          {
+            "id": "41375882",
+            "year": "2025",
+            "journal": "J Clin Med",
+            "title": "Systemic Vascular Calcification After Lung Transplantation: The Role of Mammographic Breast Arterial Calcifications."
+          },
+          {
+            "id": "41368002",
+            "year": "2026",
+            "journal": "Med Image Comput Comput Assist Interv",
+            "title": "MOSCARD - Multimodal Opportunistic Screening for Cardiovascular Adverse events with Causal Reasoning and De-confounding."
+          },
+          {
+            "id": "41340775",
+            "year": "2025",
+            "journal": "Mayo Clin Proc Digit Health",
+            "title": "Artificial Intelligence Chest X-Ray Opportunistic Screening Model for Coronary Artery Calcium Deposition: A Multi-Objective Model With Multimodal Data Fusion."
+          },
+          {
+            "id": "41321699",
+            "year": "2026",
+            "journal": "Clin Transl Radiat Oncol",
+            "title": "Vascular calcifications in early-breast radiotherapy planning-CT: Opportunistic detection and cardiovascular risk assessment."
+          },
+          {
+            "id": "41219315",
+            "year": "2025",
+            "journal": "Sci Rep",
+            "title": "Evaluation of an artificial intelligence model for opportunistic Agatston scoring on non-gated chest computed tomography."
+          }
+        ]
+      },
+      "europe_pmc": {
+        "total": 84,
+        "returned": 40,
+        "records": [
+          {
+            "id": "41899154",
+            "year": "2026",
+            "journal": "J Clin Med",
+            "title": "Obstructive Sleep Apnea Risk and Incidental Coronary Artery Calcification on Routine Chest Computed Tomography."
+          },
+          {
+            "id": "PPR1235667",
+            "year": "2026",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2026
+            },
+            "title": "Opportunistic CT Attenuation Biomarkers of Anemia Are Associated With Impaired Myocardial Flow Reserve and Cardiovascular Outcomes"
+          },
+          {
+            "id": "41890626",
+            "year": "2026",
+            "journal": "Radiol Adv",
+            "title": "Artificial intelligence-enabled cardiac volumetry for opportunistic screening of cardiomegaly on chest CT: clinical validation with echocardiography."
+          },
+          {
+            "id": "42285162",
+            "year": "2026",
+            "journal": "Semin Musculoskelet Radiol",
+            "title": "Opportunistic Screening Based on Computed Tomography in Musculoskeletal Radiology: How and Why."
+          },
+          {
+            "id": "42033770",
+            "year": "2026",
+            "journal": "Br J Radiol",
+            "title": "Coronary artery calcium score - emerging role for opportunistic screening and novel applications."
+          },
+          {
+            "id": "41099128",
+            "year": "2025",
+            "journal": "Circulation",
+            "title": "Opportunistic Detection of Coronary Artery Calcium on Noncardiac Chest Computed Tomography: An Emerging Tool for Cardiovascular Disease Prevention: A Scientific Statement From the American Heart Association."
+          },
+          {
+            "id": "PPR1264801",
+            "year": "2026",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2026
+            },
+            "title": "AI-Based Coronary Artery Calcification on Non-contrast CT: Performance Across Calcium Scoring, Lung Cancer Screening, and Liver Transplant Candidate Cohorts"
+          },
+          {
+            "id": "40763385",
+            "year": "2025",
+            "journal": "Clin Imaging",
+            "title": "Vessel-specific reliability of artificial intelligence-based coronary artery calcium scoring on non-ECG-gated chest CT: a comparative study with ECG-gated cardiac CT."
+          },
+          {
+            "id": "40690836",
+            "year": "2025",
+            "journal": "Eur J Radiol",
+            "title": "Validation of artificial intelligence software for automatic calcium scoring in cardiac and chest computed tomography."
+          },
+          {
+            "id": "42605347",
+            "year": "2026",
+            "journal": "Digit Health",
+            "title": "Assessing the prognostic value of artificial intelligence for opportunistic prediction of coronary artery calcium score on routine non-gated computed tomography in patients treated with immune checkpoint inhibitors."
+          },
+          {
+            "id": "42079702",
+            "year": "2026",
+            "journal": "Front Cardiovasc Med",
+            "title": "Opportunistic coronary calcium progression on routine chest CT improves cardiovascular risk stratification in patients with inflammatory bowel disease: a multicenter study."
+          },
+          {
+            "id": "42621348",
+            "year": "2026",
+            "journal": "Int J Cardiol Heart Vasc",
+            "title": "Turning routine chest CT into a cardiovascular risk test: weston score-based CAC in Hawai'i."
+          },
+          {
+            "id": "42356097",
+            "year": "2026",
+            "journal": "Medicina (Kaunas)",
+            "title": "Calculation of Ejection Fraction Using Cardiac Computed Tomography: Clinical Evolution, Reliability, and Technological Challenges-A Narrative Review."
+          },
+          {
+            "id": "41219315",
+            "year": "2025",
+            "journal": "Sci Rep",
+            "title": "Evaluation of an artificial intelligence model for opportunistic Agatston scoring on non-gated chest computed tomography."
+          },
+          {
+            "id": "41488930",
+            "year": "2025",
+            "journal": "Front Physiol",
+            "title": "Low skeletal muscle density is independently associated with cardiac valve calcification in dialysis patients."
+          },
+          {
+            "id": "40396321",
+            "year": "2025",
+            "journal": "Curr Med Imaging",
+            "title": "Incidental Myocardial Infarction on Routine Non-Gated Thoracic Computed Tomography"
+          },
+          {
+            "id": "42559150",
+            "year": "2026",
+            "journal": "Eur Heart J Imaging Methods Pract",
+            "title": "Extracellular volume fraction by cardiac computed tomography (ECV&lt;sub&gt;CT&lt;/sub&gt;): opportunities and challenges for clinical implementation."
+          },
+          {
+            "id": "PPR1300054",
+            "year": "2026",
+            "journal": {
+              "publisher": "Research Square",
+              "yearOfPublication": 2026
+            },
+            "title": "Advancing Osteoporosis Detection Through AI-Driven CT Segmentation: Insights from Multiple Large Health System Biobanks"
+          },
+          {
+            "id": "42643135",
+            "year": "2026",
+            "journal": "G Ital Cardiol (Rome)",
+            "title": "[Artificial intelligence in cardiovascular prevention: a strategic opportunity for risk prediction and early diagnosis]."
+          },
+          {
+            "id": "PPR1271150",
+            "year": "2025",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2025
+            },
+            "title": "Integrating Prior Qualitative Coronary Artery Calcium Assessment into an Established Chest Pain Algorithm: Effect on Risk Stratification Outcomes"
+          },
+          {
+            "id": "42225573",
+            "year": "2026",
+            "journal": "Korean J Radiol",
+            "title": "Opportunistic Assessment of Coronary Artery Calcium Volume and Density From Non-Electrocardiogram-Gated Chest CT Using Artificial Intelligence: Prognostic Implications in a Screening Cohort."
+          },
+          {
+            "id": "40273423",
+            "year": "2026",
+            "journal": "Invest Radiol",
+            "title": "Photon-Counting Chest CT at Radiography-Comparable Dose Levels: Impact on Opportunistic Visual and Semiautomated Coronary Calcium Quantification."
+          },
+          {
+            "id": "41368002",
+            "year": "2026",
+            "journal": "Med Image Comput Comput Assist Interv",
+            "title": "MOSCARD - Multimodal Opportunistic Screening for Cardiovascular Adverse events with Causal Reasoning and De-confounding."
+          },
+          {
+            "id": "40824206",
+            "year": "2025",
+            "journal": "Br J Radiol",
+            "title": "Early detection of cardiovascular disease in chest population screening: challenges for a rapidly emerging cardiac CT application."
+          },
+          {
+            "id": "37675086",
+            "year": "2023",
+            "journal": "Cardiovasc Diagn Ther",
+            "title": "Opportunistic screening at chest computed tomography: literature review of cardiovascular significance of incidental findings."
+          },
+          {
+            "id": "40998657",
+            "year": "2025",
+            "journal": "Acad Radiol",
+            "title": "Automated Coronary Artery Calcium Scoring Using Deep Learning: Validation Across Diverse Chest CT Protocols."
+          },
+          {
+            "id": "PPR971854",
+            "year": "2025",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2025
+            },
+            "title": "OPPORTUNISTIC ASSESSMENT OF CARDIOVASCULAR RISK USING AI-DERIVED STRUCTURAL AORTIC AND CARDIAC PHENOTYPES FROM NON-CONTRAST CHEST COMPUTED TOMOGRAPHY"
+          },
+          {
+            "id": "41772492",
+            "year": "2026",
+            "journal": "BMC Med Imaging",
+            "title": "Automated opportunistic cardiovascular risk assessment in non-small cell lung cancer patients on routine chest CT using an optimised nnU-net framework."
+          },
+          {
+            "id": "42515986",
+            "year": "2026",
+            "journal": "J Endovasc Ther",
+            "title": "Preoperative Osteosarcopenia Predicts Long-term Mortality and Cardiovascular Events After Endovascular Aneurysm Repair."
+          },
+          {
+            "id": "40287120",
+            "year": "2025",
+            "journal": "Am Heart J",
+            "title": "Opportunistic assessment of abdominal aortic calcification using artificial intelligence (AI) predicts coronary artery disease and cardiovascular events."
+          },
+          {
+            "id": "41949516",
+            "year": "2026",
+            "journal": "J Am Coll Cardiol",
+            "title": "Opportunistic Cardiovascular Risk Assessment Using Routine Head CT in the Emergency Department."
+          },
+          {
+            "id": "39779514",
+            "year": "2025",
+            "journal": "Eur Radiol",
+            "title": "Repeatability of AI-based, automatic measurement of vertebral and cardiovascular imaging biomarkers in low-dose chest CT: the ImaLife cohort."
+          },
+          {
+            "id": "42220813",
+            "year": "2026",
+            "journal": "Cureus",
+            "title": "Hepatic Duct Perforation Following Mitral Valve Replacement for Infectious Endocarditis: A Case Report."
+          },
+          {
+            "id": "42464155",
+            "year": "2026",
+            "journal": "BMC Cardiovasc Disord",
+            "title": "Thoracic vertebral CT-based bone health indicator from coronary calcium scoring: correlation with CAD and prognostic impact."
+          },
+          {
+            "id": "42053927",
+            "year": "2026",
+            "journal": "Egypt Heart J",
+            "title": "Aortic response to cancer therapy: a narrative review of the radiotherapy paradox and clinical implications."
+          },
+          {
+            "id": "41585543",
+            "year": "2026",
+            "journal": "IDCases",
+            "title": "Mycobacterium avium complex causing transverse pericardial sinus infection: A case report."
+          },
+          {
+            "id": "PPR943984",
+            "year": "2024",
+            "journal": {
+              "publisher": "medRxiv",
+              "yearOfPublication": 2024
+            },
+            "title": "Evaluation of an artificial intelligence model for opportunistic calculation of Agatston score on non-gated computed tomography of the chest"
+          },
+          {
+            "id": "41340775",
+            "year": "2025",
+            "journal": "Mayo Clin Proc Digit Health",
+            "title": "Artificial Intelligence Chest X-Ray Opportunistic Screening Model for Coronary Artery Calcium Deposition: A Multi-Objective Model With Multimodal Data Fusion."
+          },
+          {
+            "id": "42433512",
+            "year": "2026",
+            "journal": "Quant Imaging Med Surg",
+            "title": "Quantifying the impact of slice thickness on cardiovascular risk stratification in lung cancer screening: a multi-center \"RESCUE\" study."
+          },
+          {
+            "id": "42696681",
+            "year": "2026",
+            "journal": "JCO Clin Cancer Inform",
+            "title": "Deep Learning to Quantify Body Composition in Lung Cancer Screening-Eligible Individuals."
+          }
+        ]
+      }
+    },
+    {
+      "label": "E. cardiac motion as signal rather than artefact",
+      "what_a_hit_means": "The active AI direction the bound would constrain. Hits are the audience, not the competition -- unless one of them already states what is recoverable.",
+      "pubmed_term": "((\"motion artifact\"[Title/Abstract] OR \"motion correction\"[Title/Abstract]) AND cardiac[Title/Abstract] AND (non-gated[Title/Abstract] OR nongated[Title/Abstract]) AND (CT[Title/Abstract] OR tomography[Title/Abstract]))",
+      "europe_pmc_term": "TITLE_ABS:((\"motion artifact\" OR \"motion correction\") AND cardiac AND (non-gated OR nongated) AND (CT OR tomography))",
+      "pubmed": {
+        "total": 12,
+        "returned": 12,
+        "records": [
+          {
+            "id": "39335734",
+            "year": "2024",
+            "journal": "Diagnostics (Basel)",
+            "title": "Device-Less Data-Driven Cardiac and Respiratory Gating Using LAFOV PET Histo Images."
+          },
+          {
+            "id": "37835891",
+            "year": "2023",
+            "journal": "Diagnostics (Basel)",
+            "title": "Improved [(18)F]FDG PET/CT Diagnostic Accuracy for Infective Endocarditis Using Conventional Cardiac Gating or Combined Cardiac and Respiratory Motion Correction (CardioFreeze(TM))."
+          },
+          {
+            "id": "36241978",
+            "year": "2022",
+            "journal": "BMC Med Imaging",
+            "title": "Automated total and vessel-specific coronary artery calcium (CAC) quantification on chest CT: direct comparison with CAC scoring on non-contrast cardiac CT."
+          },
+          {
+            "id": "36037455",
+            "year": "2023",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "A Deep Learning Method for Motion Artifact Correction in Intravascular Photoacoustic Image Sequence."
+          },
+          {
+            "id": "34476780",
+            "year": "2022",
+            "journal": "J Nucl Cardiol",
+            "title": "Effect of respiratory motion correction and CT-based attenuation correction on dual-gated cardiac PET image quality and quantification."
+          },
+          {
+            "id": "32198657",
+            "year": "2020",
+            "journal": "Insights Imaging",
+            "title": "Imaging of the aortic root on high-pitch non-gated and ECG-gated CT: awareness is the key!"
+          },
+          {
+            "id": "30575047",
+            "year": "2019",
+            "journal": "Med Phys",
+            "title": "Cardiac motion and spillover correction for quantitative PET imaging using dynamic MRI."
+          },
+          {
+            "id": "28475022",
+            "year": "2018",
+            "journal": "Acta Radiol",
+            "title": "Hybrid ECG-gated versus non-gated 512-slice CT angiography of the aorta and coronary artery: image quality and effect of a motion correction algorithm."
+          },
+          {
+            "id": "25281979",
+            "year": "2014",
+            "journal": "Med Phys",
+            "title": "4D numerical observer for lesion detection in respiratory-gated PET."
+          },
+          {
+            "id": "23580923",
+            "year": "2013",
+            "journal": "Heart Views",
+            "title": "Congenital complete absence of pericardium masquerading as pulmonary embolism."
+          },
+          {
+            "id": "19884068",
+            "year": "2009",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "Cardiac C-arm CT: a unified framework for motion estimation and dynamic CT."
+          },
+          {
+            "id": "16504643",
+            "year": "2006",
+            "journal": "Am Heart J",
+            "title": "Multi-detector row cardiac computed tomography accurately quantifies right and left ventricular size and function compared with cardiac magnetic resonance."
+          }
+        ]
+      },
+      "europe_pmc": {
+        "total": 21,
+        "returned": 21,
+        "records": [
+          {
+            "id": "42156667",
+            "year": "2026",
+            "journal": "Jpn J Radiol",
+            "title": "Deep learning-based motion correction: cardiac motion artifact and image quality improvements on chest CT."
+          },
+          {
+            "id": "42019537",
+            "year": "2026",
+            "journal": "Phys Med Biol",
+            "title": "Nonperiodic dynamic CT reconstruction using backward-warping implicit neural representation with diffeomorphism regularization<sup/>."
+          },
+          {
+            "id": "37982532",
+            "year": "2024",
+            "journal": "J Thorac Imaging",
+            "title": "Identification of Mitral Valve Prolapse on Non-electrocardiography-gated Enhanced Chest Computed Tomography."
+          },
+          {
+            "id": "41301151",
+            "year": "2025",
+            "journal": "Bioengineering (Basel)",
+            "title": "Investigation of Attenuation Correction Methods for Dual-Gated Single Photon Emission Computed Tomography (DG-SPECT)."
+          },
+          {
+            "id": "37835891",
+            "year": "2023",
+            "journal": "Diagnostics (Basel)",
+            "title": "Improved [<sup>18</sup>F]FDG PET/CT Diagnostic Accuracy for Infective Endocarditis Using Conventional Cardiac Gating or Combined Cardiac and Respiratory Motion Correction (CardioFreeze<sup>TM</sup>)."
+          },
+          {
+            "id": "37515467",
+            "year": "2024",
+            "journal": "Int J Stroke",
+            "title": "Non-ECG-gated cardiac CT angiography in acute stroke is feasible and detects sources of embolism."
+          },
+          {
+            "id": "36241978",
+            "year": "2022",
+            "journal": "BMC Med Imaging",
+            "title": "Automated total and vessel-specific coronary artery calcium (CAC) quantification on chest CT: direct comparison with CAC scoring on non-contrast cardiac CT."
+          },
+          {
+            "id": "34476780",
+            "year": "2022",
+            "journal": "J Nucl Cardiol",
+            "title": "Effect of respiratory motion correction and CT-based attenuation correction on dual-gated cardiac PET image quality and quantification."
+          },
+          {
+            "id": "36037455",
+            "year": "2023",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "A Deep Learning Method for Motion Artifact Correction in Intravascular Photoacoustic Image Sequence."
+          },
+          {
+            "id": "32198657",
+            "year": "2020",
+            "journal": "Insights Imaging",
+            "title": "Imaging of the aortic root on high-pitch non-gated and ECG-gated CT: awareness is the key!"
+          },
+          {
+            "id": "28475022",
+            "year": "2018",
+            "journal": "Acta Radiol",
+            "title": "Hybrid ECG-gated versus non-gated 512-slice CT angiography of the aorta and coronary artery: image quality and effect of a motion correction algorithm."
+          },
+          {
+            "id": "28185169",
+            "year": "2017",
+            "journal": "Curr Cardiol Rep",
+            "title": "Enhancing Cardiac PET by Motion Correction Techniques."
+          },
+          {
+            "id": "29613990",
+            "year": "2018",
+            "journal": "J Comput Assist Tomogr",
+            "title": "Motion Artifact Reduction From High-Pitch Dual-Source Computed Tomography Pulmonary Angiography."
+          },
+          {
+            "id": "29388075",
+            "year": "2018",
+            "journal": "EJNMMI Phys",
+            "title": "MR-based motion correction for cardiac PET parametric imaging: a simulation study."
+          },
+          {
+            "id": "23580923",
+            "year": "2013",
+            "journal": "Heart Views",
+            "title": "Congenital complete absence of pericardium masquerading as pulmonary embolism."
+          },
+          {
+            "id": "23436832",
+            "year": "2013",
+            "journal": "Acta Radiol",
+            "title": "Pertinent reportable incidental cardiac findings on chest CT without electrocardiography gating: review of 268 consecutive cases."
+          },
+          {
+            "id": "25281979",
+            "year": "2014",
+            "journal": "Med Phys",
+            "title": "4D numerical observer for lesion detection in respiratory-gated PET."
+          },
+          {
+            "id": "19884068",
+            "year": "2009",
+            "journal": "IEEE Trans Med Imaging",
+            "title": "Cardiac C-arm CT: a unified framework for motion estimation and dynamic CT."
+          },
+          {
+            "id": "16504643",
+            "year": "2006",
+            "journal": "Am Heart J",
+            "title": "Multi-detector row cardiac computed tomography accurately quantifies right and left ventricular size and function compared with cardiac magnetic resonance."
+          },
+          {
+            "id": "26536654",
+            "year": "2011",
+            "journal": "IEEE Nucl Sci Symp Conf Rec (1997)",
+            "title": "A Simulation Study of the Effect of Phase-Shift on Dual Gated Myocardial Perfusion ECT."
+          },
+          {
+            "id": "12736477",
+            "year": "2003",
+            "journal": "Circ J",
+            "title": "Noninvasive assessment of coronary artery disease by multislice spiral computed tomography using a new retrospectively ECG-gated image reconstruction technique."
+          }
+        ]
+      }
+    }
+  ]
+}
