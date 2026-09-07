@@ -41,11 +41,22 @@ rather than measured, the thresholds are 864 and 1843 bpm, which no heart reache
 Seven of thirteen public collections have lost the spiral acquisition parameters
 entirely and cannot be asked the question at all.
 
-4. A negative cohort, reported as such. On 17 image series, under a criterion registered
-before the analysis, a straightforward extraction recovered a period in only 3, and
-agreement with the prediction was no better than chance. I report this plainly: at current
-protocols the sampling bound is necessary but not the binding constraint, and border
-detectability is. The cohort is presented as corroboration of that, not as a method.
+4. A negative cohort, and a second negative behind it. On 17 image series, under a
+criterion registered before the analysis, a straightforward extraction recovered a period in
+only 3, and agreement with the prediction was no better than chance. At current protocols
+the sampling bound is therefore necessary but not the binding constraint.
+
+I then asked why, under a criterion also fixed in advance, and did not find out. Four
+candidate explanations were tested against simulated traces; none reproduces the failure.
+The one property that separates real traces from simulated ones -- a low-order fit absorbs
+88 per cent of a real trace's variance against 12 per cent of a simulated one -- fails the
+reproduction test outright, leaving the simulated success rate at 100 per cent even when
+exceeded. What the comparison does show is that real traces differ from simulated ones by
+spread rather than by shift, which is consistent with a failure mode that varies from series
+to series and therefore cannot be predicted by any single quantity from a header.
+
+I report both negatives plainly and propose no mechanism. The manuscript does not suggest
+that a corrected method would recover more, because nothing in this data supports it.
 
 5. A learned estimator. A network trained to report its own uncertainty, and trained only
 where recovery is possible, is wrong beyond the bound by 12 to 42 times its own stated

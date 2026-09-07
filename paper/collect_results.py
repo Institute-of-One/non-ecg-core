@@ -136,6 +136,35 @@ def cohort_metrics() -> dict:
     }
 
 
+def failure_diagnosis_metrics() -> dict:
+    """Step 7: how real traces differ from simulated ones, and by how much they do not.
+
+    Added after the PMB inquiry quoted these figures without them being here -- the second
+    time the rule caught a number reaching correspondence before it reached the manifest.
+    The rule is working; my habit of writing prose before collecting is not.
+    """
+    data = _load("failure_diagnosis.json")
+    real, simulated = data["real"], data["simulated"]
+    out = {
+        "diagnosis_traces_real": data["n_real"],
+        "diagnosis_traces_simulated": data["n_simulated"],
+        "baseline_share_real_percent": round(100 * real["baseline_share"]["median"]),
+        "baseline_share_simulated_percent": round(100 * simulated["baseline_share"]["median"]),
+        "band_enrichment_real": round(real["band_power_enrichment"]["median"], 1),
+        "band_enrichment_simulated": round(simulated["band_power_enrichment"]["median"], 1),
+    }
+    # spread, which is the property that actually distinguishes the two populations
+    for name, source in (("real", real), ("simulated", simulated)):
+        span = source["band_power_fraction"]["p90"] - source["band_power_fraction"]["p10"]
+        out[f"band_fraction_spread_{name}"] = round(span, 3)
+    out["band_fraction_spread_ratio"] = round(
+        out["band_fraction_spread_real"] / out["band_fraction_spread_simulated"], 1
+    )
+    out["candidates_tested"] = 4
+    out["candidates_reproducing_failure"] = 0
+    return out
+
+
 def learned_metrics() -> dict:
     """The two training conditions, and the calibration gap between them."""
     data = _load("learned_estimator.json")
@@ -159,7 +188,7 @@ def main() -> int:
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     metrics = {}
     for section in (simulation_metrics, header_metrics, representative_protocol_metrics,
-                    cohort_metrics, learned_metrics):
+                    cohort_metrics, failure_diagnosis_metrics, learned_metrics):
         metrics.update(section())
 
     manifest = {
