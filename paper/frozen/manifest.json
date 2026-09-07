@@ -1,5 +1,5 @@
 {
-  "frozen_on": "2026-09-06",
+  "frozen_on": "2026-09-07",
   "note": "Every number the manuscript quotes is resolved from here at build time. A quantity absent from this file may not be asserted in the paper.",
   "metrics": {
     "n_min_matched": 1.5,
@@ -30,6 +30,10 @@
     "collections_probed": 13,
     "collections_with_parameters": 6,
     "collections_without_parameters": 7,
+    "threshold_wide_detector": 864,
+    "threshold_wide_detector_speed": 691.2,
+    "threshold_dual_source_high_pitch": 1843,
+    "threshold_dual_source_high_pitch_speed": 1474.6,
     "cohort_series": 18,
     "cohort_analysed": 17,
     "cohort_technical_failures": 1,

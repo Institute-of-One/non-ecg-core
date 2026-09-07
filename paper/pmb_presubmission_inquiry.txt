@@ -1,0 +1,74 @@
+To: pmb@ioppublishing.org
+Subject: Pre-submission inquiry - Paper (not Note): a sampling bound on cardiac timing in non-gated CT
+
+Dear Editor,
+
+I would like to ask whether the following study is appropriate as a Paper, rather than a
+Note, for Physics in Medicine and Biology.
+
+Title. How much of a heartbeat a non-gated CT records: a header-computable sampling bound,
+and what a learned estimator does beyond it.
+
+Question. Deep-learning methods increasingly correct or infer cardiac motion in non-gated
+chest CT, and in April 2026 reimbursement began in the United States for algorithmic
+analysis of such scans. I checked 43 public chest and cardiac CT series and none carries a
+recorded heart rate, so at present no such method can be validated against ground truth by
+anyone. This study asks a question that does not require ground truth: how much cardiac
+timing information a non-gated helical acquisition can contain, and what an estimator does
+when it contains none.
+
+Approach and findings.
+
+1. Theory. A helical scan advances the table at a constant speed, so a periodically moving
+structure writes its period into the volume as a spatial period along z. I derive the
+two-sided condition under which that period is recoverable, and an identity showing that
+the product of cycles observed and samples per cycle equals the number of reconstructed
+slices across the structure, independent of pitch, rotation time and heart rate. A protocol
+therefore cannot acquire more cardiac timing; it can only trade one against the other. The
+resulting threshold heart rate is computable from three DICOM tags.
+
+2. Simulation. Across 144 parameter combinations at 200 trials each, the number of cycles
+required is 2.5, and it is bracketed between 1.5 and 2.5 across estimator classes from a
+matched filter to autocorrelation. The requirement is set by the problem rather than by how
+much the estimator is told, which is what makes this an information bound rather than a
+statement about one method.
+
+3. Real protocols. Using headers alone from 192 public chest CT series, table speeds span
+30.0 to 158.8 mm/s, a factor of 5.3, and two thirds would record a recoverable period at
+heart rates at or below 100 bpm. No series in that archive uses a wide-detector or
+dual-source high-pitch protocol; for those, computed from representative parameters
+rather than measured, the thresholds are 864 and 1843 bpm, which no heart reaches.
+Seven of thirteen public collections have lost the spiral acquisition parameters
+entirely and cannot be asked the question at all.
+
+4. A negative cohort, reported as such. On 17 image series, under a criterion registered
+before the analysis, a straightforward extraction recovered a period in only 3, and
+agreement with the prediction was no better than chance. I report this plainly: at current
+protocols the sampling bound is necessary but not the binding constraint, and border
+detectability is. The cohort is presented as corroboration of that, not as a method.
+
+5. A learned estimator. A network trained to report its own uncertainty, and trained only
+where recovery is possible, is wrong beyond the bound by 12 to 42 times its own stated
+uncertainty while its reported confidence barely moves. Trained across the boundary it
+learns to abstain, widening its uncertainty by an order of magnitude with calibration near
+one. The practical consequence is a prescription rather than a warning.
+
+Why I believe this is a Paper. It is a full study rather than a single observation: a
+derivation, a simulation study over a designed parameter sweep, a measurement on 192 real
+acquisitions, a cohort tested against a criterion fixed in advance, and a controlled
+comparison of two training conditions. All protocols and decision rules were frozen in a
+public repository before the corresponding data existed.
+
+I would rather be told now if the negative cohort makes this unsuitable, or if you would
+prefer it as a Note, than submit under the wrong assumption.
+
+The work is simulation and public data only; no patient data is used and no imaging is
+redistributed. I have one manuscript currently under consideration at PMB (PMB-122419) and
+mention it for completeness.
+
+Thank you for your time.
+
+Shuji Yamamoto
+Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan
+ORCID 0000-0001-9211-1071
+yamamoto@lisit.jp

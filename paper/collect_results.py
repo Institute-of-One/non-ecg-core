@@ -83,6 +83,32 @@ def header_metrics() -> dict:
     return out
 
 
+def representative_protocol_metrics() -> dict:
+    """Thresholds for the two protocols the 192 headers do not contain.
+
+    Wide-detector and dual-source high-pitch acquisitions are the ones the bound excludes
+    absolutely, and no series in the header cohort uses them, so their thresholds come from
+    the representative protocols in analysis/sampling_bound.py rather than from a
+    measurement. That difference in provenance is why they are named separately here: the
+    manuscript must not present them as if they came from the archive.
+    """
+    import sys
+    sys.path.insert(0, str(HERE.parent / "analysis"))
+    from sampling_bound import PROTOCOLS, threshold_heart_rate_bpm  # noqa: PLC0415
+
+    wanted = {
+        "2026 wide detector, 192 x 0.6, pitch 1.5": "threshold_wide_detector",
+        "2026 dual-source high pitch (flash), 3.2": "threshold_dual_source_high_pitch",
+    }
+    out = {}
+    for protocol in PROTOCOLS:
+        if protocol.name in wanted:
+            window = threshold_heart_rate_bpm(protocol, cycles_needed=2.5)
+            out[wanted[protocol.name]] = round(window[0]) if window else None
+            out[wanted[protocol.name] + "_speed"] = round(protocol.table_speed_mm_s, 1)
+    return out
+
+
 def cohort_metrics() -> dict:
     """The image cohort, under the criterion frozen in step 5."""
     data = _load("cohort_outcome.json")
@@ -132,7 +158,8 @@ def learned_metrics() -> dict:
 def main() -> int:
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     metrics = {}
-    for section in (simulation_metrics, header_metrics, cohort_metrics, learned_metrics):
+    for section in (simulation_metrics, header_metrics, representative_protocol_metrics,
+                    cohort_metrics, learned_metrics):
         metrics.update(section())
 
     manifest = {
