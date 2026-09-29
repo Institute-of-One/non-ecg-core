@@ -14,37 +14,35 @@ ORCID 0000-0001-9211-1071. E-mail: yamamoto@lisit.jp
 18 public series analysed here
 records the heart rate by any of
 11 routes, so they cannot be checked
-against one. We ask what such an acquisition can contain about cardiac timing, and what an
-estimator does when it contains nothing.
+against one. We ask what such an acquisition can contain about cardiac timing.
 
 **Approach.** A helical scan advances the table at constant speed, so its z axis is a time
 axis along which a periodically moving structure writes its period. We derive the
 recoverability condition, measure the cycles it requires over
 144 simulated conditions, evaluate it on
-192 real series from headers alone, test
-it on 17 image series under a criterion frozen
-in advance, run the same pipeline on the one public session that records a rate, and train an
-estimator that reports its own uncertainty.
+192 real series from headers alone, test it on
+17 image series under a criterion frozen in
+advance, and train an estimator that reports its own uncertainty.
 
 **Main results.** Cycles written and samples per cycle multiply to *L*/*dz*: speed only
 divides a fixed budget. *N*min =
-2.5 cycles, which
+2.5 cycles for one estimator; at an assumed cardiac extent,
 67 per cent of real series
-clear at the cardiac border. On images
+could record a rate below 100 bpm. On
+images
 3 of
 17 were admitted, agreeing with the header
 prediction on 29 per cent. Those
-admissions sit at the same minimum depth as the rejections, their coronal levels
-individually preferring rates spanning
-44–59
-bpm. The one archive session recording a rate could not be used: there the extraction did not
-return the intended border, and nothing said so. In simulation, an estimator trained inside
+admissions sit at the same minimum depth as the rejections, and their coronal levels
+disagree by 44–59 bpm within a series. The one archive session recording a rate could not be used: there the extraction did not
+return the intended border. In simulation, an estimator trained inside
 the bound was never accurate outside it while reporting a standard deviation below
 0.045.
 
-**Significance.** The bound is computable from the header and excludes acquisitions that
-cannot carry the signal, but satisfying it buys nothing. A stability statistic certifies
-nothing unless reported with the depth of the minimum, and with a check on what was fitted.
+**Significance.** The bound is computable from the header and, under stated assumptions,
+excludes acquisitions that could not have carried the signal; satisfying it does not
+guarantee recovery. A stability statistic certifies nothing unless reported with the depth of
+the minimum and a check on what was fitted.
 
 ---
 
@@ -87,7 +85,7 @@ CT, and none that states the condition under which it could be recovered.
 
 This paper derives that condition, measures the one constant it depends on, evaluates it
 against the installed base from headers alone, tests it on images under a criterion frozen in
-advance, and examines what a learned estimator does when the acquisition contains nothing to
+advance, and examine what a learned estimator reports outside the range it was trained on
 learn from. Its central results are negative, and the most useful of them is about how
 confidently an estimator and a criterion can both be wrong.
 
@@ -263,10 +261,13 @@ could or could not have recorded.
 ### 4.2 Table speeds and thresholds
 
 The 192 series come from
-94 patients in the
-5 collections that publish the parameters,
-taking at most 32 series from any
-one of them so that a single large collection cannot set the distribution. Table speed runs
+94 patients in
+5 of the
+6 collections that publish the
+parameters, with at most 40 series taken
+from any one of them so that a single large collection cannot set the distribution.
+4 reach that cap and the fifth
+contributes 32. Table speed runs
 from
 30.0 to
 158.8 mm/s, a factor of
@@ -287,9 +288,10 @@ longer extent available along the descending aorta, the median threshold falls t
 100 per cent of series
 qualify.
 
-**On the installed base, the acquisition condition is largely satisfied** (figure 3). It is
-not what stands between a non-gated chest CT and a cardiac period, which is the reason
-section 5 is worth performing at all.
+**Under the assumptions used here, most of the installed base clears the threshold** (figure 3).
+Because the patients’ own rates are not recorded, that is a statement about what those
+protocols could record, not a count of acquisitions that did satisfy the condition. It is
+enough to make section 5 worth performing.
 
 ![Figure 3](figures/fig3_protocols.png)
 
@@ -355,15 +357,15 @@ left empty rather than filled with the nearest available structure.
 0.7 of the image height, and every one of
 them is reported rather than the clearest.
 
-The period is fitted to all levels at once. Writing *u* = (*z* − *z*₀)/*T* and *v* = (*z* −
+The period is fitted to all levels at once. Writing *u* = (*z* − *z*₀)/λ, with λ = *ST* the spatial period of section 2.1, and *v* = (*z* −
 *z*₀)/span, each level is modelled as a sinusoid on a quartic baseline, *a* cos 2π*u* + *b*
 sin 2π*u* + *c*₀ + *c*₁*v* + *c*₂*v*² + *c*₃*v*³ + *c*₄*v*⁴, whose coefficients are solved by
 least squares at each trial period; amplitude and phase are therefore free per level while
-the period *T* is common, because there is one heart and because in a helical scan the time
+the spatial period λ is common, because there is one heart and because in a helical scan the time
 coordinate is a function of *z* alone, so every level shares it exactly. The joint cost at a
 period is the sum over levels of the residual sum of squares, each weighted by the reciprocal
 of that level's variance, so a level with a large anatomical swing does not outvote the
-others. The period is taken as the minimiser over 600 points spanning
+others. The spatial period is taken as the minimiser over 600 points spanning
 40 to
 120 bpm at the header's table speed; that band
 is physiological, and is never set by what the data prefer.
@@ -464,8 +466,8 @@ not distinguishable from the rejections.
 
 They are also not consensus (figure 5). In each of the
 3 admitted series the six coronal levels,
-fitted independently, prefer rates spanning
-44 to
+fitted independently, prefer rates whose spread
+— the largest minus the smallest within that series — is 44 to
 59 bpm. The joint fit
 imposes one period on levels that individually disagree by half the physiological range, and
 returns their weighted compromise.
@@ -494,7 +496,8 @@ objectives sharp enough for that description to be apt.
 
 **Figure 5.** Left: depth of the minimum, defined as the median cost across the physiological
 band divided by the cost at the period returned, for the series the frozen criterion rejected
-and for those it admitted, with the reference case of section 5.4 shown separately. A value
+and for those it admitted. The series of section 5.4 is not shown, because it could not be
+used there and a point beside these would read as a comparable measurement. A value
 of 1.0, the dashed line, would mean the chosen period fits no better than an arbitrary one.
 The admitted series lie inside the range of the rejected ones. Right: for each admitted
 series and for the reference case, the rate each of the six coronal levels prefers when
@@ -554,7 +557,7 @@ of recovery. The check that measures this,
 ## 6. What an estimator does past the bound
 
 Sections 2 to 5 concern what an acquisition contains. This section concerns what a method
-does when it contains nothing, which is the situation a deployed estimator meets most of the
+does outside the regime it was trained in, which is the situation a deployed estimator meets most of the
 time and the one it is least often tested in.
 
 ### 6.1 A model that reports its own uncertainty
@@ -596,9 +599,21 @@ drawing on 0.5 to
 8.0 cycles, including traces where recovery
 is impossible. Everything else about them is identical.
 
+**Because the target is a reciprocal, testing below the bound is testing outside the training
+range, and that is what this experiment measures.** The model trained at or above the bound
+saw targets between 0.125 and
+0.4; at two cycles the correct answer
+is 0.5 and at half a cycle it is
+2.0, five times the largest value
+it was ever shown. Its failures below the bound are therefore failures of extrapolation, and
+they do not establish that the trace contains nothing — the model trained across the
+boundary, which saw targets up to
+2.0, recovers the period at two
+cycles. What the comparison isolates is not the information in the signal but what each model
+reports about its own reliability where it was not trained.
+
 Both are trained and tested on simulated traces only. Nothing in this section is evidence
-about real chest CT; it is evidence about what an estimator of this kind reports when the
-signal it was trained to find is absent.
+about real chest CT.
 
 ### 6.2 Trained inside the bound, confident outside it
 
@@ -678,7 +693,7 @@ trained only inside the recoverable regime reported a standard deviation of
 0.045 while achieving
 0 per cent accuracy outside
 it. One manufactures agreement, the other manufactures precision. Both report confidence in a
-regime that contains no information, and neither is told by its own diagnostics that anything
+regime it cannot serve, and neither is told by its own diagnostics that anything
 is wrong.
 
 The difference between them is instructive. The estimator's failure is a training failure and
@@ -843,9 +858,9 @@ those of the rejections, at
 1.106 to
 1.142 against a rejected median of
 1.072, and their coronal levels
-individually prefer rates spanning
-44 to
-59 bpm. Without a recorded
+individually prefer rates that differ,
+within a series, by 44 to
+59 bpm between the highest and the lowest. Without a recorded
 rate they cannot be shown to be wrong either; what can be shown is that nothing in the
 criterion measured whether they were right.
 
@@ -856,13 +871,17 @@ could be validated on public data.
 
 In simulation, an estimator trained only where recovery is possible was accurate in no trial
 outside that regime while reporting a standard deviation below
-0.045 of the period it was
-estimating, tightening its confidence as it approached the boundary from the side where it
-never succeeded. Whether any deployed method behaves this way is untested here.
+0.045 in the units of its target,
+which spans 0.125 to
+0.4 over the range it was trained on.
+Its confidence tightened as it approached the boundary from the side where it never
+succeeded. Those test points lie outside its training range, so this is a statement about
+extrapolation rather than about the information a scan contains. Whether any deployed method behaves this way is untested here.
 
 Two things follow for anyone measuring cardiac timing in a non-gated chest CT. The bound is
-worth computing, because it is free, it comes from the header, and it identifies acquisitions
-that cannot carry the signal at all. And a fit should be reported with the depth of the
+worth computing, because it is free, it comes from the header, and under stated assumptions
+about the structure length and the rate it identifies acquisitions that could not have carried
+the signal. And a fit should be reported with the depth of the
 minimum it sits in and with a check that the structure it was fitted to is the intended one —
 this study had neither, and its own frozen criterion certified nothing by having both absent.
 
@@ -959,7 +978,7 @@ suitability of this work as a Paper.
 
 21. Research for Precision Oncology Program  and the Applied Proteogenomics Organizational Learning and Outcomes (APOLLO) Research Network 2024 VA Research Precision Oncology Program - APOLLO (VAREPOP-APOLLO) (dataset) The Cancer Imaging Archive (DOI: 10.7937/GHKN-MD15)
 
-22. Walker M D et al 2020 Data-Driven Respiratory Gating Outperforms Device-Based Gating for Clinical <sup>18</sup>F-FDG PET/CT *Journal of Nuclear Medicine* **61** 1678–1683 (DOI: 10.2967/jnumed.120.242248)
+22. Walker M D et al 2020 Data-Driven Respiratory Gating Outperforms Device-Based Gating for Clinical 18F-FDG PET/CT *Journal of Nuclear Medicine* **61** 1678–1683 (DOI: 10.2967/jnumed.120.242248)
 
 23. Wang G and Vannier M W 1997 Optimal pitch in spiral computed tomography *Medical Physics* **24** 1635–1639 (DOI: 10.1118/1.597971)
 

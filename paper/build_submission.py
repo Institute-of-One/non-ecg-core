@@ -59,21 +59,29 @@ def resolve_markers(text: str, manifest: dict) -> str:
     return out
 
 
-def add_runs(paragraph, text: str) -> None:
-    """Inline **bold**, *italic* and `code`, in one pass so nesting cannot be mismatched."""
-    for piece in re.split(r"(\*\*[^*]+\*\*|(?<!\*)\*[^*]+\*(?!\*)|`[^`]+`)", text):
+#: Bold first and non-greedily, so that a bold span containing italics — **the value of
+#: *n*min is a judgement** — is recognised instead of falling through as literal asterisks.
+INLINE = re.compile(r"(\*\*.+?\*\*|`[^`]+`|(?<!\*)\*[^*\n]+\*(?!\*))")
+
+
+def add_runs(paragraph, text: str, bold: bool = False, italic: bool = False) -> None:
+    """Inline **bold**, *italic* and `code`, with italics allowed inside bold."""
+    for piece in INLINE.split(text):
         if not piece:
             continue
-        if piece.startswith("**") and piece.endswith("**"):
-            paragraph.add_run(piece[2:-2]).bold = True
-        elif piece.startswith("*") and piece.endswith("*"):
-            paragraph.add_run(piece[1:-1]).italic = True
+        if piece.startswith("**") and piece.endswith("**") and len(piece) > 4:
+            add_runs(paragraph, piece[2:-2], bold=True, italic=italic)
         elif piece.startswith("`") and piece.endswith("`"):
             run = paragraph.add_run(piece[1:-1])
             run.font.name = "Consolas"
             run.font.size = Pt(9.5)
+            run.bold, run.italic = bold, italic
+        elif piece.startswith("*") and piece.endswith("*") and len(piece) > 2:
+            run = paragraph.add_run(piece[1:-1])
+            run.bold, run.italic = bold, True
         else:
-            paragraph.add_run(piece)
+            run = paragraph.add_run(piece)
+            run.bold, run.italic = bold, italic
 
 
 def build_docx(markdown: str, destination=None, expected_figures: int = 6) -> None:
@@ -112,7 +120,9 @@ def build_docx(markdown: str, destination=None, expected_figures: int = 6) -> No
 
         if line.startswith("### ") or line.startswith("## "):
             level = 2 if line.startswith("### ") else 1
-            heading = document.add_heading(line.split(" ", 1)[1].strip(), level=level)
+            heading = document.add_heading("", level=level)
+            # Headings carry emphasis too, and passing the raw text printed *N*min literally.
+            add_runs(heading, line.split(" ", 1)[1].strip())
             for run in heading.runs:                     # Word's blue is not manuscript style
                 run.font.color.rgb = RGBColor(0, 0, 0)
             continue

@@ -250,9 +250,10 @@ def figure_flatness() -> Path:
     figure, (left, right) = plt.subplots(1, 2, figsize=WIDE,
                                          gridspec_kw={"width_ratios": [1, 1.25]})
 
+    # The reference case is not shown here. Section 5.4 could not use it, and a point beside
+    # the cohort's would read as a comparable measurement.
     groups = [("rejected\n(n = %d)" % len(rejected), depths(rejected), MUTED),
-              ("admitted\n(n = %d)" % len(admitted), depths(admitted), ACCENT),
-              ("reference\ncase", [flat[reference_uid]["median_over_min"]], SECOND)]
+              ("admitted\n(n = %d)" % len(admitted), depths(admitted), ACCENT)]
     rng = np.random.default_rng(20260929)
     for position, (label, values, colour) in enumerate(groups):
         jitter = rng.uniform(-0.08, 0.08, len(values))
@@ -266,19 +267,15 @@ def figure_flatness() -> Path:
     left.set_ylabel("depth of the minimum\n(median cost over the band / cost at the fit)")
     left.set_title("Depth does not separate them", fontsize=9, loc="left")
 
-    shown = admitted + [{"series_uid": reference_uid,
-                         "heart_rate_bpm": flat[reference_uid]["fitted_bpm"]}]
-    for position, entry in enumerate(shown):
+    for position, entry in enumerate(admitted):
         row = flat[entry["series_uid"]]
         preferred = row["level_preferred_bpm"]
-        colour = SECOND if entry["series_uid"] == reference_uid else ACCENT
         right.plot(np.full(len(preferred), position), preferred, "o", ms=5, color=MUTED,
                    mec="white", mew=0.6, alpha=0.95)
-        right.plot(position, row["fitted_bpm"], "x", ms=10, mew=2.0, color=colour)
-    right.set_xticks(range(len(shown)))
-    right.set_xticklabels([f"admitted {i + 1}" for i in range(len(admitted))]
-                          + ["reference"], fontsize=8, rotation=20)
-    right.set_xlim(-0.5, len(shown) - 0.5)
+        right.plot(position, row["fitted_bpm"], "x", ms=10, mew=2.0, color=ACCENT)
+    right.set_xticks(range(len(admitted)))
+    right.set_xticklabels([f"admitted {i + 1}" for i in range(len(admitted))], fontsize=8)
+    right.set_xlim(-0.5, len(admitted) - 0.5)
     right.set_ylabel("heart rate (bpm)")
     right.set_title("Grey: what each coronal level prefers alone.  "
                     "Cross: the joint fit", fontsize=8, loc="left")

@@ -142,7 +142,10 @@ def citation_string(record: dict) -> str:
 
 
 def format_entry(record: dict) -> str:
-    parts = [author_string(record), str(record["year"]), record["title"]]
+    # Crossref titles carry publisher markup: one of these reaches the page as
+    # "Clinical <sup>18</sup>F-FDG PET/CT" unless it is stripped.
+    title = re.sub(r"<[^>]+>", "", record["title"])
+    parts = [author_string(record), str(record["year"]), title]
     line = f"{parts[0]} {parts[1]} {parts[2]}"
     if record["dataset"]:
         line += f" (dataset) {record['container'] or 'The Cancer Imaging Archive'}"

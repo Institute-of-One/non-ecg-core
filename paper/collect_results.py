@@ -76,9 +76,14 @@ def header_metrics() -> dict:
         out[f"records_below_100bpm_{label}_percent"] = round(100 * below / len(thresholds))
 
     out["header_patients"] = len({r["patient"] for r in cohort})
-    out["header_series_per_collection"] = min(
-        sum(1 for r in cohort if r["collection"] == name)
-        for name in {r["collection"] for r in cohort})
+    per_collection = [sum(1 for r in cohort if r["collection"] == name)
+                      for name in {r["collection"] for r in cohort}]
+    # The cap, not the smallest contribution: an earlier version reported the minimum and
+    # the arithmetic in the manuscript did not add up.
+    out["header_series_cap"] = max(per_collection)
+    out["header_collections_at_cap"] = sum(1 for n in per_collection
+                                           if n == max(per_collection))
+    out["header_smallest_collection"] = min(per_collection)
 
     probe = _load("collection_probe.json")
     usable = [p for p in probe if p.get("has_window_parameters")]
@@ -281,6 +286,13 @@ def learned_design_metrics() -> dict:
         "learned_above_high": above[1],
         "learned_across_low": across[0],
         "learned_across_high": across[1],
+        # The target is the reciprocal of the cycles written, so the training range in
+        # target units is what decides whether a test point is an extrapolation.
+        "learned_above_target_low": round(1.0 / above[1], 3),
+        "learned_above_target_high": round(1.0 / above[0], 3),
+        "learned_across_target_high": round(1.0 / across[0], 2),
+        "learned_target_at_two_cycles": 0.5,
+        "learned_target_at_half_cycle": round(1.0 / min(model.TEST_CYCLES), 1),
     }
 
 
