@@ -145,7 +145,21 @@ def build_docx(markdown: str) -> None:
             add_runs(paragraph, f"{numbered.group(1)}. {numbered.group(2)}")
             continue
 
-        add_runs(document.add_paragraph(), text)
+        paragraph = document.add_paragraph()
+        # A caption set in the body face at the body size reads as body text, and the
+        # reader has to work out where the figure's description stops.
+        if text.startswith("**Figure "):
+            fmt = paragraph.paragraph_format
+            fmt.left_indent = Inches(0.3)
+            fmt.right_indent = Inches(0.3)
+            fmt.space_before = Pt(4)
+            fmt.space_after = Pt(14)
+            fmt.line_spacing_rule = WD_LINE_SPACING.SINGLE
+            add_runs(paragraph, text)
+            for run in paragraph.runs:
+                run.font.size = Pt(9.5)
+            continue
+        add_runs(paragraph, text)
 
     if figures != 7:
         raise SystemExit(f"expected 7 figures in the document, placed {figures}")

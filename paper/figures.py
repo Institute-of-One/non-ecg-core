@@ -80,8 +80,8 @@ def figure_window() -> Path:
     #: Full protocol names do not fit beside the points. Matched on a distinctive substring
     #: so that a renamed protocol loses its short label rather than acquiring a wrong one.
     short = {
-        "row-pitch 6": "2003, row-pitch 6",
-        "row-pitch 3": "2003, row-pitch 3 (aliased)",
+        "row-pitch 6": "2003, pitch 6",
+        "row-pitch 3": "2003, pitch 3 (aliased)",
         "thin recon": "routine chest, 0.6 mm recon",
         "pitch 1.0": "routine chest, 1.0 mm recon",
         "lung screening": "lung screening",
@@ -90,16 +90,21 @@ def figure_window() -> Path:
         "retrospective gating": "cardiac CT, gated",
     }
     #: Keyed on the same substrings, so a label and its offset cannot drift apart.
+    #: The three modern chest protocols sit within a factor of two of one another, so their
+    #: labels are placed well clear and joined by leader lines rather than nudged until they
+    #: only just miss the N_min rule.
     offsets = {
-        "row-pitch 6": (11, 7),
-        "row-pitch 3": (-11, -7),
-        "pitch 1.0": (10, 9),
-        "thin recon": (9, -13),
-        "lung screening": (-10, -13),
-        "wide detector": (8, 9),
-        "dual-source": (6, -13),
-        "retrospective gating": (-10, 7),
+        "row-pitch 6": (52, -14),
+        "row-pitch 3": (52, 16),
+        "pitch 1.0": (30, -22),
+        "thin recon": (8, -48),
+        "lung screening": (-30, -16),
+        "wide detector": (10, 16),
+        "dual-source": (8, -20),
+        "retrospective gating": (-12, 12),
     }
+    leadered = {"pitch 1.0", "thin recon", "lung screening",
+                "row-pitch 3", "row-pitch 6"}
 
     figure, axis = plt.subplots(figsize=WIDE)
     x_lo, x_hi, y_lo, y_hi = 1.0, 3e3, 1e-2, 1e2
@@ -131,7 +136,9 @@ def figure_window() -> Path:
         dx, dy = offsets.get(key, (9, 6))
         axis.annotate(label, (x, y), textcoords="offset points", xytext=(dx, dy),
                       fontsize=6.8, color=INK, ha="left" if dx > 0 else "right",
-                      va="bottom" if dy > 0 else "top")
+                      va="bottom" if dy > 0 else "top",
+                      arrowprops=dict(arrowstyle="-", lw=0.5, color=MUTED,
+                                      shrinkA=0, shrinkB=3) if key in leadered else None)
 
     axis.set_xscale("log")
     axis.set_yscale("log")
@@ -307,7 +314,7 @@ def figure_coronal() -> Path:
                     key=lambda uid: positions[uid]["median_fraction_of_width"])
     row_fraction = 0.60
 
-    figure, axes = plt.subplots(2, 1, figsize=(7.0, 5.6))
+    figure, axes = plt.subplots(2, 1, figsize=(6.6, 6.4))
     for axis, uid, label in ((axes[0], sound_uid, "a chest CT from the cohort"),
                              (axes[1], reference_uid,
                               "the one series in the archive with a recorded heart rate")):
@@ -318,16 +325,29 @@ def figure_coronal() -> Path:
         finite = np.isfinite(trace)
         width = coronal.shape[1] * volume.spacing_xy_mm[1]
         share = positions[uid]["median_fraction_of_width"]
+        colour = SECOND if share >= 0.35 else ACCENT
 
-        axis.imshow(coronal.T, cmap="gray", vmin=-1000, vmax=150, aspect="auto",
+        # A reformat drawn at any aspect but its own is not a reformat. One millimetre
+        # along z is one millimetre along x here, which is also what makes the second
+        # panel's geometry — a scan twice as long as it is wide — visible at all.
+        axis.imshow(coronal.T, cmap="gray", vmin=-1000, vmax=150, aspect="equal",
                     extent=[volume.z_mm[0], volume.z_mm[-1], width, 0],
                     interpolation="bilinear")
-        axis.plot(volume.z_mm[finite], trace[finite], "-",
-                  color=SECOND if share >= 0.35 else ACCENT, lw=1.3)
+        axis.plot(volume.z_mm[finite], trace[finite], "-", color=colour, lw=1.4)
+
+        # Below the line in both panels, so the label stays inside the image: in the lower
+        # panel the border sits on the top edge and anything above it leaves the axes.
+        mid = int(0.3 * len(volume.z_mm[finite]))
+        axis.annotate("tracked border",
+                      (volume.z_mm[finite][mid], trace[finite][mid]),
+                      textcoords="offset points", xytext=(0, -30), ha="center", va="top",
+                      fontsize=8, color=colour,
+                      bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
+                      arrowprops=dict(arrowstyle="->", color=colour, lw=1.0,
+                                      shrinkA=2, shrinkB=1))
         axis.set_ylabel("x (mm)")
-        axis.set_title(f"{label}: tracked border at {share:.0%} of the image width",
-                       fontsize=9, loc="left",
-                       color=INK if share >= 0.35 else ACCENT)
+        axis.set_title(f"{label}: border at {share:.0%} of the image width",
+                       fontsize=9, loc="left", color=INK if share >= 0.35 else ACCENT)
     axes[1].set_xlabel("z (mm) — and, at a constant table speed, time")
     figure.tight_layout()
     return save(figure, "fig5_coronal.png")
