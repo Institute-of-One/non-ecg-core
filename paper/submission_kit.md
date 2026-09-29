@@ -36,15 +36,15 @@ material is in the public repository instead.
 | Data availability | Option: publicly available in a repository. URL `https://github.com/Institute-of-One/non-ecg-core`, release `v0.1.0`. A Zenodo DOI is being minted and will be supplied at revision. |
 | Accepted Manuscripts (24 hours) | Yes |
 
-## Novelty and significance (96 words)
+## Novelty and significance
 
-A helical CT scan converts position into time at a rate its own header states, so a
-periodically moving structure writes its period along the scan axis. We give the condition
-under which that period is recoverable, show that the two requirements it trades off have a
-product fixed by anatomy alone, and measure the constant it depends on. On 192 real chest CT
-series the condition is usually met, yet on images recovery fails — and the criterion that
-appeared to detect success is measuring stability on a nearly flat objective. In the one
-public scan whose heart rate is recorded, the fit is wrong by a tenth.
+A helical CT scan converts position into time at a rate its header states, so a periodically
+moving structure writes its period along the scan axis. We give the condition under which
+that period is recoverable, show that the two requirements it trades off have a product fixed
+by anatomy alone, and measure the constant it needs. On 192 real series the condition is
+usually met, yet recovery from images fails, and the criterion that seemed to detect success
+measures stability on a nearly flat objective. In the one public scan whose heart rate is
+recorded, the fit is wrong by a tenth.
 
 ## Ethical statement (for the form; not seen by reviewers)
 
