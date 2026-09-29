@@ -1,0 +1,78 @@
+{
+  "series_uid": "1.3.6.1.4.1.14519.5.2.1.264532322608206684963835753501167761257",
+  "table_speed_mm_s": 208.7,
+  "search_band_mm": [
+    104.35,
+    313.05
+  ],
+  "grid_step_mm": 0.34841402337228544,
+  "true_period_mm": 166.96,
+  "true_period_in_band": true,
+  "fitted_period_mm": 185.87888146911519,
+  "fitted_bpm": 67.36644798500468,
+  "cost_at_fitted": 599.1228596029107,
+  "cost_at_true": 633.4454572631494,
+  "cost_at_true_over_fitted": 1.0572880789142098,
+  "cost_median_over_fitted": 1.0816501864966734,
+  "true_period_is_local_minimum": false,
+  "local_minima_bpm": [
+    116.12277867528272,
+    96.22489959839359,
+    67.36644798500468
+  ],
+  "local_minima_cost_over_fitted": [
+    1.2031993779329568,
+    1.0796375219315255,
+    1.0
+  ],
+  "per_level": [
+    {
+      "coronal_fraction": 0.45,
+      "preferred_period_mm": 184.83363939899834,
+      "preferred_bpm": 67.7474081055608,
+      "cost_at_true_over_best": 1.2451123799460015,
+      "sigma_at_preferred": 0.2945124204444191,
+      "cycles_spanned": 3.4084704605097667
+    },
+    {
+      "coronal_fraction": 0.5,
+      "preferred_period_mm": 127.69373956594323,
+      "preferred_bpm": 98.06275579809005,
+      "cost_at_true_over_best": 1.02164959595057,
+      "sigma_at_preferred": 0.5666971492878573,
+      "cycles_spanned": 4.933679616099403
+    },
+    {
+      "coronal_fraction": 0.55,
+      "preferred_period_mm": 305.3848914858097,
+      "preferred_bpm": 41.00399315459212,
+      "cost_at_true_over_best": 274.22648083623693,
+      "sigma_at_preferred": 0.4982436005068865,
+      "cycles_spanned": 2.062970427039853
+    },
+    {
+      "coronal_fraction": 0.6,
+      "preferred_period_mm": 188.66619365609347,
+      "preferred_bpm": 66.37119113573408,
+      "cost_at_true_over_best": 36.12637362637363,
+      "sigma_at_preferred": 0.8310537930900013,
+      "cycles_spanned": 3.339230986704398
+    },
+    {
+      "coronal_fraction": 0.65,
+      "preferred_period_mm": 230.82429048414025,
+      "preferred_bpm": 54.24905660377358,
+      "cost_at_true_over_best": 15.61639344262295,
+      "sigma_at_preferred": 0.463835740158829,
+      "cycles_spanned": 2.729348798944047
+    },
+    {
+      "coronal_fraction": 0.7,
+      "preferred_period_mm": 313.05,
+      "preferred_bpm": 40.0,
+      "cost_at_true_over_best": 1.5386149405328196,
+      "sigma_at_preferred": 0.3216075137363906,
+      "cycles_spanned": 2.012458073790129
+    }
+  ]
+}

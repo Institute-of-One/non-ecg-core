@@ -184,11 +184,123 @@ def learned_metrics() -> dict:
     return out
 
 
+def cardiac_tag_metrics() -> dict:
+    """Whether any analysed series records a cardiac timing field of its own.
+
+    The premise that no reference heart rate exists is load-bearing, so it is quoted from a
+    measurement rather than asserted. Produced by analysis/check_cardiac_tags.py.
+    """
+    data = _load("cardiac_tags.json")
+    return {
+        "cardiac_routes_checked": data["routes_checked"],
+        "cardiac_standard_fields_checked": len(data["tags_checked"]),
+        "cardiac_tag_series_checked": data["series_checked"],
+        "cardiac_tag_series_with_field": data["series_with_any_cardiac_field"],
+    }
+
+
+def tcia_survey_metrics() -> dict:
+    """How rare a public scan with a recorded rate is. From analysis/tcia_search/."""
+    search = HERE.parent / "analysis" / "tcia_search"
+    body_parts = json.loads((search / "tcia_bodyparts.json").read_text(encoding="utf-8"))
+    studies = json.loads((search / "tcia_cardiac_studies.json").read_text(encoding="utf-8"))
+    pairings = json.loads((search / "tcia_pairings.json").read_text(encoding="utf-8"))
+    return {
+        "tcia_collections_surveyed": len(body_parts),
+        "tcia_collections_with_ct": sum(1 for v in body_parts.values() if "body_parts" in v),
+        "tcia_cardiac_studies": len(studies["studies"]),
+        "tcia_sessions_with_recorded_rate": len(pairings),
+        "tcia_sessions_with_rate_and_helical": sum(1 for p in pairings if p["pairing"]),
+    }
+
+
+def reference_case_metrics() -> dict:
+    """The one series whose true rate is known, under the protocol frozen before the run."""
+    data = _load("reference_case.json")
+    outcome = data["outcome"]
+    recorded = data["reference_bpm"]
+    period_s = 60.0 / recorded
+    return {
+        "reference_rate_recorded": recorded,
+        "reference_rate_range_low": data["recorded_range_bpm"][0],
+        "reference_rate_range_high": data["recorded_range_bpm"][1],
+        "reference_band_low": round(data["agreement_band_bpm"][0], 2),
+        "reference_band_high": round(data["agreement_band_bpm"][1], 2),
+        "reference_rate_fitted": round(outcome["heart_rate_bpm"], 1),
+        "reference_error_percent": round(
+            100 * (outcome["heart_rate_bpm"] - recorded) / recorded, 1),
+        "reference_z_span_mm": round(outcome["z_span_mm"]),
+        "reference_table_speed": round(outcome["table_speed_mm_s"], 1),
+        "reference_scan_seconds": round(outcome["z_span_mm"] / outcome["table_speed_mm_s"], 2),
+        "reference_cycles_at_recorded_rate": round(
+            outcome["z_span_mm"] / (outcome["table_speed_mm_s"] * period_s), 2),
+        "reference_levels": outcome["levels"],
+        "reference_loo_spread_bpm": round(outcome["leave_one_out_spread_bpm"], 1),
+        "reference_median_sigma": round(outcome["median_sigma"], 3),
+        "reference_rate_in_agreement": data["primary_rate_in_agreement"],
+        "reference_self_consistent": data["secondary_self_consistent"],
+    }
+
+
+def flatness_metrics() -> dict:
+    """How much better the chosen period fits than a typical one in the band.
+
+    1.00 would mean the best period fits no better than any other. The cohort's three
+    acceptances sit at the same depth as its rejections, which is what identifies the
+    acceptances as artefacts of a flat objective rather than as recoveries.
+    """
+    reference_uid = ("1.3.6.1.4.1.14519.5.2.1."
+                     "264532322608206684963835753501167761257")
+    flat = {r["series_uid"]: r for r in _load("flatness.json")["series"]}
+    cohort = _load("cohort_outcome.json")["series"]
+
+    def depth(entry):
+        row = flat.get(entry["series_uid"], {})
+        return row.get("median_over_min")
+
+    def spread(entry):
+        row = flat.get(entry["series_uid"], {})
+        return row.get("level_preferred_spread_bpm")
+
+    accepted = [s for s in cohort if s.get("recovered")]
+    rejected = [s for s in cohort if not s.get("recovered")]
+    accepted_depths = sorted(d for d in map(depth, accepted) if d)
+    rejected_depths = sorted(d for d in map(depth, rejected) if d)
+    accepted_spreads = sorted(s for s in map(spread, accepted) if s)
+
+    return {
+        "flatness_depth_accepted_min": round(accepted_depths[0], 3),
+        "flatness_depth_accepted_max": round(accepted_depths[-1], 3),
+        "flatness_depth_rejected_median": round(
+            rejected_depths[len(rejected_depths) // 2], 3),
+        "flatness_depth_rejected_min": round(rejected_depths[0], 3),
+        "flatness_depth_rejected_max": round(rejected_depths[-1], 3),
+        "flatness_level_spread_accepted_min": round(accepted_spreads[0]),
+        "flatness_level_spread_accepted_max": round(accepted_spreads[-1]),
+        "flatness_depth_reference": round(flat[reference_uid]["median_over_min"], 3),
+        "flatness_level_spread_reference": round(
+            flat[reference_uid]["level_preferred_spread_bpm"]),
+    }
+
+
+def reference_diagnosis_metrics() -> dict:
+    """Was the true period missed by the search, or absent from the trace?"""
+    data = _load("reference_case_diagnosis.json")
+    return {
+        "reference_true_period_in_band": data["true_period_in_band"],
+        "reference_cost_true_over_fitted": round(data["cost_at_true_over_fitted"], 3),
+        "reference_true_is_local_minimum": data["true_period_is_local_minimum"],
+        "reference_grid_step_mm": round(data["grid_step_mm"], 2),
+    }
+
+
 def main() -> int:
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     metrics = {}
     for section in (simulation_metrics, header_metrics, representative_protocol_metrics,
-                    cohort_metrics, failure_diagnosis_metrics, learned_metrics):
+                    cohort_metrics, failure_diagnosis_metrics, learned_metrics,
+                    cardiac_tag_metrics, tcia_survey_metrics, reference_case_metrics,
+                    flatness_metrics, reference_diagnosis_metrics):
         metrics.update(section())
 
     manifest = {
