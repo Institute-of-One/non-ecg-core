@@ -726,9 +726,11 @@ nothing — a lesson this study learned from its own frozen criterion.
 **Funding.** This work received no external funding. It was carried out within LISIT Co.,
 Ltd.
 
-**Competing interests.** [DECIDE: the author is an employee of LISIT Co., Ltd., which
-provides imaging analysis services. State this as the competing interest, or state that there
-is none, but state the employment either way.]
+**Competing interests.** The author is the representative of LISIT Co., Ltd., a provider of
+medical imaging analysis services, and this work was carried out within that company. The
+company received no funding for the study, played no part in its design, analysis or
+reporting, and markets no product based on the method examined here. The author declares no
+competing interest beyond the affiliation stated above.
 
 **Ethical statement.** This study used only publicly available, de-identified imaging
 distributed by The Cancer Imaging Archive under Creative Commons licences, and generated no
@@ -746,11 +748,17 @@ contains every result file this manuscript cites, and quote the *version* DOI he
 repository badge and CITATION.cff carry the concept DOI]. No imaging data is redistributed;
 the analysis retrieves it from The Cancer Imaging Archive by series identifier.
 
-**Use of generative AI.** [DECIDE: generative AI was used in preparing this work. IOP's
-policy requires disclosure of how. A truthful statement would name the uses — assistance with
-code, with the archive survey, and with drafting — and affirm that the author verified every
-result and takes responsibility for the content. Decide the wording; do not leave this
-blank.]
+**Use of generative AI.** The research question, the physical argument of section 2, the
+study design and the decision rules recorded in the repository are the author's, and predate
+the assistance described here. Generative AI (Claude, Anthropic) was used as a tool in
+preparing this work: to write and test analysis code, to carry out the survey of the public
+archive reported in section 5.4, to produce the figures from the frozen result files, and to
+draft manuscript text from results that already existed. No AI system contributed a research
+idea, chose a decision rule, or determined a result. Every number in this paper is resolved
+at build time from a result file produced by code in the public repository, every reference
+is resolved from its DOI rather than written out, and the author has checked the manuscript
+against those files and takes full responsibility for its content, including the parts
+drafted with assistance.
 
 **Prior contact.** The editorial office was consulted before submission regarding the
 suitability of this work as a Paper.

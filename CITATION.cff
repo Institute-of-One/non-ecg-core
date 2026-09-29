@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "non-ecg-core: a header-computable sampling bound on cardiac timing in non-gated helical CT"
+type: software
+authors:
+  - family-names: Yamamoto
+    given-names: Shuji
+    orcid: "https://orcid.org/0000-0001-9211-1071"
+    affiliation: "Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan"
+repository-code: "https://github.com/Institute-of-One/non-ecg-core"
+license: MIT
+version: 0.1.0
+# The day the tag is cut. If the release is made on a different day, change this first:
+# a date-released that disagrees with the release is the kind of small untruth that is
+# never noticed until someone checks.
+date-released: "2026-09-29"
+# Added after the first release. Zenodo mints two DOIs: a version DOI, which the manuscript
+# cites, and a concept DOI, which always resolves to the newest version and belongs here
+# and in the README badge.
+# doi: "10.5281/zenodo.XXXXXXX"

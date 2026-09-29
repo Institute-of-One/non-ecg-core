@@ -1,0 +1,10 @@
+# What the manuscript's own paths need: rebuilding the manifest from results/, and drawing
+# the figures. Neither reads an image, so this is enough to reproduce every number and every
+# figure in the paper from a clean checkout.
+#
+# Upper bounds are deliberate. A previous release from this programme stopped running when
+# NumPy 2 removed a function that was correct when it was written, and nothing failed until
+# someone tried to install it years later. An unbounded requirement is a promise about
+# releases that do not exist yet.
+numpy>=1.24,<3
+matplotlib>=3.7,<4

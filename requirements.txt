@@ -1,0 +1,13 @@
+# Everything needed to re-run the analysis, not only to rebuild the paper from its results.
+# See requirements-core.txt for the smaller set that reproduces the manuscript's numbers and
+# figures, and for why every bound here has an upper limit.
+-r requirements-core.txt
+
+# Reading DICOM headers and pixel data from the archive.
+pydicom>=2.4,<4
+
+# The estimator of section 6.
+torch>=2.0,<3
+
+# The tests, including the injection proofs that the checks can fail.
+pytest>=7,<10
