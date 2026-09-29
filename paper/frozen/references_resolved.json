@@ -1,0 +1,774 @@
+[
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Kachelriess",
+    "initials": "M"
+   },
+   {
+    "family": "Kalender",
+    "initials": "WA"
+   }
+  ],
+  "year": 1998,
+  "title": "Electrocardiogram‐correlated image reconstruction from subsecond spiral computed tomography scans of the heart",
+  "container": "Medical Physics",
+  "volume": "25",
+  "pages": "2417-2431",
+  "type": "journal-article",
+  "doi": "10.1118/1.598453",
+  "key": "kachelriess1998",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Kachelrieß",
+    "initials": "M"
+   },
+   {
+    "family": "Sennst",
+    "initials": "D"
+   },
+   {
+    "family": "Maxlmoser",
+    "initials": "W"
+   },
+   {
+    "family": "Kalender",
+    "initials": "WA"
+   }
+  ],
+  "year": 2002,
+  "title": "Kymogram detection and kymogram‐correlated image reconstruction from subsecond spiral computed tomography scans of the heart",
+  "container": "Medical Physics",
+  "volume": "29",
+  "pages": "1489-1503",
+  "type": "journal-article",
+  "doi": "10.1118/1.1487861",
+  "key": "kachelriess2002",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Badea",
+    "initials": "C"
+   },
+   {
+    "family": "Hedlund",
+    "initials": "LW"
+   },
+   {
+    "family": "Johnson",
+    "initials": "GA"
+   }
+  ],
+  "year": 2004,
+  "title": "Micro‐CT with respiratory and cardiac gating",
+  "container": "Medical Physics",
+  "volume": "31",
+  "pages": "3324-3329",
+  "type": "journal-article",
+  "doi": "10.1118/1.1812604",
+  "key": "badea2004",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Bartling",
+    "initials": "SH"
+   },
+   {
+    "family": "Stiller",
+    "initials": "W"
+   },
+   {
+    "family": "Grasruck",
+    "initials": "M"
+   },
+   {
+    "family": "Schmidt",
+    "initials": "B"
+   },
+   {
+    "family": "Peschke",
+    "initials": "P"
+   },
+   {
+    "family": "Semmler",
+    "initials": "W"
+   },
+   {
+    "family": "Kiessling",
+    "initials": "F"
+   }
+  ],
+  "year": 2007,
+  "title": "Retrospective Motion Gating in Small Animal CT of Mice and Rats",
+  "container": "Investigative Radiology",
+  "volume": "42",
+  "pages": "704-714",
+  "type": "journal-article",
+  "doi": "10.1097/rli.0b013e318070dcad",
+  "key": "bartling2007",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Rohkohl",
+    "initials": "C"
+   },
+   {
+    "family": "Prümmer",
+    "initials": "M"
+   },
+   {
+    "family": "Fahrig",
+    "initials": "R"
+   },
+   {
+    "family": "Lauritsch",
+    "initials": "G"
+   },
+   {
+    "family": "Hornegger",
+    "initials": "J"
+   }
+  ],
+  "year": 2008,
+  "title": "Cardiac C-arm CT: image-based gating",
+  "container": "SPIE Proceedings",
+  "volume": "6913",
+  "pages": "69131G",
+  "type": "proceedings-article",
+  "doi": "10.1117/12.770124",
+  "key": "rohkohl2008",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Larson",
+    "initials": "AC"
+   },
+   {
+    "family": "White",
+    "initials": "RD"
+   },
+   {
+    "family": "Laub",
+    "initials": "G"
+   },
+   {
+    "family": "McVeigh",
+    "initials": "ER"
+   },
+   {
+    "family": "Li",
+    "initials": "D"
+   },
+   {
+    "family": "Simonetti",
+    "initials": "OP"
+   }
+  ],
+  "year": 2003,
+  "title": "Self‐gated cardiac cine MRI",
+  "container": "Magnetic Resonance in Medicine",
+  "volume": "51",
+  "pages": "93-102",
+  "type": "journal-article",
+  "doi": "10.1002/mrm.10664",
+  "key": "larson2003",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Walker",
+    "initials": "MD"
+   },
+   {
+    "family": "Morgan",
+    "initials": "AJ"
+   },
+   {
+    "family": "Bradley",
+    "initials": "KM"
+   },
+   {
+    "family": "McGowan",
+    "initials": "DR"
+   }
+  ],
+  "year": 2020,
+  "title": "Data-Driven Respiratory Gating Outperforms Device-Based Gating for Clinical <sup>18</sup>F-FDG PET/CT",
+  "container": "Journal of Nuclear Medicine",
+  "volume": "61",
+  "pages": "1678-1683",
+  "type": "journal-article",
+  "doi": "10.2967/jnumed.120.242248",
+  "key": "walker2020",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Ren",
+    "initials": "P"
+   },
+   {
+    "family": "He",
+    "initials": "Y"
+   },
+   {
+    "family": "Zhu",
+    "initials": "Y"
+   },
+   {
+    "family": "Zhang",
+    "initials": "T"
+   },
+   {
+    "family": "Cao",
+    "initials": "J"
+   },
+   {
+    "family": "Wang",
+    "initials": "Z"
+   },
+   {
+    "family": "Yang",
+    "initials": "Z"
+   }
+  ],
+  "year": 2022,
+  "title": "Motion artefact reduction in coronary CT angiography images with a deep learning method",
+  "container": "BMC Medical Imaging",
+  "volume": "22",
+  "pages": null,
+  "type": "journal-article",
+  "doi": "10.1186/s12880-022-00914-2",
+  "key": "ren2022",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Kim",
+    "initials": "S"
+   },
+   {
+    "family": "Park",
+    "initials": "E"
+   },
+   {
+    "family": "Ahn",
+    "initials": "C"
+   },
+   {
+    "family": "Jeong",
+    "initials": "B"
+   },
+   {
+    "family": "Lee",
+    "initials": "YS"
+   },
+   {
+    "family": "Lee",
+    "initials": "W"
+   },
+   {
+    "family": "Kim",
+    "initials": "JH"
+   }
+  ],
+  "year": 2025,
+  "title": "Performance of fully automated deep-learning-based coronary artery calcium scoring in ECG-gated calcium CT and non-gated low-dose chest CT",
+  "container": "European Radiology",
+  "volume": "35",
+  "pages": "7084-7095",
+  "type": "journal-article",
+  "doi": "10.1007/s00330-025-11559-4",
+  "key": "kim2025",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Chen",
+    "initials": "Y"
+   },
+   {
+    "family": "Wang",
+    "initials": "Y"
+   },
+   {
+    "family": "Wang",
+    "initials": "Q"
+   },
+   {
+    "family": "Yan",
+    "initials": "R"
+   },
+   {
+    "family": "Zhao",
+    "initials": "W"
+   },
+   {
+    "family": "Qin",
+    "initials": "S"
+   },
+   {
+    "family": "Zhang",
+    "initials": "Y"
+   },
+   {
+    "family": "Lang",
+    "initials": "N"
+   }
+  ],
+  "year": 2026,
+  "title": "Impact of scanning parameters on deep learning coronary artery calcium scoring in non‑gated chest CT",
+  "container": "BMC Medical Imaging",
+  "volume": "26",
+  "pages": null,
+  "type": "journal-article",
+  "doi": "10.1186/s12880-026-02306-2",
+  "key": "chen2026",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Wang",
+    "initials": "G"
+   },
+   {
+    "family": "Vannier",
+    "initials": "MW"
+   }
+  ],
+  "year": 1997,
+  "title": "Optimal pitch in spiral computed tomography",
+  "container": "Medical Physics",
+  "volume": "24",
+  "pages": "1635-1639",
+  "type": "journal-article",
+  "doi": "10.1118/1.597971",
+  "key": "wang1997",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Kalender",
+    "initials": "WA"
+   }
+  ],
+  "year": 2006,
+  "title": "X-ray computed tomography",
+  "container": "Physics in Medicine and Biology",
+  "volume": "51",
+  "pages": "R29-R43",
+  "type": "journal-article",
+  "doi": "10.1088/0031-9155/51/13/R03",
+  "key": "kalender2006",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Rife",
+    "initials": "D"
+   },
+   {
+    "family": "Boorstyn",
+    "initials": "R"
+   }
+  ],
+  "year": 1974,
+  "title": "Single tone parameter estimation from discrete-time observations",
+  "container": "IEEE Transactions on Information Theory",
+  "volume": "20",
+  "pages": "591-598",
+  "type": "journal-article",
+  "doi": "10.1109/TIT.1974.1055282",
+  "key": "rife1974",
+  "dataset": false
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Guo",
+    "initials": "C"
+   },
+   {
+    "family": "Pleiss",
+    "initials": "G"
+   },
+   {
+    "family": "Sun",
+    "initials": "Y"
+   },
+   {
+    "family": "Weinberger",
+    "initials": "KQ"
+   }
+  ],
+  "year": 2017,
+  "title": "On Calibration of Modern Neural Networks",
+  "container": "arXiv",
+  "volume": null,
+  "pages": null,
+  "type": "Preprint",
+  "doi": "10.48550/arXiv.1706.04599",
+  "key": "guo2017",
+  "dataset": false
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Kendall",
+    "initials": "A"
+   },
+   {
+    "family": "Gal",
+    "initials": "Y"
+   }
+  ],
+  "year": 2017,
+  "title": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?",
+  "container": "arXiv",
+  "volume": null,
+  "pages": null,
+  "type": "Preprint",
+  "doi": "10.48550/arXiv.1703.04977",
+  "key": "kendall2017",
+  "dataset": false
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Ovadia",
+    "initials": "Y"
+   },
+   {
+    "family": "Fertig",
+    "initials": "E"
+   },
+   {
+    "family": "Ren",
+    "initials": "J"
+   },
+   {
+    "family": "Nado",
+    "initials": "Z"
+   },
+   {
+    "family": "Sculley",
+    "initials": "D"
+   },
+   {
+    "family": "Nowozin",
+    "initials": "S"
+   },
+   {
+    "family": "Dillon",
+    "initials": "JV"
+   },
+   {
+    "family": "Lakshminarayanan",
+    "initials": "B"
+   },
+   {
+    "family": "Snoek",
+    "initials": "J"
+   }
+  ],
+  "year": 2019,
+  "title": "Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift",
+  "container": "arXiv",
+  "volume": null,
+  "pages": null,
+  "type": "Preprint",
+  "doi": "10.48550/arXiv.1906.02530",
+  "key": "ovadia2019",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "The National Lung Screening Trial Research Team",
+    "initials": ""
+   }
+  ],
+  "year": 2011,
+  "title": "Reduced Lung-Cancer Mortality with Low-Dose Computed Tomographic Screening",
+  "container": "New England Journal of Medicine",
+  "volume": "365",
+  "pages": "395-409",
+  "type": "journal-article",
+  "doi": "10.1056/NEJMoa1102873",
+  "key": "nlst2011",
+  "dataset": false
+ },
+ {
+  "source": "crossref",
+  "authors": [
+   {
+    "family": "Clark",
+    "initials": "K"
+   },
+   {
+    "family": "Vendt",
+    "initials": "B"
+   },
+   {
+    "family": "Smith",
+    "initials": "K"
+   },
+   {
+    "family": "Freymann",
+    "initials": "J"
+   },
+   {
+    "family": "Kirby",
+    "initials": "J"
+   },
+   {
+    "family": "Koppel",
+    "initials": "P"
+   },
+   {
+    "family": "Moore",
+    "initials": "S"
+   },
+   {
+    "family": "Phillips",
+    "initials": "S"
+   },
+   {
+    "family": "Maffitt",
+    "initials": "D"
+   },
+   {
+    "family": "Pringle",
+    "initials": "M"
+   },
+   {
+    "family": "Tarbox",
+    "initials": "L"
+   },
+   {
+    "family": "Prior",
+    "initials": "F"
+   }
+  ],
+  "year": 2013,
+  "title": "The Cancer Imaging Archive (TCIA): Maintaining and Operating a Public Information Repository",
+  "container": "Journal of Digital Imaging",
+  "volume": "26",
+  "pages": "1045-1057",
+  "type": "journal-article",
+  "doi": "10.1007/s10278-013-9622-7",
+  "key": "clark2013",
+  "dataset": false
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Patnana",
+    "initials": "M"
+   },
+   {
+    "family": "Patel",
+    "initials": "S"
+   },
+   {
+    "family": "Tsao",
+    "initials": "AS"
+   }
+  ],
+  "year": 2019,
+  "title": "Data from Anti-PD-1 Immunotherapy Lung",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/TCIA.2019.ZJJWB9IP",
+  "key": "tcia_antipd1lung",
+  "dataset": true
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Saltz",
+    "initials": "J"
+   },
+   {
+    "family": "Saltz",
+    "initials": "M"
+   },
+   {
+    "family": "Prasanna",
+    "initials": "P"
+   },
+   {
+    "family": "Moffitt",
+    "initials": "R"
+   },
+   {
+    "family": "Hajagos",
+    "initials": "J"
+   },
+   {
+    "family": "Bremer",
+    "initials": "E"
+   },
+   {
+    "family": "Balsamo",
+    "initials": "J"
+   },
+   {
+    "family": "Kurc",
+    "initials": "T"
+   }
+  ],
+  "year": 2021,
+  "title": "Stony Brook University COVID-19 Positive Cases",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/TCIA.BBAG-2923",
+  "key": "tcia_covidnysbu",
+  "dataset": true
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "National Cancer Institute Clinical Proteomic Tumor Analysis Consortium (CPTAC)",
+    "initials": ""
+   }
+  ],
+  "year": 2018,
+  "title": "The Clinical Proteomic Tumor Analysis Consortium Lung Adenocarcinoma Collection (CPTAC-LUAD)",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/K9/TCIA.2018.PAT12TBS",
+  "key": "tcia_cptacluad",
+  "dataset": true
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Li",
+    "initials": "P"
+   },
+   {
+    "family": "Wang",
+    "initials": "S"
+   },
+   {
+    "family": "Li",
+    "initials": "T"
+   },
+   {
+    "family": "Lu",
+    "initials": "J"
+   },
+   {
+    "family": "HuangFu",
+    "initials": "Y"
+   },
+   {
+    "family": "Wang",
+    "initials": "D"
+   }
+  ],
+  "year": 2020,
+  "title": "A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/TCIA.2020.NNC2-0461",
+  "key": "tcia_lungpetctdx",
+  "dataset": true
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "Zhao",
+    "initials": "B"
+   },
+   {
+    "family": "Schwartz",
+    "initials": "LH"
+   },
+   {
+    "family": "Kris",
+    "initials": "MG"
+   },
+   {
+    "family": "Riely",
+    "initials": "GJ"
+   }
+  ],
+  "year": 2015,
+  "title": "Coffee-break lung CT collection with scan images reconstructed at multiple imaging parameters",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/K9/TCIA.2015.U1X8A5NR",
+  "key": "tcia_riderlungct",
+  "dataset": true
+ },
+ {
+  "source": "datacite",
+  "authors": [
+   {
+    "family": "The Research for Precision Oncology Program  and the Applied Proteogenomics Organizational Learning and Outcomes (APOLLO) Research Network",
+    "initials": ""
+   }
+  ],
+  "year": 2024,
+  "title": "VA Research Precision Oncology Program - APOLLO (VAREPOP-APOLLO)",
+  "container": "The Cancer Imaging Archive",
+  "volume": null,
+  "pages": null,
+  "type": "Dataset",
+  "doi": "10.7937/GHKN-MD15",
+  "key": "tcia_varepopapollo",
+  "dataset": true
+ }
+]

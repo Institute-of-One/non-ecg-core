@@ -98,6 +98,12 @@ def main() -> int:
         "true_period_is_local_minimum": bool(true_index in minima),
         "local_minima_bpm": [float(60.0 * speed / grid[i]) for i in minima],
         "local_minima_cost_over_fitted": [float(costs[i] / costs[fitted_index]) for i in minima],
+        # The curve itself, so the figure is drawn from the run rather than recomputed
+        # from a volume the reader may not have downloaded.
+        "cost_curve": {
+            "bpm": [float(60.0 * speed / p) for p in grid],
+            "cost_over_fitted": [float(c / costs[fitted_index]) for c in costs],
+        },
         "per_level": per_level,
     }
     OUT.write_text(json.dumps(result, indent=2), encoding="utf-8")

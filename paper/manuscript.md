@@ -50,28 +50,38 @@ certifies nothing unless reported with the depth of the minimum it is stable abo
      scan can contain, not what we tried to measure. The cohort appears in section 5 as
      corroboration that the bound is necessary but not sufficient, never as the claim. -->
 
-Deep-learning methods that correct cardiac motion in non-gated chest CT are now in clinical
-use, and reimbursement for algorithmic analysis of such scans began in 2026
-[CITE: reimbursement/deployment of algorithmic analysis of chest CT]. A method of that kind
-makes a claim about cardiac timing in a scan that was never synchronised to the heart. The
-obvious way to check such a claim is to compare it with the rate the scanner recorded, and
-that comparison is not available: of the
+Chest CT is acquired in very large numbers, and lung cancer screening alone has made it a
+population-scale examination (National Lung Screening Trial Research Team 2011). The
+heart is in every one of those scans, and automated methods increasingly read it: fully
+automated deep-learning coronary calcium scoring now runs on non-gated low-dose chest CT
+(Kim et al 2025), and its output depends on the acquisition parameters of the scan it is
+given (Chen et al 2026). In the gated setting, deep learning is also used to remove cardiac
+motion from the images themselves (Ren et al 2022).
+
+A method of that kind makes a claim about a heart that was never synchronised to the scanner.
+The obvious way to check such a claim is to compare it with the rate the scanner recorded,
+and that comparison is not available: of the
 [[results:manifest.json:metrics.cardiac_tag_series_checked]] series whose images we analysed,
 [[results:manifest.json:metrics.cardiac_tag_series_with_field]] record the rate by any of
 [[results:manifest.json:metrics.cardiac_routes_checked]] routes through which a CT
 acquisition can write one.
 
 Rather than assess any particular method, we ask what the acquisition can contain. Recovering
-timing from the image itself is not a new idea in CT: image-based, or intrinsic, gating was
-demonstrated two decades ago on cardiac and small-animal protocols
-[CITE: kymogram-based gating in cardiac CT; intrinsic gating in micro-CT], where the
-acquisition is slow and many cycles are written. That line of work largely stops around 2009.
+timing from the image itself is not a new idea in CT. Reconstruction correlated with a
+recorded electrocardiogram came first (Kachelrieß and Kalender 1998), and was then replaced
+by a signal read out of the projection data — the kymogram (Kachelrieß et al 2002) — and
+later by gating estimated from the reconstructed images themselves (Rohkohl et al 2008). The
+same idea carried small-animal imaging, where respiratory and cardiac gating without a
+physiological monitor became routine (Badea et al 2004, Bartling et al 2007). Every one of
+those settings has an acquisition that dwells: a cardiac or micro-CT protocol writes many
+cycles into the data. That line of work largely stops around 2009.
+
 A separate literature treats the heart in non-gated chest CT, but structurally — thrombus,
-calcification, aortic root, incidental infarct, epicardial fat — and data-driven gating
-appears elsewhere in PET, SPECT and MRI rather than in helical CT
-[CITE: data-driven gating in PET/SPECT/MRI]. We found no indexed report that recovers cardiac
-timing from a non-gated helical CT, and none that states the condition under which it could
-be recovered.
+calcification, aortic root, incidental infarct, epicardial fat. Gating inferred from the data
+rather than from a monitor has continued elsewhere, in MRI (Larson et al 2003) and in PET,
+where it now outperforms device-based gating (Walker et al 2020), but not in helical CT of
+the chest. We found no indexed report that recovers cardiac timing from a non-gated helical
+CT, and none that states the condition under which it could be recovered.
 
 This paper derives that condition, measures the one constant it depends on, evaluates it
 against the installed base from headers alone, tests it on images under a criterion frozen in
@@ -114,10 +124,13 @@ samples to be resolved. With reconstruction interval *dz*, the samples per cycle
 *λ*/*dz* = *ST*/*dz*, and this must exceed some *n*min. This places a lower limit on *S*.
 
 Together they define a window in table speed, in closed form, for a given *L*, *dz* and heart
-rate. Everything it needs is in the DICOM header of any helical acquisition — table speed
-(0018,9309), or equivalently spiral pitch factor (0018,9311) with total collimation
-(0018,9307) and revolution time (0018,9305). No image and no patient information is required
-to say whether a given scan could carry the signal.
+rate. The trade-off itself is old — pitch has always been chosen against longitudinal
+sampling (Wang and Vannier 1997, Kalender 2006) — but the quantity being traded here is
+cardiac timing rather than spatial resolution. Everything the window needs is in the DICOM
+header of any helical acquisition: table speed (0018,9309), or equivalently spiral pitch
+factor (0018,9311) with total collimation (0018,9307) and revolution time (0018,9305). No
+image and no patient information is required to say whether a given scan could carry the
+signal.
 
 One ambiguity has to be closed explicitly. The spiral pitch factor of the IEC convention is
 table travel per rotation divided by the *total* collimated width, whereas the convention in
@@ -138,17 +151,33 @@ better. Making a scan slower buys cycles at the cost of resolution within a cycl
 it faster does the reverse.
 
 This is why the question has a definite answer for each protocol, and why the answer is
-computable before any image exists. It also locates the one quantity the condition still
-needs: the window is bounded by *N*min, and *N*min is not given by the geometry. Section 3
-measures it.
+computable before any image exists (figure 1). It also locates the one quantity the condition
+still needs: the window is bounded by *N*min, and *N*min is not given by the geometry.
+Section 3 measures it.
+
+![Figure 1](figures/fig1_window.png)
+
+**Figure 1.** Cycles written across the heart against samples per cardiac cycle, at 60 bpm,
+on logarithmic axes. Each protocol is a point; the grey lines are the budget *N n* = *L*/*dz*
+for three reconstruction intervals, and a protocol can move only along its own line. The
+shaded corner is the region in which both conditions hold, bounded below by *N*min =
+[[results:manifest.json:metrics.n_min_fundamental]] cycles and on the left by *n* = 8 samples
+per cycle. Blue points satisfy both conditions, red points fail at least one. The two 2003
+four-row protocols are the acquisitions from which this problem originally arose; the modern
+chest protocols sit an order of magnitude to the right and below the bound, having spent the
+whole budget on resolution within a cycle.
 
 ## 3. How many cycles are needed
 
 ### 3.1 Simulation design
 
-*N*min is a property of the estimation problem — of noise, of how well the cardiac border can
-be located against lung and mediastinum, and of how far a real rhythm departs from a fixed
-period — so it was measured rather than assumed. A periodic border trace was generated with
+How precisely a frequency can be estimated from a finite record is a classical question, and
+the answer depends on the observation length, the signal-to-noise ratio and the estimator
+(Rife and Boorstyn 1974). What that theory does not give is the number of cycles at which a
+particular estimator, reading a particular signal, starts to succeed in practice. *N*min is a
+property of the estimation problem — of noise, of how well the cardiac border can be located
+against lung and mediastinum, and of how far a real rhythm departs from a fixed period — so
+it was measured rather than assumed. A periodic border trace was generated with
 a prescribed period, a polynomial baseline standing for anatomy, additive noise, and
 beat-to-beat variability, and the period was estimated from it. Recovery was scored against
 the prescribed period at a tolerance of
@@ -171,11 +200,24 @@ uses [[results:manifest.json:metrics.n_min_fundamental]]**, because the matched 
 knowledge of the waveform that no real trace supplies, and a bound should be stated at the
 value a usable estimator can attain.
 
-The figure is stable across the sweep:
+The figure is stable across the sweep (figure 2):
 [[results:manifest.json:metrics.cells_at_headline]] of the
 [[results:manifest.json:metrics.sensitivity_cells]] cells return exactly
 [[results:manifest.json:metrics.n_min_fundamental]], and the worst cell anywhere in the sweep
-returns [[results:manifest.json:metrics.n_min_worst_case]]. The regime that degrades it is
+returns [[results:manifest.json:metrics.n_min_worst_case]].
+
+![Figure 2](figures/fig2_n_min.png)
+
+**Figure 2.** Left: the fraction of
+[[results:manifest.json:metrics.trials_per_cell]] trials in which the prescribed period was
+recovered to within [[results:manifest.json:metrics.tolerance_percent]] per cent, against the
+number of cycles written, for the matched and the fundamental estimator at the central
+parameter condition. *N*min is where each curve crosses
+[[results:manifest.json:metrics.success_rate_percent]] per cent, marked by the dashed
+verticals at [[results:manifest.json:metrics.n_min_matched]] and
+[[results:manifest.json:metrics.n_min_fundamental]] cycles. Right: *N*min obtained
+independently in each of the [[results:manifest.json:metrics.sensitivity_cells]] cells of the
+sensitivity sweep. The constant is a plateau, not a point estimate. The regime that degrades it is
 coarse sampling within a cycle combined with high noise, which is the corner in which the
 budget identity of section 2.3 says the two requirements are already competing for the same
 fixed product.
@@ -185,9 +227,10 @@ fixed product.
 ### 4.1 Half of the public archive cannot be asked
 
 Evaluating the condition needs only header fields, but they have to be published. Of
-[[results:manifest.json:metrics.collections_probed]] public collections probed for
-acquisition parameters, [[results:manifest.json:metrics.collections_with_parameters]] publish
-them and [[results:manifest.json:metrics.collections_without_parameters]] do not. For the
+[[results:manifest.json:metrics.collections_probed]] public collections probed in The Cancer
+Imaging Archive (Clark et al 2013) for acquisition parameters,
+[[results:manifest.json:metrics.collections_with_parameters]] publish them and
+[[results:manifest.json:metrics.collections_without_parameters]] do not. For the
 latter the question cannot be put at all — not because the scans fail the condition, but
 because nothing in the archive says what the table was doing.
 
@@ -219,9 +262,18 @@ longer extent available along the descending aorta, the median threshold falls t
 [[results:manifest.json:metrics.records_below_100bpm_aorta_percent]] per cent of series
 qualify.
 
-**On the installed base, the acquisition condition is largely satisfied.** It is not what
-stands between a non-gated chest CT and a cardiac period, which is the reason section 5 is
-worth performing at all.
+**On the installed base, the acquisition condition is largely satisfied** (figure 3). It is
+not what stands between a non-gated chest CT and a cardiac period, which is the reason
+section 5 is worth performing at all.
+
+![Figure 3](figures/fig3_protocols.png)
+
+**Figure 3.** The lowest heart rate each of the
+[[results:manifest.json:metrics.header_series]] real chest CT series could record, computed
+from its header alone at *N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles,
+over the cardiac border (*L* = 120 mm) and over the descending aorta (*L* = 300 mm). The
+vertical line is [[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm: series to its
+left could record any physiological rate above their own threshold.
 
 The exceptions are instructive. A wide-detector protocol at
 [[results:manifest.json:metrics.threshold_wide_detector_speed]] mm/s has a threshold of
@@ -319,7 +371,7 @@ accepted series reduces the weighted residual by about a tenth relative to a typ
 in the band, which is what the rejected series do as well. On this measure the admissions are
 not distinguishable from the rejections.
 
-They are also not consensus. In each of the
+They are also not consensus (figure 4). In each of the
 [[results:manifest.json:metrics.cohort_recovered]] admitted series the six coronal levels,
 fitted independently, prefer rates spanning
 [[results:manifest.json:metrics.flatness_level_spread_accepted_min]] to
@@ -336,6 +388,17 @@ presenting as stability.
 
 This also disposes of the reading in which the extraction merely locks onto the wrong peak.
 It does not lock onto a peak at all.
+
+![Figure 4](figures/fig4_flatness.png)
+
+**Figure 4.** Left: depth of the minimum, defined as the median cost across the physiological
+band divided by the cost at the period returned, for the series the frozen criterion rejected
+and for those it admitted, with the reference case of section 5.4 shown separately. A value
+of 1.0, the dashed line, would mean the chosen period fits no better than an arbitrary one.
+The admitted series lie inside the range of the rejected ones. Right: for each admitted
+series and for the reference case, the rate each of the six coronal levels prefers when
+fitted alone (grey), against the rate the joint fit returns (cross). The joint fit reports a
+compromise among levels that do not agree.
 
 ### 5.4 The one public session that records the rate
 
@@ -377,11 +440,22 @@ It returned [[results:manifest.json:metrics.reference_rate_fitted]] bpm,
 outside the interval. The frozen criterion also rejected the series, on a leave-one-out
 spread of [[results:manifest.json:metrics.reference_loo_spread_bpm]] bpm.
 
-The search did not miss the answer. The true period lies inside the searched band, which was
-covered at a step of [[results:manifest.json:metrics.reference_grid_step_mm]] mm, and the
-cost there is [[results:manifest.json:metrics.reference_cost_true_over_fitted]] times the
-minimum. **The true period is not a local minimum of the objective at all.** The trace does
-not contain it.
+The search did not miss the answer (figure 5). The true period lies inside the searched band,
+which was covered at a step of
+[[results:manifest.json:metrics.reference_grid_step_mm]] mm, and the cost there is
+[[results:manifest.json:metrics.reference_cost_true_over_fitted]] times the minimum. **The
+true period is not a local minimum of the objective at all.** The trace does not contain it.
+
+![Figure 5](figures/fig5_reference_case.png)
+
+**Figure 5.** The objective of the joint fit across the physiological band, for the one
+public series whose heart rate is recorded, normalised to its minimum. The darker band is the
+rate the scanner recorded during the gated acquisition ten seconds earlier,
+[[results:manifest.json:metrics.reference_rate_range_low]] to
+[[results:manifest.json:metrics.reference_rate_range_high]] bpm; the lighter band is the
+agreement interval fixed before the images were downloaded. The fit takes the global minimum
+at [[results:manifest.json:metrics.reference_rate_fitted]] bpm. The recorded rate is not a
+local minimum, and the entire band lies within a fifth of the best fit.
 
 This series is an ordinary member of the population of section 5.3: depth
 [[results:manifest.json:metrics.flatness_depth_reference]], levels preferring rates spread
@@ -400,10 +474,13 @@ time and the one it is least often tested in.
 ### 6.1 A model that reports its own uncertainty
 
 An estimator was trained on the same simulated traces to predict the period and, alongside
-it, its own standard deviation. Reporting an uncertainty is what makes the experiment
-informative: a point estimate that is wrong outside the bound is unsurprising, whereas an
-uncertainty that stays small while the estimate is wrong is a property one can measure and
-act on. Accuracy is counted at the same
+it, its own standard deviation (Kendall and Gal 2017). Reporting an uncertainty is what makes
+the experiment informative: a point estimate that is wrong outside the bound is unsurprising,
+whereas an uncertainty that stays small while the estimate is wrong is a property one can
+measure and act on. That such reports are systematically too confident is established for
+modern networks in general (Guo et al 2017), and the gap widens when the input is drawn from
+outside the training distribution (Ovadia et al 2019); what is measured here is a case in
+which the shift is not a change of dataset but a change of what the data physically contain. Accuracy is counted at the same
 [[results:manifest.json:metrics.tolerance_percent]] per cent tolerance used in section 3, and
 calibration is the ratio of the error actually made to the standard deviation reported, so
 that 1 is honest and larger is overconfident.
@@ -425,9 +502,20 @@ runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
 [[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between
 twelve and forty times the uncertainty it declares.
 
-**The confidence is worst where it is most dangerous.** As the number of written cycles rises
-towards the bound the model's reported uncertainty tightens and its accuracy does not move
-off zero, so at two cycles it is at its most certain and still never right. Nothing in its
+**The confidence is worst where it is most dangerous** (figure 6). As the number of written
+cycles rises towards the bound the model's reported uncertainty tightens and its accuracy
+does not move off zero, so at two cycles it is at its most certain and still never right.
+
+![Figure 6](figures/fig6_estimator.png)
+
+**Figure 6.** Top: the fraction of estimates within
+[[results:manifest.json:metrics.tolerance_percent]] per cent of the prescribed period,
+against cycles written, for a model trained only at or above the bound and for one trained
+across it. Bottom, on a logarithmic scale: the standard deviation each model declares
+(circles) and the error it actually makes (squares). Below *N*min, marked by the dashed
+vertical, the model trained inside the bound declares the smallest uncertainty of either
+while its error is largest — the gap between its circles and its squares is the
+overconfidence. The model trained across the boundary keeps the two together. Nothing in its
 output distinguishes that state from the regime in which it works. A model of this kind,
 applied to a chest CT that writes a fraction of a cycle, returns a number with a small error
 bar and no indication that the question was unanswerable.
@@ -669,8 +757,54 @@ suitability of this work as a Paper.
 
 ## References
 
-[The reference list is not yet written. Three citation points are marked `[CITE: ...]` in
-section 1. Every reference must be resolved against Crossref by DOI before it is written
-here, in Harvard author-date style with article titles, as this journal requires. Author
-lists and years are not to be recalled from memory: the failure mode is a citation that
-resolves to a different paper than the one intended.]
+<!-- references: generated by paper/check_references.py; do not edit by hand -->
+
+1. Badea C, Hedlund L W and Johnson G A 2004 Micro‐CT with respiratory and cardiac gating *Medical Physics* **31** 3324–3329 (DOI: 10.1118/1.1812604)
+
+2. Bartling S H et al 2007 Retrospective Motion Gating in Small Animal CT of Mice and Rats *Investigative Radiology* **42** 704–714 (DOI: 10.1097/rli.0b013e318070dcad)
+
+3. Chen Y et al 2026 Impact of scanning parameters on deep learning coronary artery calcium scoring in non‑gated chest CT *BMC Medical Imaging* **26** (DOI: 10.1186/s12880-026-02306-2)
+
+4. Clark K et al 2013 The Cancer Imaging Archive (TCIA): Maintaining and Operating a Public Information Repository *Journal of Digital Imaging* **26** 1045–1057 (DOI: 10.1007/s10278-013-9622-7)
+
+5. Guo C et al 2017 On Calibration of Modern Neural Networks *arXiv* (DOI: 10.48550/arXiv.1706.04599)
+
+6. Kachelrieß M and Kalender W A 1998 Electrocardiogram‐correlated image reconstruction from subsecond spiral computed tomography scans of the heart *Medical Physics* **25** 2417–2431 (DOI: 10.1118/1.598453)
+
+7. Kachelrieß M et al 2002 Kymogram detection and kymogram‐correlated image reconstruction from subsecond spiral computed tomography scans of the heart *Medical Physics* **29** 1489–1503 (DOI: 10.1118/1.1487861)
+
+8. Kalender W A 2006 X-ray computed tomography *Physics in Medicine and Biology* **51** R29–R43 (DOI: 10.1088/0031-9155/51/13/R03)
+
+9. Kendall A and Gal Y 2017 What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision? *arXiv* (DOI: 10.48550/arXiv.1703.04977)
+
+10. Kim S et al 2025 Performance of fully automated deep-learning-based coronary artery calcium scoring in ECG-gated calcium CT and non-gated low-dose chest CT *European Radiology* **35** 7084–7095 (DOI: 10.1007/s00330-025-11559-4)
+
+11. Larson A C et al 2003 Self‐gated cardiac cine MRI *Magnetic Resonance in Medicine* **51** 93–102 (DOI: 10.1002/mrm.10664)
+
+12. Li P et al 2020 A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (dataset) The Cancer Imaging Archive (DOI: 10.7937/TCIA.2020.NNC2-0461)
+
+13. National Cancer Institute Clinical Proteomic Tumor Analysis Consortium (CPTAC) 2018 The Clinical Proteomic Tumor Analysis Consortium Lung Adenocarcinoma Collection (CPTAC-LUAD) (dataset) The Cancer Imaging Archive (DOI: 10.7937/K9/TCIA.2018.PAT12TBS)
+
+14. Ovadia Y et al 2019 Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift *arXiv* (DOI: 10.48550/arXiv.1906.02530)
+
+15. Patnana M, Patel S and Tsao A S 2019 Data from Anti-PD-1 Immunotherapy Lung (dataset) The Cancer Imaging Archive (DOI: 10.7937/TCIA.2019.ZJJWB9IP)
+
+16. Ren P et al 2022 Motion artefact reduction in coronary CT angiography images with a deep learning method *BMC Medical Imaging* **22** (DOI: 10.1186/s12880-022-00914-2)
+
+17. Rife D and Boorstyn R 1974 Single tone parameter estimation from discrete-time observations *IEEE Transactions on Information Theory* **20** 591–598 (DOI: 10.1109/TIT.1974.1055282)
+
+18. Rohkohl C et al 2008 Cardiac C-arm CT: image-based gating *SPIE Proceedings* **6913** 69131G (DOI: 10.1117/12.770124)
+
+19. Saltz J et al 2021 Stony Brook University COVID-19 Positive Cases (dataset) The Cancer Imaging Archive (DOI: 10.7937/TCIA.BBAG-2923)
+
+20. National Lung Screening Trial Research Team 2011 Reduced Lung-Cancer Mortality with Low-Dose Computed Tomographic Screening *New England Journal of Medicine* **365** 395–409 (DOI: 10.1056/NEJMoa1102873)
+
+21. Research for Precision Oncology Program  and the Applied Proteogenomics Organizational Learning and Outcomes (APOLLO) Research Network 2024 VA Research Precision Oncology Program - APOLLO (VAREPOP-APOLLO) (dataset) The Cancer Imaging Archive (DOI: 10.7937/GHKN-MD15)
+
+22. Walker M D et al 2020 Data-Driven Respiratory Gating Outperforms Device-Based Gating for Clinical <sup>18</sup>F-FDG PET/CT *Journal of Nuclear Medicine* **61** 1678–1683 (DOI: 10.2967/jnumed.120.242248)
+
+23. Wang G and Vannier M W 1997 Optimal pitch in spiral computed tomography *Medical Physics* **24** 1635–1639 (DOI: 10.1118/1.597971)
+
+24. Zhao B et al 2015 Coffee-break lung CT collection with scan images reconstructed at multiple imaging parameters (dataset) The Cancer Imaging Archive (DOI: 10.7937/K9/TCIA.2015.U1X8A5NR)
+
+<!-- end references -->

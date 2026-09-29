@@ -1,0 +1,30 @@
+{
+  "note": "Only keys and DOIs are held here. Author lists, titles, journals, volumes and pages are resolved from Crossref or DataCite by paper/check_references.py and written into the manuscript from the resolved record, so that no part of a citation is typed from memory. A reference whose DOI does not resolve, or whose resolved record does not match the in-text citation, fails the check.",
+  "references": [
+    {"key": "kachelriess1998", "doi": "10.1118/1.598453"},
+    {"key": "kachelriess2002", "doi": "10.1118/1.1487861"},
+    {"key": "badea2004", "doi": "10.1118/1.1812604"},
+    {"key": "bartling2007", "doi": "10.1097/rli.0b013e318070dcad"},
+    {"key": "rohkohl2008", "doi": "10.1117/12.770124"},
+    {"key": "larson2003", "doi": "10.1002/mrm.10664"},
+    {"key": "walker2020", "doi": "10.2967/jnumed.120.242248"},
+    {"key": "ren2022", "doi": "10.1186/s12880-022-00914-2"},
+    {"key": "kim2025", "doi": "10.1007/s00330-025-11559-4"},
+    {"key": "chen2026", "doi": "10.1186/s12880-026-02306-2"},
+    {"key": "wang1997", "doi": "10.1118/1.597971"},
+    {"key": "kalender2006", "doi": "10.1088/0031-9155/51/13/R03"},
+    {"key": "rife1974", "doi": "10.1109/TIT.1974.1055282"},
+    {"key": "guo2017", "doi": "10.48550/arXiv.1706.04599"},
+    {"key": "kendall2017", "doi": "10.48550/arXiv.1703.04977"},
+    {"key": "ovadia2019", "doi": "10.48550/arXiv.1906.02530"},
+    {"key": "nlst2011", "doi": "10.1056/NEJMoa1102873"},
+    {"key": "clark2013", "doi": "10.1007/s10278-013-9622-7"},
+
+    {"key": "tcia_antipd1lung", "doi": "10.7937/TCIA.2019.ZJJWB9IP", "dataset": true},
+    {"key": "tcia_covidnysbu", "doi": "10.7937/TCIA.BBAG-2923", "dataset": true},
+    {"key": "tcia_cptacluad", "doi": "10.7937/K9/TCIA.2018.PAT12TBS", "dataset": true},
+    {"key": "tcia_lungpetctdx", "doi": "10.7937/TCIA.2020.NNC2-0461", "dataset": true},
+    {"key": "tcia_riderlungct", "doi": "10.7937/K9/TCIA.2015.U1X8A5NR", "dataset": true},
+    {"key": "tcia_varepopapollo", "doi": "10.7937/GHKN-MD15", "dataset": true}
+  ]
+}
