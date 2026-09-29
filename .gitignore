@@ -19,3 +19,4 @@ data_cache/
 *.dcm
 analysis/tcia_search/probe_cache/
 paper/build/preview_*.png
+paper/build/*.staged.pdf

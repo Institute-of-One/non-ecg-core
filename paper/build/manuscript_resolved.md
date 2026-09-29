@@ -37,10 +37,10 @@ prediction on 29 per cent. Those
 admissions sit at the same minimum depth as the rejections, their coronal levels
 individually preferring rates spanning
 44–59
-bpm. The one archive session recording a rate is one where the extraction tracks the
-patient's outline, not the mediastinum, and nothing in the pipeline indicated it. An estimator
-trained inside the bound was never accurate outside it while reporting a standard deviation
-below 0.045.
+bpm. The one archive session recording a rate could not be used: there the extraction did not
+return the intended border, and nothing said so. In simulation, an estimator trained inside
+the bound was never accurate outside it while reporting a standard deviation below
+0.045.
 
 **Significance.** The bound is computable from the header and excludes acquisitions that
 cannot carry the signal, but satisfying it buys nothing. A stability statistic certifies
@@ -125,6 +125,14 @@ The scan must be **fast enough** that each cycle is spread across enough reconst
 samples to be resolved. With reconstruction interval *dz*, the samples per cycle are *n* =
 *λ*/*dz* = *ST*/*dz*, and this must exceed some *n*min. This places a lower limit on *S*.
 
+**The value of *n*min is a judgement and is the one such number in this analysis.** Two
+samples per cycle is the formal floor and is not usable, because a two-sample sinusoid is a
+straight line to any estimator with noise in it. We take eight throughout, and the sweep of
+section 3 covers 8, 16 and
+32 samples per cycle so that the effect of
+the choice on *N*min can be read off rather than assumed. Nothing in the budget identity
+below depends on it.
+
 Together they define a window in table speed, in closed form, for a given *L*, *dz* and heart
 rate. The trade-off itself is old — pitch has always been chosen against longitudinal
 sampling (Wang and Vannier 1997, Kalender 2006) — but the quantity being traded here is
@@ -188,11 +196,22 @@ taken as the smallest number of written cycles at which at least
 90 per cent of
 200 trials succeeded.
 
-The sweep covered 144 combinations of noise
-level, baseline strength, samples per cycle and rhythm variability, so that the reported
-value is a plateau rather than a point.
+The sweep covered 144 combinations, the full
+grid of 4 noise levels from
+0.05 to
+0.4 of the wave amplitude,
+4 baseline strengths from zero to
+2.0 times it,
+3 sampling densities of
+8, 16 and
+32 samples per cycle, and
+3 degrees of beat-to-beat
+variability up to 0.1 of the period. The
+central condition against which the headline is quoted is noise 0.1, baseline 1.0, 16 samples
+per cycle and variability 0.05. Reporting the whole grid rather than the central cell is what
+makes the value a plateau rather than a point.
 
-### 3.2 *N*min is set by the problem, not by the estimator
+### 3.2 How far *N*min moves with the estimator, and with the conditions
 
 Two estimators were run over the same traces: one matched to the generating model, and one
 using only the fundamental of the trace. The matched estimator reaches
@@ -243,8 +262,12 @@ could or could not have recorded.
 
 ### 4.2 Table speeds and thresholds
 
-Across 192 series from
-5 collections, table speed runs from
+The 192 series come from
+94 patients in the
+5 collections that publish the parameters,
+taking at most 32 series from any
+one of them so that a single large collection cannot set the distribution. Table speed runs
+from
 30.0 to
 158.8 mm/s, a factor of
 5.3, with a median of
@@ -294,7 +317,15 @@ write a fraction of one cycle, and no estimator applied to them can be measuring
 The cohort comprised 18 series, of which
 17 yielded a volume the extraction could read;
 the remaining 1 is reported as a
-technical failure and enters no count. A series was admitted when the joint fit spanned at
+technical failure and enters no count. They are drawn from the same
+192 series evaluated in section 4 — all
+18 of them — one series per patient, so
+18 patients contribute one each and no patient
+appears twice. 3 of them were the pilots on
+which the extraction was developed, and they are retained rather than dropped because
+removing them after the fact would be a choice made with the outcomes visible.
+
+A series was admitted when the joint fit spanned at
 least *N*min = 2.5 cycles, was not pinned at
 either edge of the physiological band, drew on at least three usable coronal levels, moved by
 no more than 10 bpm when any one level was dropped, and left a median residual below the
@@ -309,8 +340,41 @@ run from 256 to
 324 mm against an aortic extent of
 300 mm, and the same
 16 series clear *N*min either way. It
-is stated here because for the one series in section 5.4 the two differ by a factor of two,
-and there the distinction changes the reading entirely.
+is stated here because for the one series in section 5.4 the two differ by a factor of two.
+
+What the fit reads is a one-dimensional trace of that border against z (figure 4). At each
+slice of a coronal row, the candidates are the runs above
+-300 HU that cross the row's midline and are
+at least 25 mm wide, and the border is the
+left edge of the chosen run. The border is followed rather than chosen independently on each
+slice: tracking begins in the middle of the scan where the mediastinum is widest, each slice
+takes the candidate nearest to the previous one, and a slice with no candidate within 6 mm is
+left empty rather than filled with the nearest available structure.
+6 rows are used, at fractions
+0.45 to
+0.7 of the image height, and every one of
+them is reported rather than the clearest.
+
+The period is fitted to all levels at once. Writing *u* = (*z* − *z*₀)/*T* and *v* = (*z* −
+*z*₀)/span, each level is modelled as a sinusoid on a quartic baseline, *a* cos 2π*u* + *b*
+sin 2π*u* + *c*₀ + *c*₁*v* + *c*₂*v*² + *c*₃*v*³ + *c*₄*v*⁴, whose coefficients are solved by
+least squares at each trial period; amplitude and phase are therefore free per level while
+the period *T* is common, because there is one heart and because in a helical scan the time
+coordinate is a function of *z* alone, so every level shares it exactly. The joint cost at a
+period is the sum over levels of the residual sum of squares, each weighted by the reciprocal
+of that level's variance, so a level with a large anatomical swing does not outvote the
+others. The period is taken as the minimiser over 600 points spanning
+40 to
+120 bpm at the header's table speed; that band
+is physiological, and is never set by what the data prefer.
+
+![Figure 4](figures/fig4_extraction.png)
+
+**Figure 4.** A coronal reformat from one of the admitted series, at its own aspect — one
+millimetre along z is one millimetre along x — with the tracked border drawn on it. The
+border follows the mediastinum between the two lungs, which is the structure the method is
+defined on. Its position, 43 per
+cent of the image width here, is what section 5.4 measures for every series.
 
 **What that criterion measures is self-consistency.** Leave-one-out movement and residual
 size both ask whether the fit holds still; neither compares the fitted rate with the
@@ -340,7 +404,7 @@ that the bound says should govern them, so whatever the criterion is responding 
 the quantity the header predicts. Sections 5.3 and 5.4 examine what it is responding to
 instead.
 
-### 5.2 Four candidate explanations, none of which reproduces the failure
+### 5.2 How real traces differ from the simulated ones
 
 The border traces of the real series do not merely fit worse than simulated ones, they differ
 in kind. Comparing 85 real traces with
@@ -355,11 +419,26 @@ signal, and the spread of band power across levels is
 anatomy, and how much of it is anatomy varies from level to level in a way the simulation
 never produced.
 
-We tested 4 candidate explanations for the
-failure, each implemented as a modification of the simulation that should have reproduced it.
-0 of them did. The failure was
-therefore not explained by anything we had thought of, and section 5.3 reports what it turned
-out to be.
+5 properties were measured on both
+populations: the share of the signal removed by the quartic baseline, the fraction of the
+remaining power inside the physiological band, that band's enrichment over the rest of the
+spectrum, the rate of large slice-to-slice steps, and the drift of the wave's amplitude
+across the scan. Two of the five separate the populations sharply. The baseline share is the
+one quoted above. The other is the amplitude drift: a real trace's wave grows or shrinks by a
+median factor of 1.47 from one end of the
+scan to the other, against
+1.04 in simulation, so the amplitude
+the fit assumes to be constant is not. Large steps are absent from the median trace in both
+populations but reach
+2.0 per hundred slices at the ninetieth
+percentile of the real ones, against
+0.0 in simulation.
+
+**These are differences, not causes.** We did not put any of them back into the simulator to
+see whether the failure reappears, and this section should not be read as having excluded
+them. It establishes that the signal the estimator was designed for is not the signal it is
+given, and section 5.3 reports a property of the objective that is measured rather than
+inferred.
 
 ### 5.3 The objective is nearly flat, and the criterion never looked
 
@@ -383,7 +462,7 @@ accepted series reduces the weighted residual by about a tenth relative to a typ
 in the band, which is what the rejected series do as well. On this measure the admissions are
 not distinguishable from the rejections.
 
-They are also not consensus (figure 4). In each of the
+They are also not consensus (figure 5). In each of the
 3 admitted series the six coronal levels,
 fitted independently, prefer rates spanning
 44 to
@@ -411,9 +490,9 @@ One reading it does weaken is that the extraction simply locks onto the wrong pe
 best period fitting only about a tenth better than a typical one, there is no peak in these
 objectives sharp enough for that description to be apt.
 
-![Figure 4](figures/fig4_flatness.png)
+![Figure 5](figures/fig5_flatness.png)
 
-**Figure 4.** Left: depth of the minimum, defined as the median cost across the physiological
+**Figure 5.** Left: depth of the minimum, defined as the median cost across the physiological
 band divided by the cost at the period returned, for the series the frozen criterion rejected
 and for those it admitted, with the reference case of section 5.4 shown separately. A value
 of 1.0, the dashed line, would mean the chosen period fits no better than an arbitrary one.
@@ -422,146 +501,55 @@ series and for the reference case, the rate each of the six coronal levels prefe
 fitted alone (grey), against the rate the joint fit returns (cross). The joint fit reports a
 compromise among levels that do not agree.
 
-### 5.4 The one public session that records the rate
+### 5.4 A candidate session with a recorded rate, which could not be used
 
-A criterion that cannot be compared with a true rate can be diagnosed but not convicted. We
-therefore searched the archive for a session that records one. Of
-156 collections,
-102 hold CT and
+A criterion that cannot be compared with a true rate can be diagnosed but not convicted, so
+we searched for a session that records one. Of
+156 collections in The Cancer Imaging
+Archive, 102 hold CT and
 57 studies are described as a cardiac
 examination; 2 sessions
 record a rate in the header, and
 1 contains both a
 recorded rate and a free-running helical series of the chest.
 
-The rate is not where a reader would look for it. `HeartRate (0018,1088)` is empty throughout;
-the scanner writes the rate into the free text of `ScanOptions (0018,0022)` as a minimum,
-maximum and average in bpm. A survey restricted to the standard cardiac fields concludes that
-no public CT records the rate, and is wrong. The count in section 4 was repeated over
-11 routes for that reason.
+The rate is not where a reader would look for it. `HeartRate (0018,1088)` is empty
+throughout; the scanner writes the rate into the free text of `ScanOptions (0018,0022)` as a
+minimum, maximum and average in bpm. A survey restricted to the standard cardiac fields
+concludes that no public CT records the rate, and is wrong; the count in section 4 was
+repeated over 11 routes for that
+reason. In that session a gated acquisition records
+75.0 bpm, between
+72.0 and
+78.0 over its own duration, and a
+helical series covering 630 mm at
+208.7 mm/s begins ten seconds later.
 
-In that session a gated acquisition records
-75.0 bpm, with a minimum of
-72.0 and a maximum of
-78.0 over its own duration. A helical
-series covering 630 mm at
-208.7 mm/s, lasting
-3.02 s, begins ten seconds later.
-
-**How many cycles that acquisition writes depends on which length is used, and this series is
-the one case where the difference matters.** At the recorded rate the spatial period is
-167.0 mm. Over the cardiac border, the
-*L* = 120 mm of section 2, it writes
-0.72 cycles; over the descending aorta,
-*L* = 300 mm, it writes
-1.8; over the whole
-630 mm the pipeline analyses, it writes
-3.77. **Only the last of these
-exceeds *N*min = 2.5, and the last is not the
-quantity section 2 defines.** The scan runs from the chin to the pelvis, so most of its
-length lies below any structure that a heartbeat can move. By the bound's own terms this
-series is below it, and nothing that follows should be read as a test of an acquisition that
-cleared the bound.
-
-The cohort of section 5.1 does not have this problem, which is why it is worth separating.
-Its analysed spans run from 256 to
-654 mm with a median of
-324 mm, close to the aortic extent, and
-the number of series clearing *N*min is
-16 of
-17 whether the cycles are counted over the
-analysed span or over *L* = 300 mm.
-
-Before the images were downloaded we fixed the criterion for agreement at five per cent of
-the recorded rate, that is 71.25 to
-78.75 bpm. Five per cent is the tolerance
-under which *N*min was measured in section 3; the range the scanner itself recorded is
-slightly narrower, at four per cent of the mean. The unmodified pipeline was then run.
-
-It returned 67.4 bpm,
--10.2 per cent from the recorded rate and
-outside the interval. The frozen criterion also rejected the series, on a leave-one-out
-spread of 28.1 bpm.
-
-What that comparison can carry is limited twice over, and the second limit is severe enough
-to settle the matter.
-
-The first is where the reference rate comes from. It was recorded during a different
-acquisition ten seconds earlier, and the minimum and maximum the scanner logged bound the
-variation within *that* acquisition rather than within this one.
-
-**The second is that the extraction was not on the cardiac border at all** (figure 5). The
-method takes the left edge of the soft-tissue run crossing the midline of a coronal row,
-which is the left mediastinal border only because a lung separates the chest wall from the
-mediastinum and breaks that run. This acquisition runs from the chin to the pelvis with the
-arms at the sides, and over most of it no lung intervenes, so the run begins at the skin. In
-this series the tracked border sits at
-0.9 per cent of the image width, and
-100 per cent of its coronal
-levels lie within
-10 per cent of the edge. It
-is a trace of the patient's outline.
-
-Nothing in the pipeline reported anything unusual. The fit converged, the residual test
-passed, the leave-one-out values clustered, and the criterion came within two levels of
-admitting the result. **The whole apparatus behaves the same way on a trace of a patient's
-skin as on a trace of the cardiac border**, which is the same lesson as section 5.3 arriving
-by a different route: the tests in use measure the consistency of a fit and never ask what
-was fitted.
-
-This was found by drawing the trace on the image. No automatic check in the pipeline looked,
-and `analysis/check_border_position.py`, which does, was written afterwards.
-
-![Figure 5](figures/fig5_coronal.png)
-
-**Figure 5.** Coronal reformats with the tracked border drawn on them. Above, a chest CT from
-the cohort: the border follows the mediastinum between the two lungs, which is what the
-method is written to find. Below, the one series in the archive that records a heart rate:
-the same code, unchanged, returns the skin, because a chin-to-pelvis acquisition with the
-arms down offers no lung to separate the chest wall from the mediastinum over most of its
-length. The fit, the residual test and the leave-one-out test all proceeded normally on the
-lower trace.
-
-The search did not miss what it was looking for (figure 6). The period corresponding to the
-recorded rate lies inside the searched band, which was covered at a step of
-0.35 mm, and the cost there is
-1.057 times the minimum; it is
-not a local minimum of the objective at all. That is unsurprising once the trace is known to
-be an outline rather than a border, and it is reported here because the objective looked no
-different from those of section 5.3 before the image was drawn.
-
-![Figure 6](figures/fig6_reference_case.png)
-
-**Figure 6.** The objective of the joint fit across the physiological band, for the one
-public series whose heart rate is recorded, normalised to its minimum. The darker band is the
-rate the scanner recorded during the gated acquisition ten seconds earlier,
-72.0 to
-78.0 bpm; the lighter band is the
-agreement interval fixed before the images were downloaded. The fit takes the global minimum
-at 67.4 bpm. The recorded rate is not a
-local minimum, and the entire band lies within a fifth of the best fit.
+**The series could not be used.** The extraction did not return the anatomical border the
+method is defined on. Its tracked position lies at
+0.9 per cent of the image width, where
+a mediastinum in this cohort lies between
+41 and
+48 per cent, and at one coronal level
+the value is constant to numerical precision across the whole scan. What structure it locked
+onto instead is not established. Nothing in the pipeline indicated the failure: the fit
+converged, the residual test passed and the leave-one-out values clustered, and only two
+levels departing to the edge of the physiological band kept the series out. The run is
+reported in the supplementary material with the protocol that was fixed before it, and it
+does not enter any estimate of recovery accuracy.
 
 Having found it in one series, we measured it in all of them. Of the
 17 analysed cohort series,
-2 track the body surface by the
-same definition and 2 more sit closer
-to the edge than to the middle; the remainder lie between
-41 and
-48 per cent of the image width, where
-a mediastinum belongs. **All of the affected series were rejected by the frozen criterion**,
-and the 3 admitted series lie at
+2 sit within
+10 per cent of the image edge
+and 2 more sit closer to the edge than
+to the middle. **All of the affected series were rejected by the frozen criterion**, and the
+3 admitted series lie at
 41 to
-43 per cent, so the result of
-section 5.3 is unaffected: those three fits are of the structure they were meant to be of,
-and they are still not evidence of recovery.
-
-**What this case establishes is therefore about the archive and about the tests, not about
-cardiac timing.** The only session in a public archive that records a heart rate alongside a
-free-running helical chest series is one on which this extraction does not work. There is, on
-public data, no case against which the recovery performance of this method can be checked —
-which is a measured statement rather than the assumption the study began with. And a
-criterion built from convergence, residual size and leave-one-out stability came within two
-levels of certifying a period fitted to a patient's outline.
+43 per cent, so section 5.3 is
+unaffected: those three fits are of the intended structure, and they are still not evidence
+of recovery. The check that measures this,
+`analysis/check_border_position.py`, did not exist while the cohort was being analysed.
 
 ## 6. What an estimator does past the bound
 
@@ -583,9 +571,34 @@ which the shift is not a change of dataset but a change of what the data physica
 calibration is the ratio of the error actually made to the standard deviation reported, so
 that 1 is honest and larger is overconfident.
 
-Two training conditions were compared: one drawing only on traces at or above
-2.5 cycles, and one drawing on the whole
-range including traces where recovery is impossible.
+**The design, because the reported figures are meaningless without it.** Each trace has the
+same quartic baseline removed as in every other estimator here, is divided by its own
+standard deviation, and is resampled to
+128 points, so the model sees one input
+shape and no absolute scale. The target is the period **as a fraction of the trace length**,
+that is the reciprocal of the cycles written; it is dimensionless, and the standard
+deviations reported below are in those units. The model is a multilayer perceptron with three
+hidden layers of 256 units and rectified
+linear activations, ending in two linear heads for the mean and the log variance, trained by
+minimising the Gaussian negative log-likelihood with Adam for
+40 epochs at a batch size of
+256 on
+60000 simulated traces. Accuracy is scored on
+2000 independent traces at each of nine
+cycle counts, within the same
+5 per cent tolerance as section 3.
+The learning rate and every other setting are in `analysis/learned_estimator.py`.
+
+Two training conditions were compared: one drawing only on traces between
+2.5 and
+8.0 cycles, at or above the bound, and one
+drawing on 0.5 to
+8.0 cycles, including traces where recovery
+is impossible. Everything else about them is identical.
+
+Both are trained and tested on simulated traces only. Nothing in this section is evidence
+about real chest CT; it is evidence about what an estimator of this kind reports when the
+signal it was trained to find is absent.
 
 ### 6.2 Trained inside the bound, confident outside it
 
@@ -600,13 +613,13 @@ runs from 12.65 to
 42.0: the error it makes is between
 twelve and forty times the uncertainty it declares.
 
-**The confidence is worst where it is most dangerous** (figure 7). As the number of written
+**The confidence is worst where it is most dangerous** (figure 6). As the number of written
 cycles rises towards the bound the model's reported uncertainty tightens and its accuracy
 does not move off zero, so at two cycles it is at its most certain and still never right.
 
-![Figure 7](figures/fig7_estimator.png)
+![Figure 6](figures/fig6_estimator.png)
 
-**Figure 7.** Top: the fraction of estimates within
+**Figure 6.** Top: the fraction of estimates within
 5 per cent of the prescribed period,
 against cycles written, for a model trained only at or above the bound and for one trained
 across it. Bottom, on a logarithmic scale: the standard deviation each model declares
@@ -740,8 +753,8 @@ evaluated against 192 real series through their
 acquisition parameters alone, and applied to
 17 image series in which no true period is
 available. Exactly one real reconstructed image in the archive can be scored against a known
-period, and section 5.4 reports it. A single case is a demonstration and not a validation:
-it supports no accuracy figure and no statement about a population.
+period, and on that series the extraction did not return the intended border, so it could not
+be used. No real reconstructed image in this study is scored against a known period.
 
 **A fourth candidate cause was found during this revision, and it is the one we can
 demonstrate.** The cohort outcome remains consistent with the acquisitions writing too little
@@ -750,10 +763,12 @@ too far from a fixed period, and this study does not separate those three. To th
 added the possibility that the extraction is not on the intended structure at all: in
 2 of the
 17 analysed series, and in the one series with
-a recorded rate, the tracked border is the patient's outline rather than the mediastinum, and
-nothing in the pipeline indicated it. All of those series were rejected, so the admitted set
-of section 5.3 is not affected, but the general point stands: before this revision the study
-had no check that it was measuring the right thing.
+a recorded rate, the tracked position lies within
+10 per cent of the image edge
+rather than near the middle where a mediastinum is, and nothing in the pipeline indicated it.
+What it locked onto instead we have not established. All of those series were rejected, so
+the admitted set of section 5.3 is not affected, but the general point stands: before this
+revision the study had no check that it was measuring the right thing.
 
 What the evidence does not support is any claim that no method could recover the period. We
 can say that this extraction finds no peak worth locking onto in the traces where it is on
@@ -798,49 +813,58 @@ author's control.
 
 The axial coordinate of a helical CT is a time axis with a scale the header states exactly,
 so a periodically moving structure writes its period into the volume as a spatial period. The
-condition under which that period can be recovered is a window in table speed, and the
-product of the two quantities it trades off — cycles written and samples per cycle — is fixed
-at *L*/*dz* by anatomy and reconstruction interval alone. A protocol cannot buy more cardiac
-timing by changing its speed; it can only spend a fixed budget differently.
+two requirements that follow — enough cycles written, and enough samples within each —
+multiply to *L*/*dz*, fixed by anatomy and reconstruction interval alone. A protocol cannot
+buy more cardiac timing by changing its speed; it can only spend a fixed budget differently.
+That identity is a consequence of the definitions and holds for any helical acquisition.
 
-The constant the window depends on was measured, not assumed: an estimator using only the
-fundamental of the trace needs
-2.5 written cycles, stable across
-116 of
-144 parameter combinations.
+The constant the window depends on was measured rather than assumed, but it is an empirical
+threshold and not a universal one. An estimator using only the fundamental of the trace needs
+2.5 written cycles under the conditions
+studied here, stable across 116 of
+144 parameter combinations; an estimator
+matched to the waveform needs 1.5. The figure is
+a practical screen for the estimators examined, not a limit on every possible one.
 
-Evaluated against 192 real chest CT series from
-headers alone, the condition is largely met:
-67 per cent could record
-rates below 100 bpm at the cardiac
-border, and 100 per cent
-could along the descending aorta. The acquisition is not the obstacle.
+Evaluated from headers alone,
+67 per cent of
+192 real chest CT series have a threshold below
+100 bpm at an assumed cardiac extent,
+and 100 per cent do over the
+aortic extent. Because the patients' actual rates are not recorded, this says what those
+protocols could record, not what they did.
 
-On images it fails anyway. Under a criterion frozen in advance,
+On images the attempt does not succeed. Under a criterion frozen in advance,
 3 of
-17 series were admitted, and prediction and
-outcome agreed no better than chance at
-29 per cent. The admissions are not
-recoveries: their cost surfaces are as flat as those of the rejections, their coronal levels
+17 series were admitted, agreeing with the
+header prediction on 29 per cent of
+the cohort. Those admissions are not evidence of recovery: their minima are no deeper than
+those of the rejections, at
+1.106 to
+1.142 against a rejected median of
+1.072, and their coronal levels
 individually prefer rates spanning
 44 to
-59 bpm, and and a leave-one-out
-test moves very little on an objective that shallow. The single public session that records a
-heart rate turns out to be one on which this extraction tracks the patient's outline rather
-than the mediastinum, so the archive contains no case on which the method's recovery can be
-checked against a recorded rate — and the criterion came within two levels of certifying the
-period it fitted to that outline.
+59 bpm. Without a recorded
+rate they cannot be shown to be wrong either; what can be shown is that nothing in the
+criterion measured whether they were right.
 
-An estimator trained only where recovery is possible is wrong in every trial outside that
-regime while reporting a standard deviation below
-0.045, tightening its confidence as
-it approaches the boundary from the side where it never succeeds.
+The one session in the archive that records a heart rate could not be used, because on it the
+extraction did not return the intended anatomical border and nothing in the pipeline said so.
+That is a statement about this implementation and this session, not a proof that no method
+could be validated on public data.
+
+In simulation, an estimator trained only where recovery is possible was accurate in no trial
+outside that regime while reporting a standard deviation below
+0.045 of the period it was
+estimating, tightening its confidence as it approached the boundary from the side where it
+never succeeded. Whether any deployed method behaves this way is untested here.
 
 Two things follow for anyone measuring cardiac timing in a non-gated chest CT. The bound is
-worth computing, because it is free, it comes from the header, and it excludes acquisitions
-that cannot carry the signal at all. And a stability statistic must be reported with the
-depth of the minimum it is stable about, because on a flat objective stability is evidence of
-nothing — a lesson this study learned from its own frozen criterion.
+worth computing, because it is free, it comes from the header, and it identifies acquisitions
+that cannot carry the signal at all. And a fit should be reported with the depth of the
+minimum it sits in and with a check that the structure it was fitted to is the intended one —
+this study had neither, and its own frozen criterion certified nothing by having both absent.
 
 ## Declarations
 

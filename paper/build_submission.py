@@ -22,6 +22,10 @@ import sys
 from pathlib import Path
 
 import docx
+
+# The console here is cp932 and cannot print replacement characters.
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 from docx.shared import Inches, Pt, RGBColor
 
@@ -72,7 +76,7 @@ def add_runs(paragraph, text: str) -> None:
             paragraph.add_run(piece)
 
 
-def build_docx(markdown: str) -> None:
+def build_docx(markdown: str, destination=None, expected_figures: int = 6) -> None:
     document = docx.Document()
 
     for section in document.sections:
@@ -161,37 +165,56 @@ def build_docx(markdown: str) -> None:
             continue
         add_runs(paragraph, text)
 
-    if figures != 7:
-        raise SystemExit(f"expected 7 figures in the document, placed {figures}")
+    if figures != expected_figures:
+        raise SystemExit(
+            f"expected {expected_figures} figures in the document, placed {figures}")
 
     BUILD.mkdir(parents=True, exist_ok=True)
-    document.save(DOCX)
-    print(f"  {DOCX.relative_to(HERE.parent)}  ({figures} figures)")
+    target = destination or DOCX
+    document.save(target)
+    print(f"  {target.relative_to(HERE.parent)}  ({figures} figures)")
 
 
 def export_pdf() -> None:
     """Word, with background repagination off. See the module docstring."""
+    # Export beside the target and move it into place. Word refuses to overwrite a PDF that
+    # a viewer has open, and reports it as a COM exception that says nothing useful; this
+    # way the failure is named where it happens.
+    staged = BUILD / "PMB_manuscript.staged.pdf"
+    staged.unlink(missing_ok=True)
     script = BUILD / "export_pdf.ps1"
     script.write_text(
         "$ErrorActionPreference = 'Stop'\n"
         "$word = New-Object -ComObject Word.Application\n"
-        "$word.Visible = $false\n"
-        "$word.DisplayAlerts = 0\n"
-        "$word.Options.Pagination = $false\n"
-        "$word.Options.CheckSpellingAsYouType = $false\n"
-        "$word.Options.CheckGrammarAsYouType = $false\n"
-        f"$document = $word.Documents.Open('{DOCX}', $false, $true)\n"
-        f"$document.ExportAsFixedFormat('{PDF}', 17)\n"
-        "$document.Close(0)\n"
-        "$word.Quit()\n",
+        "try {\n"
+        "  $word.Visible = $false\n"
+        "  $word.DisplayAlerts = 0\n"
+        "  $word.Options.Pagination = $false\n"
+        "  $word.Options.CheckSpellingAsYouType = $false\n"
+        "  $word.Options.CheckGrammarAsYouType = $false\n"
+        f"  $document = $word.Documents.Open('{DOCX}', $false, $true)\n"
+        f"  $document.ExportAsFixedFormat('{staged}', 17)\n"
+        "  $document.Close(0)\n"
+        "} finally {\n"
+        # An export that throws must still close Word, or the next build finds its own
+        # .docx locked by the instance the last failure left behind.
+        "  $word.Quit()\n"
+        "}\n",
         encoding="utf-8")
     result = subprocess.run(
         ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script)],
         capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900)
-    if result.returncode or not PDF.is_file():
-        print(result.stdout[-1500:])
-        print(result.stderr[-1500:])
+    if result.returncode or not staged.is_file():
+        print((result.stdout or "")[-1500:])
+        print((result.stderr or "")[-1500:])
         raise SystemExit("PDF export failed")
+    try:
+        staged.replace(PDF)
+    except PermissionError:
+        raise SystemExit(
+            f"{PDF.name} is open in another application, so the new build could not "
+            f"replace it. Close it and run this again; the new file is at {staged}"
+        ) from None
     print(f"  {PDF.relative_to(HERE.parent)}  ({PDF.stat().st_size // 1024} kB)")
 
 

@@ -284,73 +284,79 @@ def figure_flatness() -> Path:
                     "Cross: the joint fit", fontsize=8, loc="left")
 
     figure.tight_layout()
-    return save(figure, "fig4_flatness.png")
+    return save(figure, "fig5_flatness.png")
 
 
 # ------------------------------------------------------------------ 5. what the fit reads
 
-def figure_coronal() -> Path:
-    """The border the whole paper is about, and the two waves that might be on it.
+REFERENCE_UID = ("1.3.6.1.4.1.14519.5.2.1."
+                 "264532322608206684963835753501167761257")
 
-    This is the only figure that reads an image. It exists because the argument of section 2
-    is visual — a coronal reformat in which the mediastinal silhouette is wavy because the
-    table advanced while the heart beat — and the paper otherwise asserts that appearance
-    without ever showing it.
 
-    The level shown is the one whose independent fit comes closest to the joint fit, so the
-    figure is the most favourable honest choice rather than the clearest-looking one.
+def _draw_reformat(axis, uid: str, title: str) -> float:
+    """One coronal reformat with the tracked border on it, at its own aspect.
+
+    A reformat drawn at any aspect but its own is not a reformat: one millimetre along z and
+    one along x are the same length on the page here.
     """
     import numpy as np                                            # noqa: PLC0415
     from extract_border_trace import left_border_trace, load_series   # noqa: PLC0415
 
-    reference_uid = ("1.3.6.1.4.1.14519.5.2.1."
-                     "264532322608206684963835753501167761257")
+    positions = {r["series_uid"]: r for r in load("border_position.json")["series"]
+                 if "median_fraction_of_width" in r}
+    volume = load_series(REPO / "data_cache" / uid)
+    row = int(volume.array.shape[1] * 0.60)
+    coronal = volume.array[:, row, :]
+    trace = left_border_trace(volume, row)
+    finite = np.isfinite(trace)
+    width = coronal.shape[1] * volume.spacing_xy_mm[1]
+    share = positions[uid]["median_fraction_of_width"]
+    colour = SECOND if share >= 0.35 else ACCENT
+
+    axis.imshow(coronal.T, cmap="gray", vmin=-1000, vmax=150, aspect="equal",
+                extent=[volume.z_mm[0], volume.z_mm[-1], width, 0],
+                interpolation="bilinear")
+    axis.plot(volume.z_mm[finite], trace[finite], "-", color=colour, lw=1.4)
+    mid = int(0.3 * len(volume.z_mm[finite]))
+    axis.annotate("tracked border", (volume.z_mm[finite][mid], trace[finite][mid]),
+                  textcoords="offset points", xytext=(0, -30), ha="center", va="top",
+                  fontsize=8, color=colour,
+                  bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
+                  arrowprops=dict(arrowstyle="->", color=colour, lw=1.0,
+                                  shrinkA=2, shrinkB=1))
+    axis.set_ylabel("x (mm)")
+    axis.set_xlabel("z (mm) — and, at a constant table speed, time")
+    axis.set_title(f"{title}: border at {share:.0%} of the image width",
+                   fontsize=9, loc="left", color=INK if share >= 0.35 else ACCENT)
+    return share
+
+
+def figure_extraction() -> Path:
+    """What the pipeline reads, on a series where it reads what it was written to read.
+
+    The paper's premise is visual and was never shown: a coronal reformat in which the
+    mediastinal silhouette is wavy because the table advanced while the heart beat.
+    """
     positions = {r["series_uid"]: r for r in load("border_position.json")["series"]
                  if "median_fraction_of_width" in r}
     cohort = [s for s in load("cohort_outcome.json")["series"] if s.get("recovered")]
-    # The admitted series whose border sits deepest, i.e. the clearest example of the
-    # extraction doing what it was written to do. Chosen by the measurement, not by eye.
+    # The admitted series whose border sits deepest: chosen by the measurement, not by eye.
     sound_uid = max((s["series_uid"] for s in cohort),
                     key=lambda uid: positions[uid]["median_fraction_of_width"])
-    row_fraction = 0.60
 
-    figure, axes = plt.subplots(2, 1, figsize=(6.6, 6.4))
-    for axis, uid, label in ((axes[0], sound_uid, "a chest CT from the cohort"),
-                             (axes[1], reference_uid,
-                              "the one series in the archive with a recorded heart rate")):
-        volume = load_series(REPO / "data_cache" / uid)
-        row = int(volume.array.shape[1] * row_fraction)
-        coronal = volume.array[:, row, :]
-        trace = left_border_trace(volume, row)
-        finite = np.isfinite(trace)
-        width = coronal.shape[1] * volume.spacing_xy_mm[1]
-        share = positions[uid]["median_fraction_of_width"]
-        colour = SECOND if share >= 0.35 else ACCENT
-
-        # A reformat drawn at any aspect but its own is not a reformat. One millimetre
-        # along z is one millimetre along x here, which is also what makes the second
-        # panel's geometry — a scan twice as long as it is wide — visible at all.
-        axis.imshow(coronal.T, cmap="gray", vmin=-1000, vmax=150, aspect="equal",
-                    extent=[volume.z_mm[0], volume.z_mm[-1], width, 0],
-                    interpolation="bilinear")
-        axis.plot(volume.z_mm[finite], trace[finite], "-", color=colour, lw=1.4)
-
-        # Below the line in both panels, so the label stays inside the image: in the lower
-        # panel the border sits on the top edge and anything above it leaves the axes.
-        mid = int(0.3 * len(volume.z_mm[finite]))
-        axis.annotate("tracked border",
-                      (volume.z_mm[finite][mid], trace[finite][mid]),
-                      textcoords="offset points", xytext=(0, -30), ha="center", va="top",
-                      fontsize=8, color=colour,
-                      bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
-                      arrowprops=dict(arrowstyle="->", color=colour, lw=1.0,
-                                      shrinkA=2, shrinkB=1))
-        axis.set_ylabel("x (mm)")
-        axis.set_title(f"{label}: border at {share:.0%} of the image width",
-                       fontsize=9, loc="left", color=INK if share >= 0.35 else ACCENT)
-    axes[1].set_xlabel("z (mm) — and, at a constant table speed, time")
+    figure, axis = plt.subplots(figsize=(6.6, 3.6))
+    _draw_reformat(axis, sound_uid, "a chest CT from the cohort")
     figure.tight_layout()
-    return save(figure, "fig5_coronal.png")
+    return save(figure, "fig4_extraction.png")
+
+
+def figure_failed_extraction() -> Path:
+    """Supplementary: the same code on the one archive series that records a heart rate."""
+    figure, axis = plt.subplots(figsize=(6.6, 3.6))
+    _draw_reformat(axis, REFERENCE_UID,
+                   "the one archive series with a recorded heart rate")
+    figure.tight_layout()
+    return save(figure, "figS1_failed_extraction.png")
 
 
 # ------------------------------------------------------------------ 6. the reference case
@@ -389,7 +395,7 @@ def figure_reference_case() -> Path:
     axis.set_title("The whole physiological band is within %.0f per cent of the best fit"
                    % ((cost.max() - 1.0) * 100), fontsize=9, loc="left")
     axis.legend(frameon=False, fontsize=7.5, loc="upper center")
-    return save(figure, "fig6_reference_case.png")
+    return save(figure, "figS2_reference_objective.png")
 
 
 # ------------------------------------------------------------------ 6. the estimator
@@ -425,12 +431,13 @@ def figure_estimator() -> Path:
     bottom.set_xlabel("cardiac cycles written, $N$")
     bottom.set_ylabel("circles: declared s.d.\nsquares: error actually made")
     figure.tight_layout()
-    return save(figure, "fig7_estimator.png")
+    return save(figure, "fig6_estimator.png")
 
 
 def main() -> int:
-    builders = (figure_window, figure_n_min, figure_protocols, figure_flatness,
-                figure_coronal, figure_reference_case, figure_estimator)
+    builders = (figure_window, figure_n_min, figure_protocols, figure_extraction,
+                figure_flatness, figure_estimator,
+                figure_failed_extraction, figure_reference_case)
     written = [builder() for builder in builders]
     if len(written) != len(builders):
         raise SystemExit("a figure was skipped; a missing figure must not pass silently")

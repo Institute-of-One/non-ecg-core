@@ -75,6 +75,11 @@ def header_metrics() -> dict:
         out[f"records_below_100bpm_{label}"] = below
         out[f"records_below_100bpm_{label}_percent"] = round(100 * below / len(thresholds))
 
+    out["header_patients"] = len({r["patient"] for r in cohort})
+    out["header_series_per_collection"] = min(
+        sum(1 for r in cohort if r["collection"] == name)
+        for name in {r["collection"] for r in cohort})
+
     probe = _load("collection_probe.json")
     usable = [p for p in probe if p.get("has_window_parameters")]
     out["collections_probed"] = len([p for p in probe if "error" not in p])
@@ -160,8 +165,17 @@ def failure_diagnosis_metrics() -> dict:
     out["band_fraction_spread_ratio"] = round(
         out["band_fraction_spread_real"] / out["band_fraction_spread_simulated"], 1
     )
-    out["candidates_tested"] = 4
-    out["candidates_reproducing_failure"] = 0
+    # These were once two hand-typed literals asserting that four candidate explanations had
+    # been put back into the simulator and none reproduced the failure. No such experiment is
+    # in this repository: diagnose_failure.py measures properties, it does not test causes.
+    # Everything here now comes from the file.
+    out["diagnosis_properties"] = len(data["real"])
+    out["amplitude_drift_real"] = round(data["real"]["amplitude_drift_ratio"]["median"], 2)
+    out["amplitude_drift_simulated"] = round(
+        data["simulated"]["amplitude_drift_ratio"]["median"], 2)
+    out["large_steps_real_p90"] = round(data["real"]["large_steps_per_100"]["p90"], 1)
+    out["large_steps_simulated_p90"] = round(
+        data["simulated"]["large_steps_per_100"]["p90"], 1)
     return out
 
 
@@ -242,6 +256,34 @@ def reference_case_metrics() -> dict:
     }
 
 
+def learned_design_metrics() -> dict:
+    """The estimator's architecture and training, from the module that defines them.
+
+    Section 6 quotes a reported standard deviation of a few hundredths. Without the target's
+    definition that figure has no units, so the design is read from the code rather than
+    described from memory.
+    """
+    import sys                                                      # noqa: PLC0415
+    sys.path.insert(0, str(HERE.parent / "analysis"))
+    import learned_estimator as model                               # noqa: PLC0415
+
+    above = model.CONDITIONS["trained_above_the_bound"]
+    across = model.CONDITIONS["trained_across_the_boundary"]
+    return {
+        "learned_trace_length": model.TRACE_LENGTH,
+        "learned_hidden_units": model.HIDDEN,
+        "learned_epochs": model.EPOCHS,
+        "learned_batch": model.BATCH,
+        "learned_train_size": model.TRAIN_SIZE,
+        "learned_test_per_point": model.TEST_PER_POINT,
+        "learned_tolerance_percent": round(100 * model.TOLERANCE),
+        "learned_above_low": above[0],
+        "learned_above_high": above[1],
+        "learned_across_low": across[0],
+        "learned_across_high": across[1],
+    }
+
+
 def border_metrics() -> dict:
     """Was the extraction on the mediastinum, or on the patient's outline?
 
@@ -316,6 +358,51 @@ def extent_metrics() -> dict:
     }
 
 
+def extraction_metrics() -> dict:
+    """The constants the extraction and the joint fit are defined by, read from them."""
+    import sys                                                      # noqa: PLC0415
+    sys.path.insert(0, str(HERE.parent / "analysis"))
+    import extract_border_trace as extraction                       # noqa: PLC0415
+    import joint_period_fit as fit                                  # noqa: PLC0415
+
+    return {
+        "lung_threshold_hu": round(extraction.LUNG_THRESHOLD_HU),
+        "min_mediastinum_mm": round(extraction.MIN_MEDIASTINUM_MM),
+        "coronal_levels": len(fit.CORONAL_FRACTIONS),
+        "coronal_fraction_low": min(fit.CORONAL_FRACTIONS),
+        "coronal_fraction_high": max(fit.CORONAL_FRACTIONS),
+        "band_slowest_bpm": round(fit.SLOWEST_BPM),
+        "band_fastest_bpm": round(fit.FASTEST_BPM),
+    }
+
+
+def sweep_and_selection_metrics() -> dict:
+    """The grid the sweep actually covered, and how the two sets of series were chosen."""
+    sensitivity = _load("n_min_fundamental.json")["sensitivity"]
+    headers = _load("cohort_headers.json")
+    cohort = _load("cohort_outcome.json")["series"]
+    pilots = _load("pilot_series.json")
+
+    axes = {name: sorted({cell[name] for cell in sensitivity})
+            for name in ("noise", "baseline", "samples_per_cycle", "variability")}
+    header_uids = {r["series_uid"] for r in headers}
+    return {
+        "sweep_noise_levels": len(axes["noise"]),
+        "sweep_noise_min": min(axes["noise"]),
+        "sweep_noise_max": max(axes["noise"]),
+        "sweep_baseline_levels": len(axes["baseline"]),
+        "sweep_baseline_max": max(axes["baseline"]),
+        "sweep_samples_levels": len(axes["samples_per_cycle"]),
+        "sweep_samples_min": min(axes["samples_per_cycle"]),
+        "sweep_samples_max": max(axes["samples_per_cycle"]),
+        "sweep_variability_levels": len(axes["variability"]),
+        "sweep_variability_max": max(axes["variability"]),
+        "cohort_patients": len({r.get("patient") for r in cohort}),
+        "cohort_from_header_set": len({r["series_uid"] for r in cohort} & header_uids),
+        "pilot_series": len(pilots),
+    }
+
+
 def flatness_metrics() -> dict:
     """How much better the chosen period fits than a typical one in the band.
 
@@ -375,7 +462,8 @@ def main() -> int:
                     cohort_metrics, failure_diagnosis_metrics, learned_metrics,
                     cardiac_tag_metrics, tcia_survey_metrics, reference_case_metrics,
                     flatness_metrics, reference_diagnosis_metrics, extent_metrics,
-                    border_metrics):
+                    border_metrics, learned_design_metrics,
+                    sweep_and_selection_metrics, extraction_metrics):
         metrics.update(section())
 
     manifest = {
