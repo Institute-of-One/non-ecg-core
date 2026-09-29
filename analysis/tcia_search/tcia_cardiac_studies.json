@@ -1,0 +1,462 @@
+{
+ "collections_queried": 102,
+ "collections_failed": [],
+ "studies": [
+  {
+   "collection": "CMB-CRC",
+   "patient": "MSB-02381",
+   "study_uid": "1.3.6.1.4.1.14519.5.2.1.1.27984183712433424751912745676877928221",
+   "study_description": "US Echocardiogram",
+   "series_count": 2,
+   "study_date": "1959-04-05 00:00:00.0"
+  },
+  {
+   "collection": "MIDRC-RICORD-1A",
+   "patient": "MIDRC-RICORD-1A-440808-000007",
+   "study_uid": "1.2.826.0.1.3680043.10.474.440808.652",
+   "study_description": "CARDIAC CORONARY CTA",
+   "series_count": 1,
+   "study_date": "2007-05-09 00:00:00.0"
+  },
+  {
+   "collection": "NSCLC Radiogenomics",
+   "patient": "AMC-027",
+   "study_uid": "1.3.6.1.4.1.14519.5.2.1.4334.1501.124191703163061365051974545663",
+   "study_description": "Vascular^GATED_CHEST_CTA (Adult)",
+   "series_count": 4,
+   "study_date": "1994-04-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1028700184",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.70876651616665258405643830635639743879",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-22 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1096375946",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.130576995046193066276768913455938489914",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 1,
+   "study_date": "2006-07-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2007250122",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.98199237612212598840817227352105169488",
+   "study_description": "PET CARDIAC FLOW",
+   "series_count": 28,
+   "study_date": "2006-11-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1145399921",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.81542716229005078623624107555150614426",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-23 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1374494077",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.207717957834426128021209756770261584763",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 3,
+   "study_date": "2005-11-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1411227641",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.22801822804202536393092035954307704140",
+   "study_description": "CT CARDIAC CTA CORONAR",
+   "series_count": 4,
+   "study_date": "2006-08-09 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1415695781",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.239937542925188836911487166003289430145",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-17 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1455495131",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.66877080876211583656926626367012130898",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 2,
+   "study_date": "2005-12-05 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1565795047",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.61442440056382707153825654485911217480",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-07-29 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1580776036",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.181702347670232395191120589060338105343",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-08-02 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1582788132",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.88931863164182879207658942769950559022",
+   "study_description": "CT CARDIAC MORPHOLOGY WO/W",
+   "series_count": 1,
+   "study_date": "2006-07-13 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1634430628",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.271141116072825976734254873516063849519",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-17 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1777612904",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.231279188928578665048094697652184278151",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1793255192",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.7402121050746262328958830581194936836",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-08-02 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1822442188",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.143762991526078790342095275146292315148",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2005-10-07 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1836251657",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.295609911680419974621153095585688074293",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 6,
+   "study_date": "2006-04-08 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3122878204",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.70675702709867874706429827527933086641",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3201763728",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.258291448983336679902217949760973929800",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-07-29 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3202134003",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.15965542308730653773722215454906742903",
+   "study_description": "CT CARDIAC MORPHOLOGY WO/W",
+   "series_count": 1,
+   "study_date": "2006-07-13 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3233228609",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.330048445618564222168735821153148883929",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-22 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3271995075",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.60028911887869484885635947836922876045",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3333320954",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.119918566294698713669962473891716761472",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 2,
+   "study_date": "2006-05-18 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3865709452",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.207058523896405948815346506636370418324",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-4074153852",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.15210652669046014975271868482690186817",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 2,
+   "study_date": "2006-06-22 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-5936202131",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.108872011170830228233552079895397231284",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-6078315789",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.155436733688544965900293285407219318398",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 1,
+   "study_date": "2006-06-20 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-6519402713",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.182300465584648675666167327538694352008",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-6986253230",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.327460363998801056243486301125655518322",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 2,
+   "study_date": "2005-12-05 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-7201306263",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.207092027577304586268409927006806038857",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 3,
+   "study_date": "2005-11-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-7701645091",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.116294505685643189132968343930901708714",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 4,
+   "study_date": "2005-09-13 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-8702654292",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.124425528645765662570345296872282067058",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1910536210",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.279343207792428298577465310535939834300",
+   "study_description": "PET CARDIAC FLOW",
+   "series_count": 5,
+   "study_date": "2006-07-01 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1921799323",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.156703132224734725441054304875628018928",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1958224310",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.249268170364317703762998674312449969446",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 2,
+   "study_date": "2006-06-22 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-1984051657",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.26440331806565090474025887457427003007",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2019259100",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.176980532084133607879538329005269847241",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 4,
+   "study_date": "2005-12-09 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2033720228",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.181933040613171026988436695142571112617",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2064143158",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.290906633259229421375174331204301570438",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 1,
+   "study_date": "2006-07-28 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2195866543",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.322258222588720141805360725320724341233",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2266952716",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.199036456548697345934535648816437802445",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-03-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2290157509",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.318600510601528397742072211175597706240",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 3,
+   "study_date": "2005-12-09 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2416820556",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.160615776127383877801997638127387345147",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 4,
+   "study_date": "2005-09-13 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2485163236",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.167287877146303140216974329813918324728",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2511107198",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.97445836486686133634737200289677017806",
+   "study_description": "CTA CORONARY ARTERY",
+   "series_count": 1,
+   "study_date": "2006-07-27 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2522924559",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.152749821065072200852832402799384967030",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 6,
+   "study_date": "2006-04-08 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2526682834",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.239960036561034964089252613285106345676",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 1,
+   "study_date": "2006-06-20 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2580183579",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.50394611106999438445599340894096393134",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-21 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2623772839",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.134545840146243714875761375139881146120",
+   "study_description": "CT CARDIAC CTA CORONARY W CAL",
+   "series_count": 2,
+   "study_date": "2006-05-18 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2811552550",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.274860582963224208277099673194816557527",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 1,
+   "study_date": "2006-06-23 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2857227961",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.194711301017391069744468415967714763022",
+   "study_description": "CT CARDIAC MORPHOLOGY WO/W",
+   "series_count": 4,
+   "study_date": "2005-12-20 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-2991299498",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.43984287026108946231425463342480208442",
+   "study_description": "CT CARDIAC CONGENTIAL",
+   "series_count": 4,
+   "study_date": "2005-12-20 00:00:00.0"
+  },
+  {
+   "collection": "RIDER Lung PET-CT",
+   "patient": "RIDER-3114425590",
+   "study_uid": "1.3.6.1.4.1.9328.50.17.94815585756545552472324789410364423207",
+   "study_description": "CT CARDIAC CTA CORONARY",
+   "series_count": 4,
+   "study_date": "2005-07-02 00:00:00.0"
+  },
+  {
+   "collection": "TCGA-OV",
+   "patient": "TCGA-25-1328",
+   "study_uid": "1.3.6.1.4.1.14519.5.2.1.3344.4007.105047928727761702223853616458",
+   "study_description": "Cardiac^02_0_Constrictive_Pericarditis (Adult)",
+   "series_count": 4,
+   "study_date": "1987-03-28 00:00:00.0"
+  },
+  {
+   "collection": "VAREPOP-APOLLO",
+   "patient": "AP-26JK",
+   "study_uid": "1.3.6.1.4.1.14519.5.2.1.312962097772585042533562177679382394774",
+   "study_description": "CARDIAC CTA",
+   "series_count": 10,
+   "study_date": "1974-11-20 00:00:00.0"
+  }
+ ]
+}

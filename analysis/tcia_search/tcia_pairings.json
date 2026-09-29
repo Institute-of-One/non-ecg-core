@@ -1,0 +1,197 @@
+[
+ {
+  "collection": "NSCLC Radiogenomics",
+  "patient": "AMC-027",
+  "date": "1994-04-28",
+  "series_with_recorded_rate": [
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.4334.1501.219563560173285626891062146711",
+    "images": 190,
+    "body_part": "HEART",
+    "description": "coronals 69%",
+    "acquisition_time": "114724.238000",
+    "pitch": "0.21",
+    "feed_mm_per_rotation": "4.0",
+    "exposure_time_ms": "330",
+    "model": "OsiriX",
+    "rates": {
+     "OSCRATEMIN": 51,
+     "OSCRATEMAX": 53,
+     "OSCRATEAVG": 52
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.4334.1501.948583329016372282068841499619",
+    "images": 336,
+    "body_part": "HEART",
+    "description": "BEST SYSTOLIC 38 %",
+    "acquisition_time": "114709.051000",
+    "pitch": "0.21",
+    "feed_mm_per_rotation": "4.0",
+    "exposure_time_ms": "330",
+    "model": null,
+    "rates": {
+     "OSCRATEMIN": 51,
+     "OSCRATEMAX": 53,
+     "OSCRATEAVG": 52
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.4334.1501.226290841276881230606366131024",
+    "images": 336,
+    "body_part": "HEART",
+    "description": "BEST DIASTOLIC 69 %",
+    "acquisition_time": "114712.868000",
+    "pitch": "0.21",
+    "feed_mm_per_rotation": "4.0",
+    "exposure_time_ms": "330",
+    "model": null,
+    "rates": {
+     "OSCRATEMIN": 51,
+     "OSCRATEMAX": 53,
+     "OSCRATEAVG": 52
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.4334.1501.285396214898495715199436614773",
+    "images": 192,
+    "body_part": "HEART",
+    "description": "coronals 38%",
+    "acquisition_time": "114723.881000",
+    "pitch": "0.21",
+    "feed_mm_per_rotation": "4.0",
+    "exposure_time_ms": "330",
+    "model": "OsiriX",
+    "rates": {
+     "OSCRATEMIN": 51,
+     "OSCRATEMAX": 53,
+     "OSCRATEAVG": 52
+    }
+   }
+  ],
+  "free_running_helical_series": [],
+  "pairing": false
+ },
+ {
+  "collection": "VAREPOP-APOLLO",
+  "patient": "AP-26JK",
+  "date": "1974-11-20",
+  "series_with_recorded_rate": [
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.305592206580970735498393578197444028276",
+    "images": 459,
+    "body_part": "HEART",
+    "description": "Carina to Apex  0.6  B26f  BestSyst 31 %",
+    "acquisition_time": "092021.705000",
+    "pitch": "0.3",
+    "feed_mm_per_rotation": "11.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {
+     "OSCRATEMIN": 72,
+     "OSCRATEMAX": 78,
+     "OSCRATEAVG": 75
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.229128466169616712115807462791362967189",
+    "images": 92,
+    "body_part": "HEART",
+    "description": "Fl_CaSc  3.0  B35f  60%",
+    "acquisition_time": "091502.327000",
+    "pitch": "3.4",
+    "feed_mm_per_rotation": "130.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {
+     "OSCRATEMIN": 75,
+     "OSCRATEMAX": 89,
+     "OSCRATEAVG": 83
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.183388894424324688501272957075510682144",
+    "images": 2552,
+    "body_part": "HEART",
+    "description": "Carina to Apex  0.6  B26f  0 - 100 %  Matrix 256",
+    "acquisition_time": "092022.651000",
+    "pitch": "0.3",
+    "feed_mm_per_rotation": "11.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {
+     "OSCRATEMIN": 72,
+     "OSCRATEMAX": 78,
+     "OSCRATEAVG": 75
+    }
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.48195529360461873970186987705752020141",
+    "images": 459,
+    "body_part": "HEART",
+    "description": "Carina to Apex  0.6  B26f  BestDiast 59 %",
+    "acquisition_time": "092021.925000",
+    "pitch": "0.3",
+    "feed_mm_per_rotation": "11.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {
+     "OSCRATEMIN": 72,
+     "OSCRATEMAX": 78,
+     "OSCRATEAVG": 75
+    }
+   }
+  ],
+  "free_running_helical_series": [
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.264532322608206684963835753501167761257",
+    "images": 631,
+    "body_part": "CHEST",
+    "description": "Chin thru Pelvis  2.0  THINS",
+    "acquisition_time": "092032.458000",
+    "pitch": "1.55",
+    "feed_mm_per_rotation": "59.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {}
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.110967017500241732942279647609376796968",
+    "images": 206,
+    "body_part": "CHEST",
+    "description": "Coronal",
+    "acquisition_time": "092032.256000",
+    "pitch": "1.55",
+    "feed_mm_per_rotation": "59.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {}
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.276853687259953958801736253489747963563",
+    "images": 222,
+    "body_part": "CHEST",
+    "description": "Sagittal",
+    "acquisition_time": "092032.256000",
+    "pitch": "1.55",
+    "feed_mm_per_rotation": "59.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {}
+   },
+   {
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.281820564172790720923457857129090270999",
+    "images": 127,
+    "body_part": "CHEST",
+    "description": "Chin thru Pelvis  5.0  B31f",
+    "acquisition_time": "092033.069000",
+    "pitch": "1.55",
+    "feed_mm_per_rotation": "59.5",
+    "exposure_time_ms": "285",
+    "model": "SOMATOM Definition Flash",
+    "rates": {}
+   }
+  ],
+  "pairing": true
+ }
+]

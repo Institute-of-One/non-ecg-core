@@ -1,0 +1,161 @@
+{
+  "checked_on": "2026-09-29",
+  "routes_checked": 11,
+  "tags_checked": {
+    "HeartRate": "0018,1088",
+    "NominalInterval": "0018,1062",
+    "LowRRValue": "0018,1081",
+    "HighRRValue": "0018,1082",
+    "IntervalsAcquired": "0018,1083",
+    "IntervalsRejected": "0018,1084",
+    "CardiacNumberOfImages": "0018,1090",
+    "TriggerTime": "0018,1060",
+    "CardiacSynchronizationTechnique": "0018,9037",
+    "CardiacRRIntervalSpecified": "0018,9070"
+  },
+  "free_text_field": "ScanOptions (0018,0022), searched for a rate in bpm",
+  "series_checked": 18,
+  "series_with_standard_field": 0,
+  "series_with_rate_in_scan_options": 0,
+  "series_with_any_cardiac_field": 0,
+  "per_tag_present": {
+    "HeartRate": 0,
+    "NominalInterval": 0,
+    "LowRRValue": 0,
+    "HighRRValue": 0,
+    "IntervalsAcquired": 0,
+    "IntervalsRejected": 0,
+    "CardiacNumberOfImages": 0,
+    "TriggerTime": 0,
+    "CardiacSynchronizationTechnique": 0,
+    "CardiacRRIntervalSpecified": 0
+  },
+  "series": [
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.153296680816842173450095359795514192997",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.163122808057818939042789346917260475509",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.238437412980426380176036253855184519811",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.172025306661856579995279219787",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.185499814857138411021488020526",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.255233784459974523053948388235",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.3098.5025.314303203672474579343969377631",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.3320.3273.681361665429119779951590086807",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.4801.5885.222049900923616426114466030067",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.4801.5885.266353180759637857914492351226",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.4801.5885.985997402224556423098599299358",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELIX",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.169192050103150385507134859362",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.506152635744152835541447471513",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.915103552310650383386059590160",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": null,
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.22057899911939185439442654142508",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.32256210368068667259745796896317",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.60838518277131223173385048626637",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL_CT",
+      "rates_in_scan_options": {}
+    },
+    {
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.99.1071.91105191618967239016892897239612",
+      "instances_read": 3,
+      "standard_cardiac_fields": {},
+      "scan_options": "HELICAL MODE",
+      "rates_in_scan_options": {}
+    }
+  ]
+}

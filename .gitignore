@@ -17,3 +17,4 @@ __pycache__/
 # from the archive rather than from here.
 data_cache/
 *.dcm
+analysis/tcia_search/probe_cache/

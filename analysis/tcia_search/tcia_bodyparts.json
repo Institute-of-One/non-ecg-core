@@ -1,0 +1,858 @@
+{
+ "4D-Lung": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "A091105": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ACNS0332": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ACRIN-6698": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ACRIN-Contralateral-Breast-MR": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ACRIN-FLT-Breast": {
+  "body_parts": [
+   "ABDOMEN",
+   "BREAST",
+   "CHEST"
+  ]
+ },
+ "ACRIN-HNSCC-FDG-PET-CT": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ACRIN-NSCLC-FDG-PET": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "HEAD",
+   "OUTSIDE FIL",
+   "THORAX"
+  ]
+ },
+ "AHEP0731": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "AHOD0831": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ARAR0331": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "AREN0532": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "AREN0533": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "AREN0534": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Adrenal-ACC-Ki67-Seg": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "ADRENAL"
+  ]
+ },
+ "Advanced-MRI-Breast-Lesions": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Anti-PD-1_Lung": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDPELVIS",
+   "HEAD"
+  ]
+ },
+ "B-mode-and-CEUS-Liver": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "BREAST-DIAGNOSIS": {
+  "body_parts": [
+   "BREAST"
+  ]
+ },
+ "Breast-Cancer-Screening-DBT": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Breast-MRI-NACT-Pilot": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "C4KC-KiTS": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDPELVIS",
+   "KIDNEY",
+   "WO INTER"
+  ]
+ },
+ "CALGB50303": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "CBIS-DDSM": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "CC-Radiomics-Phantom": {
+  "body_parts": [
+   "PHANTOM"
+  ]
+ },
+ "CC-Radiomics-Phantom-2": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "CC-Radiomics-Phantom-3": {
+  "body_parts": []
+ },
+ "CC-Tumor-Heterogeneity": {
+  "body_parts": [
+   "PELVIS"
+  ]
+ },
+ "CMB-AML": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "CMB-BRCA": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "HEAD",
+   "NECK",
+   "PELVIS",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-CRC": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDPELVIS",
+   "HEAD",
+   "LIVER",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-GEC": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-LCA": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDPELVIS",
+   "HEAD",
+   "LUNG",
+   "NECK",
+   "PELVIS",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-MEL": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "FOOT",
+   "HEAD",
+   "LIVER",
+   "NECK",
+   "NECKCHEST",
+   "NECKCHESTABDOMEN",
+   "NECKCHESTABDPELV",
+   "SPINE",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-MML": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDPELVIS",
+   "EXTREMITY",
+   "HEAD",
+   "LSPINE",
+   "LUNG",
+   "NECK",
+   "PELVIS",
+   "TSPINE",
+   "WHOLEBODY"
+  ]
+ },
+ "CMB-OV": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "KIDNEY"
+  ]
+ },
+ "CMB-PCA": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "HEAD",
+   "PELVIS",
+   "WHOLEBODY"
+  ]
+ },
+ "CMMD": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "COVID-19-AR": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "BLADDER",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "KIDNEY",
+   "PELVIS",
+   "THORAX"
+  ]
+ },
+ "COVID-19-NY-SBU": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDPELVIS"
+  ]
+ },
+ "CPTAC-AML": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "HEAD"
+  ]
+ },
+ "CPTAC-CCRCC": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "KIDNEY"
+  ]
+ },
+ "CPTAC-CM": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "PELVIS"
+  ]
+ },
+ "CPTAC-LSCC": {
+  "body_parts": [
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS"
+  ]
+ },
+ "CPTAC-LUAD": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDOMEN",
+   "NECK",
+   "NECKCHESTABDPELV",
+   "WHOLEBODY"
+  ]
+ },
+ "CPTAC-PDA": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "PANCREAS",
+   "PELVIS"
+  ]
+ },
+ "CPTAC-SAR": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "EXTREMITY",
+   "WHOLEBODY"
+  ]
+ },
+ "CPTAC-STAD": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDPELVIS"
+  ]
+ },
+ "CPTAC-UCEC": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "PELVIS"
+  ]
+ },
+ "CT COLONOGRAPHY": {
+  "body_parts": [
+   "COLON"
+  ]
+ },
+ "CT Lymph Nodes": {
+  "body_parts": [
+   "ABDOMEN",
+   "MEDIASTINUM"
+  ]
+ },
+ "CT-Phantom4Radiomics": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "CT-vs-PET-Ventilation-Imaging": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "CT4Harmonization-Multicentric": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDOMEN"
+  ]
+ },
+ "CTpred-Sunitinib-panNET": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "Colorectal-Liver-Metastases": {
+  "body_parts": [
+   "ABDOMEN"
+  ]
+ },
+ "DRO-Toolkit": {
+  "body_parts": []
+ },
+ "Duke-Breast-Cancer-MRI": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "EA1141": {
+  "body_parts": [
+   "BREAST"
+  ]
+ },
+ "EAY131": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "AORTA",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "EXTREMITY",
+   "HEAD",
+   "LIVER",
+   "NECK",
+   "PELVIS",
+   "SPINE",
+   "WHOLEBODY"
+  ]
+ },
+ "FDG-PET-CT-Lesions": {
+  "body_parts": [
+   "ABDOMEN"
+  ]
+ },
+ "GBM-DSC-MRI-DRO": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "HCC-TACE-Seg": {
+  "body_parts": [
+   "LIVER"
+  ]
+ },
+ "ICDC-Glioma": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ISPY1": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "ISPY2": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "LCTSC": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "LDCT-and-Projection-data": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "LIDC-IDRI": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "Lung Phantom": {
+  "body_parts": []
+ },
+ "Lung-Fused-CT-Pathology": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "Lung-PET-CT-Dx": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "THORAX"
+  ]
+ },
+ "LungCT-Diagnosis": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "MIDI-B-Curated-Test": {
+  "body_parts": [
+   "ABDOMEN",
+   "BLADDER",
+   "BREAST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "COLON",
+   "LUNG",
+   "OVARY",
+   "PANCREAS"
+  ]
+ },
+ "MIDI-B-Curated-Validation": {
+  "body_parts": [
+   "ABDOMEN",
+   "BLADDER",
+   "BREAST",
+   "COLON",
+   "LUNG",
+   "OVARY"
+  ]
+ },
+ "MIDI-B-Synthetic-Test": {
+  "body_parts": [
+   "ABDOMEN",
+   "BLADDER",
+   "BREAST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "COLON",
+   "LUNG",
+   "OVARY",
+   "PANCREAS"
+  ]
+ },
+ "MIDI-B-Synthetic-Validation": {
+  "body_parts": [
+   "ABDOMEN",
+   "BLADDER",
+   "BREAST",
+   "COLON",
+   "LUNG",
+   "OVARY"
+  ]
+ },
+ "MIDRC-RICORD-1A": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "MIDRC-RICORD-1B": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "MIDRC-RICORD-1C": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "MRI-DIR": {
+  "body_parts": []
+ },
+ "Mediastinal-Lymph-Node-SEG": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "NECK",
+   "NECKCHESTABDPELV"
+  ]
+ },
+ "Mouse-Astrocytoma": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Mouse-Mammary": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "NLST": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "NSCLC Radiogenomics": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "HEART",
+   "THORAX"
+  ]
+ },
+ "NSCLC-Radiomics": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "NSCLC-Radiomics-Genomics": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "NSCLC-Radiomics-Interobserver1": {
+  "body_parts": []
+ },
+ "NaF PROSTATE": {
+  "body_parts": [
+   "PROSTATE"
+  ]
+ },
+ "PDMR-292921-168-R": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-425362-245-T": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-521955-158-R4": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-833975-119-R": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-997537-175-T": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-BL0293-F563": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PDMR-Texture-Analysis": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PROSTATE-DIAGNOSIS": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PROSTATE-MRI": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PROSTATEx": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "PSMA-PET-CT-Lesions": {
+  "body_parts": [
+   "ABDOMEN"
+  ]
+ },
+ "Pancreas-CT": {
+  "body_parts": [
+   "PANCREAS"
+  ]
+ },
+ "Pancreatic-CT-CBCT-SEG": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST"
+  ]
+ },
+ "Pediatric-CT-SEG": {
+  "body_parts": [
+   "ABDOMEN"
+  ]
+ },
+ "Pelvic-Reference-Data": {
+  "body_parts": []
+ },
+ "Phantom FDA": {
+  "body_parts": []
+ },
+ "Prostate Fused-MRI-Pathology": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Prostate-3T": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Prostate-Anatomical-Edge-Cases": {
+  "body_parts": [
+   "PELVIS"
+  ]
+ },
+ "Prostate-MRI-US-Biopsy": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Pseudo-PHI-DICOM-Data": {
+  "body_parts": [
+   "BLADDER",
+   "CHEST"
+  ]
+ },
+ "QIBA CT-1C": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "QIBA-CT-Liver-Phantom": {
+  "body_parts": [
+   "LIVER"
+  ]
+ },
+ "QIN Breast DCE-MRI": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "QIN LUNG CT": {
+  "body_parts": [
+   "CHEST",
+   "LUNG"
+  ]
+ },
+ "QIN PET Phantom": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "QIN-BREAST": {
+  "body_parts": [
+   "BREAST"
+  ]
+ },
+ "QIN-BREAST-02": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "QIN-PROSTATE-Repeatability": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "QIN-SARCOMA": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "RIDER Breast MRI": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "RIDER Lung CT": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "RIDER Lung PET-CT": {
+  "body_parts": [
+   "CHEST"
+  ]
+ },
+ "RIDER PHANTOM MRI": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "RIDER PHANTOM PET-CT": {
+  "body_parts": [
+   "PHANTOM"
+  ]
+ },
+ "RIDER Pilot": {
+  "body_parts": []
+ },
+ "ReMIND": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "S0819": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "SPIE-AAPM Lung CT Challenge": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "Soft-tissue-Sarcoma": {
+  "body_parts": [
+   "EXTREMITY"
+  ]
+ },
+ "Spinal-Multiple-Myeloma-SEG": {
+  "body_parts": [
+   "LSPINE"
+  ]
+ },
+ "Spine-Mets-CT-SEG": {
+  "body_parts": [
+   "ABDOMEN",
+   "CHEST",
+   "PELVIS",
+   "SPINE"
+  ]
+ },
+ "StageII-Colorectal-CT": {
+  "body_parts": [
+   "ABDOMEN",
+   "PELVIS"
+  ]
+ },
+ "TCGA-BLCA": {
+  "body_parts": [
+   "ABDOMEN",
+   "BLADDER"
+  ]
+ },
+ "TCGA-BRCA": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "TCGA-CESC": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "TCGA-COAD": {
+  "body_parts": [
+   "COLON"
+  ]
+ },
+ "TCGA-ESCA": {
+  "body_parts": [
+   "ESOPHAGUS"
+  ]
+ },
+ "TCGA-KICH": {
+  "body_parts": [
+   "KIDNEY"
+  ]
+ },
+ "TCGA-KIRC": {
+  "body_parts": [
+   "KIDNEY"
+  ]
+ },
+ "TCGA-KIRP": {
+  "body_parts": [
+   "KIDNEY"
+  ]
+ },
+ "TCGA-LIHC": {
+  "body_parts": [
+   "LIVER"
+  ]
+ },
+ "TCGA-LUAD": {
+  "body_parts": [
+   "CHEST",
+   "LUNG"
+  ]
+ },
+ "TCGA-LUSC": {
+  "body_parts": [
+   "LUNG"
+  ]
+ },
+ "TCGA-OV": {
+  "body_parts": [
+   "OVARY"
+  ]
+ },
+ "TCGA-PRAD": {
+  "body_parts": [
+   "PROSTATE"
+  ]
+ },
+ "TCGA-READ": {
+  "body_parts": [
+   "RECTUM"
+  ]
+ },
+ "TCGA-SARC": {
+  "body_parts": [
+   "CHESTABDPELVIS",
+   "LOWERLIMB"
+  ]
+ },
+ "TCGA-STAD": {
+  "body_parts": [
+   "STOMACH"
+  ]
+ },
+ "TCGA-THCA": {
+  "body_parts": [
+   "THYROID"
+  ]
+ },
+ "TCGA-UCEC": {
+  "body_parts": [
+   "ABDOMEN",
+   "UTERUS"
+  ]
+ },
+ "UPENN-GBM": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "VAREPOP-APOLLO": {
+  "body_parts": [
+   "ABDOMEN",
+   "ABDOMENPELVIS",
+   "ADRENAL",
+   "CHEST",
+   "CHESTABDOMEN",
+   "CHESTABDPELVIS",
+   "FEMORALA",
+   "HEAD",
+   "HEART",
+   "NECK",
+   "PELVIS",
+   "THORAX"
+  ]
+ },
+ "VICTRE": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Vestibular-Schwannoma-MC-RC": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ },
+ "Vestibular-Schwannoma-SEG": {
+  "error": "Expecting value: line 1 column 1 (char 0)"
+ }
+}
