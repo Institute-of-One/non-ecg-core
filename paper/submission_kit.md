@@ -39,12 +39,11 @@ material is in the public repository instead.
 ## Novelty and significance
 
 A helical CT scan converts position into time at a rate its header states, so a periodically
-moving structure writes its period along the scan axis. We give the condition under which
-that period is recoverable, show that the two requirements it trades off have a product fixed
-by anatomy alone, and measure the constant it needs. On 192 real series the condition is
-usually met, yet recovery from images fails, and the criterion that seemed to detect success
-measures stability on a nearly flat objective. In the one public scan whose heart rate is
-recorded, the fit is wrong by a tenth.
+moving structure writes its period along the scan axis. We give the condition for recovering
+it, show that the two requirements it trades off have a product fixed by anatomy alone, and
+measure the constant it needs. On 192 real series it is usually met, yet recovery from images
+fails, and the criterion that seemed to detect success measures stability on a flat
+objective. In the one public scan with a recorded rate, the fit is wrong by a tenth.
 
 ## Ethical statement (for the form; not seen by reviewers)
 
