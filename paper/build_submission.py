@@ -147,8 +147,8 @@ def build_docx(markdown: str) -> None:
 
         add_runs(document.add_paragraph(), text)
 
-    if figures != 6:
-        raise SystemExit(f"expected 6 figures in the document, placed {figures}")
+    if figures != 7:
+        raise SystemExit(f"expected 7 figures in the document, placed {figures}")
 
     BUILD.mkdir(parents=True, exist_ok=True)
     document.save(DOCX)

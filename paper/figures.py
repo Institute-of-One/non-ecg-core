@@ -280,7 +280,60 @@ def figure_flatness() -> Path:
     return save(figure, "fig4_flatness.png")
 
 
-# ------------------------------------------------------------------ 5. the reference case
+# ------------------------------------------------------------------ 5. what the fit reads
+
+def figure_coronal() -> Path:
+    """The border the whole paper is about, and the two waves that might be on it.
+
+    This is the only figure that reads an image. It exists because the argument of section 2
+    is visual — a coronal reformat in which the mediastinal silhouette is wavy because the
+    table advanced while the heart beat — and the paper otherwise asserts that appearance
+    without ever showing it.
+
+    The level shown is the one whose independent fit comes closest to the joint fit, so the
+    figure is the most favourable honest choice rather than the clearest-looking one.
+    """
+    import numpy as np                                            # noqa: PLC0415
+    from extract_border_trace import left_border_trace, load_series   # noqa: PLC0415
+
+    reference_uid = ("1.3.6.1.4.1.14519.5.2.1."
+                     "264532322608206684963835753501167761257")
+    positions = {r["series_uid"]: r for r in load("border_position.json")["series"]
+                 if "median_fraction_of_width" in r}
+    cohort = [s for s in load("cohort_outcome.json")["series"] if s.get("recovered")]
+    # The admitted series whose border sits deepest, i.e. the clearest example of the
+    # extraction doing what it was written to do. Chosen by the measurement, not by eye.
+    sound_uid = max((s["series_uid"] for s in cohort),
+                    key=lambda uid: positions[uid]["median_fraction_of_width"])
+    row_fraction = 0.60
+
+    figure, axes = plt.subplots(2, 1, figsize=(7.0, 5.6))
+    for axis, uid, label in ((axes[0], sound_uid, "a chest CT from the cohort"),
+                             (axes[1], reference_uid,
+                              "the one series in the archive with a recorded heart rate")):
+        volume = load_series(REPO / "data_cache" / uid)
+        row = int(volume.array.shape[1] * row_fraction)
+        coronal = volume.array[:, row, :]
+        trace = left_border_trace(volume, row)
+        finite = np.isfinite(trace)
+        width = coronal.shape[1] * volume.spacing_xy_mm[1]
+        share = positions[uid]["median_fraction_of_width"]
+
+        axis.imshow(coronal.T, cmap="gray", vmin=-1000, vmax=150, aspect="auto",
+                    extent=[volume.z_mm[0], volume.z_mm[-1], width, 0],
+                    interpolation="bilinear")
+        axis.plot(volume.z_mm[finite], trace[finite], "-",
+                  color=SECOND if share >= 0.35 else ACCENT, lw=1.3)
+        axis.set_ylabel("x (mm)")
+        axis.set_title(f"{label}: tracked border at {share:.0%} of the image width",
+                       fontsize=9, loc="left",
+                       color=INK if share >= 0.35 else ACCENT)
+    axes[1].set_xlabel("z (mm) — and, at a constant table speed, time")
+    figure.tight_layout()
+    return save(figure, "fig5_coronal.png")
+
+
+# ------------------------------------------------------------------ 6. the reference case
 
 def figure_reference_case() -> Path:
     """The cost curve of the one series whose rate is recorded."""
@@ -316,7 +369,7 @@ def figure_reference_case() -> Path:
     axis.set_title("The whole physiological band is within %.0f per cent of the best fit"
                    % ((cost.max() - 1.0) * 100), fontsize=9, loc="left")
     axis.legend(frameon=False, fontsize=7.5, loc="upper center")
-    return save(figure, "fig5_reference_case.png")
+    return save(figure, "fig6_reference_case.png")
 
 
 # ------------------------------------------------------------------ 6. the estimator
@@ -352,12 +405,12 @@ def figure_estimator() -> Path:
     bottom.set_xlabel("cardiac cycles written, $N$")
     bottom.set_ylabel("circles: declared s.d.\nsquares: error actually made")
     figure.tight_layout()
-    return save(figure, "fig6_estimator.png")
+    return save(figure, "fig7_estimator.png")
 
 
 def main() -> int:
-    builders = (figure_window, figure_n_min, figure_protocols,
-                figure_flatness, figure_reference_case, figure_estimator)
+    builders = (figure_window, figure_n_min, figure_protocols, figure_flatness,
+                figure_coronal, figure_reference_case, figure_estimator)
     written = [builder() for builder in builders]
     if len(written) != len(builders):
         raise SystemExit("a figure was skipped; a missing figure must not pass silently")

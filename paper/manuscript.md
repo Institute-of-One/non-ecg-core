@@ -11,42 +11,41 @@ ORCID 0000-0001-9211-1071. E-mail: yamamoto@lisit.jp
 
 ## Abstract
 
-**Objective.** Deep-learning methods correct cardiac motion in non-gated chest CT, yet none
-of the [[results:manifest.json:metrics.cardiac_tag_series_checked]] public series analysed
-here records the heart rate by any of
+**Objective.** Deep-learning methods read the heart in non-gated chest CT, yet none of the
+[[results:manifest.json:metrics.cardiac_tag_series_checked]] public series analysed here
+records the heart rate by any of
 [[results:manifest.json:metrics.cardiac_routes_checked]] routes, so they cannot be checked
-against a recorded rate. We ask what such an acquisition can contain about cardiac timing,
-and what an estimator does when it contains nothing.
+against one. We ask what such an acquisition can contain about cardiac timing, and what an
+estimator does when it contains nothing.
 
 **Approach.** A helical scan advances the table at constant speed, so its z axis is a time
-axis and a periodically moving structure writes its period along z. We derive the
-recoverability condition, measure the cycles it requires by simulation over
-[[results:manifest.json:metrics.sensitivity_cells]] parameter combinations, evaluate it
-against [[results:manifest.json:metrics.header_series]] real series from headers alone, test
+axis along which a periodically moving structure writes its period. We derive the
+recoverability condition, measure the cycles it requires over
+[[results:manifest.json:metrics.sensitivity_cells]] simulated conditions, evaluate it on
+[[results:manifest.json:metrics.header_series]] real series from headers alone, test
 it on [[results:manifest.json:metrics.cohort_analysed]] image series under a criterion frozen
 in advance, run the same pipeline on the one public session that records a rate, and train an
 estimator that reports its own uncertainty.
 
-**Main results.** Cycles written and samples per cycle multiply to *L*/*dz*, fixed by anatomy
-and reconstruction interval, so speed only divides a fixed budget. *N*min =
-[[results:manifest.json:metrics.n_min_fundamental]] cycles.
+**Main results.** Cycles written and samples per cycle multiply to *L*/*dz*: speed only
+divides a fixed budget. *N*min =
+[[results:manifest.json:metrics.n_min_fundamental]] cycles, which
 [[results:manifest.json:metrics.records_below_100bpm_border_percent]] per cent of real series
-satisfy the condition at the cardiac border. On images
+clear at the cardiac border. On images
 [[results:manifest.json:metrics.cohort_recovered]] of
-[[results:manifest.json:metrics.cohort_analysed]] were admitted, agreeing with prediction at
-[[results:manifest.json:metrics.cohort_agreement_percent]] per cent, no better than chance.
-The admissions have the same minimum depth as the rejections, and their coronal levels
-individually prefer rates spanning
+[[results:manifest.json:metrics.cohort_analysed]] were admitted, agreeing with the header
+prediction on [[results:manifest.json:metrics.cohort_agreement_percent]] per cent. Those
+admissions sit at the same minimum depth as the rejections, their coronal levels
+individually preferring rates spanning
 [[results:manifest.json:metrics.flatness_level_spread_accepted_min]]–[[results:manifest.json:metrics.flatness_level_spread_accepted_max]]
-bpm. Against a recorded
-[[results:manifest.json:metrics.reference_rate_recorded]] bpm the pipeline returned
-[[results:manifest.json:metrics.reference_rate_fitted]]. An estimator trained inside the
-bound was never accurate outside it, reporting a standard deviation below
-[[results:manifest.json:metrics.above_reported_sd_below_max]].
+bpm. The one archive session recording a rate is one where the extraction tracks the
+patient's outline, not the mediastinum, and nothing in the pipeline indicated it. An estimator
+trained inside the bound was never accurate outside it while reporting a standard deviation
+below [[results:manifest.json:metrics.above_reported_sd_below_max]].
 
 **Significance.** The bound is computable from the header and excludes acquisitions that
-cannot carry the signal, but satisfying it buys nothing on its own. A stability statistic
-certifies nothing unless reported with the depth of the minimum it is stable about.
+cannot carry the signal, but satisfying it buys nothing. A stability statistic certifies
+nothing unless reported with the depth of the minimum, and with a check on what was fitted.
 
 ---
 
@@ -313,6 +312,17 @@ no more than 10 bpm when any one level was dropped, and left a median residual b
 amplitude it had fitted. Those thresholds were written down before any series beyond the
 three pilots was fitted.
 
+One detail of that first condition matters and is easy to miss. The implementation counts
+cycles over the **z span actually analysed**, not over *L*, the extent of the structure that
+section 2 says can carry the motion. For this cohort the two are close: the analysed spans
+run from [[results:manifest.json:metrics.cohort_span_min_mm]] to
+[[results:manifest.json:metrics.cohort_span_max_mm]] mm with a median of
+[[results:manifest.json:metrics.cohort_span_median_mm]] mm against an aortic extent of
+[[results:manifest.json:metrics.extent_aorta_mm]] mm, and the same
+[[results:manifest.json:metrics.cohort_over_nmin_by_span]] series clear *N*min either way. It
+is stated here because for the one series in section 5.4 the two differ by a factor of two,
+and there the distinction changes the reading entirely.
+
 **What that criterion measures is self-consistency.** Leave-one-out movement and residual
 size both ask whether the fit holds still; neither compares the fitted rate with the
 patient's. No series here records one (section 5.4), so correctness was not available to be
@@ -325,14 +335,21 @@ recoverable at a ceiling of [[results:manifest.json:metrics.prediction_ceiling_b
 [[results:manifest.json:metrics.cohort_predicted_and_recovered]] of those
 [[results:manifest.json:metrics.cohort_predicted_recoverable]] were admitted.
 
-**The primary result is the agreement between prediction and outcome, not the admission
-rate.** Prediction and outcome agreed on
-[[results:manifest.json:metrics.cohort_agreement]] of
+**The pre-specified summary was the agreement between prediction and outcome, not the
+admission rate.** The two agreed on [[results:manifest.json:metrics.cohort_agreement]] of
 [[results:manifest.json:metrics.cohort_analysed]] series,
-[[results:manifest.json:metrics.cohort_agreement_percent]] per cent, which is no better than
-chance. A high admission rate uncorrelated with table speed would mean the estimator was
-fitting anatomy rather than motion, and that is the failure most easily mistaken for success;
-the agreement is the number that would have caught it. It did.
+[[results:manifest.json:metrics.cohort_agreement_percent]] per cent.
+
+That number needs reading carefully, and we state it descriptively rather than as a test. The
+prediction is a header-level statement about whether a rate below
+[[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm could in principle be written;
+the outcome is a self-consistency verdict that never sees a true rate. They are not two
+measurements of the same thing, so their disagreement is not evidence that either is wrong,
+and we attach no null distribution to it. What the low agreement does establish is the
+negative it was designed to catch: the admissions are not tracking the acquisition parameter
+that the bound says should govern them, so whatever the criterion is responding to, it is not
+the quantity the header predicts. Sections 5.3 and 5.4 examine what it is responding to
+instead.
 
 ### 5.2 Four candidate explanations, none of which reproduces the failure
 
@@ -385,15 +402,25 @@ fitted independently, prefer rates spanning
 imposes one period on levels that individually disagree by half the physiological range, and
 returns their weighted compromise.
 
-**That is the mechanism, and it is the fifth candidate.** Where there is no periodic signal,
-the objective is flat; where the objective is flat, the argmin is pinned by nothing; and an
-argmin pinned by nothing does not move when a level is removed. Leave-one-out stability, the
-criterion's central test, is therefore satisfied most easily in exactly the case it was meant
-to exclude. The admissions are not recoveries. They are the same failure as the rejections,
-presenting as stability.
+**What follows from this is about the criterion, and we are careful about how far it goes.**
+Two things are measured: the minima the criterion accepted are no deeper than those it
+rejected, and the levels it combined did not agree. Neither measurement uses a true rate, so
+neither can show that the three admitted rates are *wrong*. What they do show is that the
+criterion admitted them without evidence that they are right, which is a different and
+weaker claim than the one a reader would take from the word "recovered".
 
-This also disposes of the reading in which the extraction merely locks onto the wrong peak.
-It does not lock onto a peak at all.
+A natural explanation of how that happens is that a flat objective leaves the minimiser
+unpinned, so removing one level moves it very little, and the leave-one-out test then reports
+stability that reflects the shape of the objective rather than the strength of a signal. That
+account is consistent with everything reported here — shallow minima, disagreeing levels, and
+stable leave-one-out values occurring together — but co-occurrence is not demonstration, and
+we have not constructed the experiment that would separate the flatness from the stability.
+We therefore offer it as an explanation to be tested, and rest the conclusion on the
+measurements rather than on the mechanism.
+
+One reading it does weaken is that the extraction simply locks onto the wrong peak. With the
+best period fitting only about a tenth better than a typical one, there is no peak in these
+objectives sharp enough for that description to be apt.
 
 ![Figure 4](figures/fig4_flatness.png)
 
@@ -430,31 +457,93 @@ In that session a gated acquisition records
 [[results:manifest.json:metrics.reference_rate_range_high]] over its own duration. A helical
 series covering [[results:manifest.json:metrics.reference_z_span_mm]] mm at
 [[results:manifest.json:metrics.reference_table_speed]] mm/s, lasting
-[[results:manifest.json:metrics.reference_scan_seconds]] s, begins ten seconds later. At the
-recorded rate that acquisition writes
-[[results:manifest.json:metrics.reference_cycles_at_recorded_rate]] cycles, against *N*min =
-[[results:manifest.json:metrics.n_min_fundamental]]: it is not a marginal scan.
+[[results:manifest.json:metrics.reference_scan_seconds]] s, begins ten seconds later.
+
+**How many cycles that acquisition writes depends on which length is used, and this series is
+the one case where the difference matters.** At the recorded rate the spatial period is
+[[results:manifest.json:metrics.reference_wavelength_mm]] mm. Over the cardiac border, the
+*L* = [[results:manifest.json:metrics.extent_border_mm]] mm of section 2, it writes
+[[results:manifest.json:metrics.reference_cycles_border]] cycles; over the descending aorta,
+*L* = [[results:manifest.json:metrics.extent_aorta_mm]] mm, it writes
+[[results:manifest.json:metrics.reference_cycles_aorta]]; over the whole
+[[results:manifest.json:metrics.reference_z_span_mm]] mm the pipeline analyses, it writes
+[[results:manifest.json:metrics.reference_cycles_at_recorded_rate]]. **Only the last of these
+exceeds *N*min = [[results:manifest.json:metrics.n_min_fundamental]], and the last is not the
+quantity section 2 defines.** The scan runs from the chin to the pelvis, so most of its
+length lies below any structure that a heartbeat can move. By the bound's own terms this
+series is below it, and nothing that follows should be read as a test of an acquisition that
+cleared the bound.
+
+The cohort of section 5.1 does not have this problem, which is why it is worth separating.
+Its analysed spans run from [[results:manifest.json:metrics.cohort_span_min_mm]] to
+[[results:manifest.json:metrics.cohort_span_max_mm]] mm with a median of
+[[results:manifest.json:metrics.cohort_span_median_mm]] mm, close to the aortic extent, and
+the number of series clearing *N*min is
+[[results:manifest.json:metrics.cohort_over_nmin_by_span]] of
+[[results:manifest.json:metrics.cohort_analysed]] whether the cycles are counted over the
+analysed span or over *L* = [[results:manifest.json:metrics.extent_aorta_mm]] mm.
 
 Before the images were downloaded we fixed the criterion for agreement at five per cent of
 the recorded rate, that is [[results:manifest.json:metrics.reference_band_low]] to
 [[results:manifest.json:metrics.reference_band_high]] bpm. Five per cent is the tolerance
-under which *N*min was measured in section 3, and it is also the width of the range the
-scanner itself recorded. The unmodified pipeline was then run.
+under which *N*min was measured in section 3; the range the scanner itself recorded is
+slightly narrower, at four per cent of the mean. The unmodified pipeline was then run.
 
 It returned [[results:manifest.json:metrics.reference_rate_fitted]] bpm,
 [[results:manifest.json:metrics.reference_error_percent]] per cent from the recorded rate and
 outside the interval. The frozen criterion also rejected the series, on a leave-one-out
 spread of [[results:manifest.json:metrics.reference_loo_spread_bpm]] bpm.
 
-The search did not miss the answer (figure 5). The true period lies inside the searched band,
-which was covered at a step of
+What that comparison can carry is limited twice over, and the second limit is severe enough
+to settle the matter.
+
+The first is where the reference rate comes from. It was recorded during a different
+acquisition ten seconds earlier, and the minimum and maximum the scanner logged bound the
+variation within *that* acquisition rather than within this one.
+
+**The second is that the extraction was not on the cardiac border at all** (figure 5). The
+method takes the left edge of the soft-tissue run crossing the midline of a coronal row,
+which is the left mediastinal border only because a lung separates the chest wall from the
+mediastinum and breaks that run. This acquisition runs from the chin to the pelvis with the
+arms at the sides, and over most of it no lung intervenes, so the run begins at the skin. In
+this series the tracked border sits at
+[[results:manifest.json:metrics.border_reference_percent]] per cent of the image width, and
+[[results:manifest.json:metrics.border_reference_levels_on_surface]] per cent of its coronal
+levels lie within
+[[results:manifest.json:metrics.border_surface_threshold_percent]] per cent of the edge. It
+is a trace of the patient's outline.
+
+Nothing in the pipeline reported anything unusual. The fit converged, the residual test
+passed, the leave-one-out values clustered, and the criterion came within two levels of
+admitting the result. **The whole apparatus behaves the same way on a trace of a patient's
+skin as on a trace of the cardiac border**, which is the same lesson as section 5.3 arriving
+by a different route: the tests in use measure the consistency of a fit and never ask what
+was fitted.
+
+This was found by drawing the trace on the image. No automatic check in the pipeline looked,
+and `analysis/check_border_position.py`, which does, was written afterwards.
+
+![Figure 5](figures/fig5_coronal.png)
+
+**Figure 5.** Coronal reformats with the tracked border drawn on them. Above, a chest CT from
+the cohort: the border follows the mediastinum between the two lungs, which is what the
+method is written to find. Below, the one series in the archive that records a heart rate:
+the same code, unchanged, returns the skin, because a chin-to-pelvis acquisition with the
+arms down offers no lung to separate the chest wall from the mediastinum over most of its
+length. The fit, the residual test and the leave-one-out test all proceeded normally on the
+lower trace.
+
+The search did not miss what it was looking for (figure 6). The period corresponding to the
+recorded rate lies inside the searched band, which was covered at a step of
 [[results:manifest.json:metrics.reference_grid_step_mm]] mm, and the cost there is
-[[results:manifest.json:metrics.reference_cost_true_over_fitted]] times the minimum. **The
-true period is not a local minimum of the objective at all.** The trace does not contain it.
+[[results:manifest.json:metrics.reference_cost_true_over_fitted]] times the minimum; it is
+not a local minimum of the objective at all. That is unsurprising once the trace is known to
+be an outline rather than a border, and it is reported here because the objective looked no
+different from those of section 5.3 before the image was drawn.
 
-![Figure 5](figures/fig5_reference_case.png)
+![Figure 6](figures/fig6_reference_case.png)
 
-**Figure 5.** The objective of the joint fit across the physiological band, for the one
+**Figure 6.** The objective of the joint fit across the physiological band, for the one
 public series whose heart rate is recorded, normalised to its minimum. The darker band is the
 rate the scanner recorded during the gated acquisition ten seconds earlier,
 [[results:manifest.json:metrics.reference_rate_range_low]] to
@@ -463,13 +552,27 @@ agreement interval fixed before the images were downloaded. The fit takes the gl
 at [[results:manifest.json:metrics.reference_rate_fitted]] bpm. The recorded rate is not a
 local minimum, and the entire band lies within a fifth of the best fit.
 
-This series is an ordinary member of the population of section 5.3: depth
-[[results:manifest.json:metrics.flatness_depth_reference]], levels preferring rates spread
-over [[results:manifest.json:metrics.flatness_level_spread_reference]] bpm. What it adds is
-that here the compromise can be checked, and it is wrong. It is also worth noting how close
-it came to being certified: the residual test passed, and only two of six levels departing to
-the edge of the band pushed the leave-one-out spread past its threshold. Had those two levels
-joined the compromise, a rate wrong by a tenth would have been admitted as self-consistent.
+Having found it in one series, we measured it in all of them. Of the
+[[results:manifest.json:metrics.cohort_analysed]] analysed cohort series,
+[[results:manifest.json:metrics.border_cohort_on_the_surface]] track the body surface by the
+same definition and [[results:manifest.json:metrics.border_cohort_doubtful]] more sit closer
+to the edge than to the middle; the remainder lie between
+[[results:manifest.json:metrics.border_sound_min_percent]] and
+[[results:manifest.json:metrics.border_sound_max_percent]] per cent of the image width, where
+a mediastinum belongs. **All of the affected series were rejected by the frozen criterion**,
+and the [[results:manifest.json:metrics.cohort_recovered]] admitted series lie at
+[[results:manifest.json:metrics.border_admitted_min_percent]] to
+[[results:manifest.json:metrics.border_admitted_max_percent]] per cent, so the result of
+section 5.3 is unaffected: those three fits are of the structure they were meant to be of,
+and they are still not evidence of recovery.
+
+**What this case establishes is therefore about the archive and about the tests, not about
+cardiac timing.** The only session in a public archive that records a heart rate alongside a
+free-running helical chest series is one on which this extraction does not work. There is, on
+public data, no case against which the recovery performance of this method can be checked —
+which is a measured statement rather than the assumption the study began with. And a
+criterion built from convergence, residual size and leave-one-out stability came within two
+levels of certifying a period fitted to a patient's outline.
 
 ## 6. What an estimator does past the bound
 
@@ -508,13 +611,13 @@ runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
 [[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between
 twelve and forty times the uncertainty it declares.
 
-**The confidence is worst where it is most dangerous** (figure 6). As the number of written
+**The confidence is worst where it is most dangerous** (figure 7). As the number of written
 cycles rises towards the bound the model's reported uncertainty tightens and its accuracy
 does not move off zero, so at two cycles it is at its most certain and still never right.
 
-![Figure 6](figures/fig6_estimator.png)
+![Figure 7](figures/fig7_estimator.png)
 
-**Figure 6.** Top: the fraction of estimates within
+**Figure 7.** Top: the fraction of estimates within
 [[results:manifest.json:metrics.tolerance_percent]] per cent of the prescribed period,
 against cycles written, for a model trained only at or above the bound and for one trained
 across it. Bottom, on a logarithmic scale: the standard deviation each model declares
@@ -526,14 +629,18 @@ output distinguishes that state from the regime in which it works. A model of th
 applied to a chest CT that writes a fraction of a cycle, returns a number with a small error
 bar and no indication that the question was unanswerable.
 
-### 6.3 Trained across the boundary, it abstains — and pays for it
+### 6.3 Trained across the boundary, it widens its uncertainty — and pays for it
 
 Trained on the whole range, the same architecture behaves differently below the bound: its
 reported standard deviation widens to
 [[results:manifest.json:metrics.across_reported_sd_below_max]] as the cycles run out, and its
 calibration ratio falls into [[results:manifest.json:metrics.across_calibration_below_min]]
 to [[results:manifest.json:metrics.across_calibration_below_max]], which is honest to
-conservative. It declines to be certain where certainty is not available.
+conservative. It reports less certainty where less is warranted. There is no abstention rule
+in either model: both always return an estimate, and what differs is the uncertainty attached
+to it. Whether that uncertainty is acted on — by declining to report a rate, or by flagging
+the scan — is a decision for whoever deploys such an estimator, and it is only available to
+them if the uncertainty is calibrated in the first place.
 
 Two qualifications belong with that result, and neither is small.
 
@@ -575,29 +682,41 @@ is wrong.
 The difference between them is instructive. The estimator's failure is a training failure and
 has a training remedy: shown the boundary during training, the same architecture widens its
 reported uncertainty to [[results:manifest.json:metrics.across_reported_sd_below_max]] and
-declines to answer, recovering
-[[results:manifest.json:metrics.across_accuracy_below_max_percent]] per cent accuracy where
-an answer is available. The criterion's failure is a design failure, and its remedy is a
+reports it where an answer is not available, while reaching
+[[results:manifest.json:metrics.across_accuracy_below_max_percent]] per cent accuracy at two
+cycles — the calibration is what changes, not a rule about when to answer. The criterion's failure is a design failure, and its remedy is a
 measurement that costs one line: **a stability test certifies nothing unless it is paired
 with a test that the objective has a minimum worth being stable about.** We recommend
 reporting the depth of the minimum, relative to the median over the searched band, alongside
 any stability statistic. Had we done so, none of the three admissions would have been
 reported as recoveries.
 
-None of this weakens the bound itself, and it is worth separating what survives. The
-recoverability condition is computable from the header alone, before any image is read, and
-it is necessary: an acquisition that writes fewer than
-[[results:manifest.json:metrics.n_min_fundamental]] cycles cannot be asked about the period,
-whatever estimator is applied to it. Of [[results:manifest.json:metrics.header_series]] real
-chest CT series, [[results:manifest.json:metrics.records_below_100bpm_border_percent]] per
-cent satisfy it at the cardiac border for rates below
-[[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm, so on the installed base the
-condition is not what stands in the way. What sections 5.3 and 5.4 add is that satisfying it
-buys nothing on its own: the traces of real chest CT do not carry the period, the objective
-built on them is nearly flat, and a scan that writes
-[[results:manifest.json:metrics.reference_cycles_at_recorded_rate]] cycles at a known rate
-still returns a value [[results:manifest.json:metrics.reference_error_percent]] per cent from
-it. The bound is a screen, not a promise.
+None of this weakens the geometry, and it is worth separating what survives at what strength.
+Three claims of different kinds have been made and should not be read as one.
+
+The budget identity *N n* = *L*/*dz* follows from the definitions and holds for any helical
+acquisition. It is the firmest thing here.
+
+*N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles is an empirical threshold,
+measured for one estimator reading one family of simulated traces at one tolerance and one
+success rate. It is not a universal limit: the matched estimator of section 3.2 reaches
+[[results:manifest.json:metrics.n_min_matched]] cycles on the same traces, and the network of
+section 6.3, trained on that family, is accurate at two. What the bound supports is a
+practical screen — under the conditions studied here, an acquisition writing appreciably
+fewer cycles than this should not be expected to yield a period — rather than a statement
+about every possible estimator.
+
+The header-level evaluation of section 4 is narrower still than it first appears. Of
+[[results:manifest.json:metrics.header_series]] real chest CT series,
+[[results:manifest.json:metrics.records_below_100bpm_border_percent]] per cent have a
+threshold below [[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm at an assumed
+cardiac extent of [[results:manifest.json:metrics.extent_border_mm]] mm. Because the actual
+rates are not recorded, that is a statement about what those protocols could record for a
+patient beating fast enough, not a count of acquisitions that did satisfy the condition.
+
+What sections 5.3 and 5.4 add is that clearing the threshold does not by itself produce a
+period: on these traces the objective is nearly flat, and the stability the criterion
+measures is not evidence that a period was found. The bound is a screen, not a promise.
 
 For the clinical situation that motivates the problem, two consequences follow and they point
 in the same direction. The first is that no public chest CT we could find supports validation
@@ -608,11 +727,19 @@ recorded rate and a free-running helical series, and the archive is in that resp
 case rather than a dataset. It is worse than scarcity: of
 [[results:manifest.json:metrics.collections_probed]] collections probed for acquisition
 parameters, [[results:manifest.json:metrics.collections_without_parameters]] do not publish
-them at all, so for those the bound cannot even be evaluated. The second is that an estimator
-trained where recovery is possible will not warn the operator when it is applied where
-recovery is not, and non-gated chest CT is overwhelmingly the second case. A method that
-corrects cardiac motion in such a scan is therefore both unvalidatable on public data and, if
-built the obvious way, unable to report that it is guessing.
+them at all, so for those the bound cannot even be evaluated. Anyone proposing to validate a
+*cardiac-timing* estimate on public chest CT faces that scarcity directly; how far it extends
+to motion-correction methods, whose output is an image rather than a rate and which may be
+assessed on image-quality endpoints instead, is a separate question this study does not
+settle.
+
+The second is narrower than a claim about deployed software. In the simulation of section 6,
+a model trained only where recovery was possible reported a small uncertainty while being
+wrong in every trial outside that regime, and a model trained across the boundary did not.
+Whether any particular clinical method behaves that way is not something we have tested. What
+the experiment does establish is that the failure mode exists and is invisible from the
+model's own output, which is an argument for measuring it in a deployed estimator rather
+than a finding about one.
 
 ## 8. Limitations
 
@@ -627,18 +754,21 @@ available. Exactly one real reconstructed image in the archive can be scored aga
 period, and section 5.4 reports it. A single case is a demonstration and not a validation:
 it supports no accuracy figure and no statement about a population.
 
-**The three candidate causes are no longer equally weighted, and saying so is part of the
-result.** The cohort outcome remains consistent with the acquisitions writing too little of
-the cycle, with the extraction and joint fit being inadequate on real anatomy, or with
-cardiac motion departing too far from a fixed period. Sections 5.3 and 5.4 move weight away
-from the first. The series with a known rate wrote
-[[results:manifest.json:metrics.reference_cycles_at_recorded_rate]] cycles, half again the
-bound, and still returned a value [[results:manifest.json:metrics.reference_error_percent]]
-per cent away; the true period is not a local minimum of its objective; and across the cohort
-the depth of the minimum is the same in the admitted series as in the rejected ones. The
-evidence points at the traces not carrying the period rather than at the scans not recording
-enough of it. What it does not exclude is a better extractor: we cannot show that no method
-could find the period, only that this one finds no peak to lock onto.
+**A fourth candidate cause was found during this revision, and it is the one we can
+demonstrate.** The cohort outcome remains consistent with the acquisitions writing too little
+of the cycle, with the fit being inadequate on real anatomy, or with cardiac motion departing
+too far from a fixed period, and this study does not separate those three. To them must be
+added the possibility that the extraction is not on the intended structure at all: in
+[[results:manifest.json:metrics.border_cohort_on_the_surface]] of the
+[[results:manifest.json:metrics.cohort_analysed]] analysed series, and in the one series with
+a recorded rate, the tracked border is the patient's outline rather than the mediastinum, and
+nothing in the pipeline indicated it. All of those series were rejected, so the admitted set
+of section 5.3 is not affected, but the general point stands: before this revision the study
+had no check that it was measuring the right thing.
+
+What the evidence does not support is any claim that no method could recover the period. We
+can say that this extraction finds no peak worth locking onto in the traces where it is on
+the mediastinum, and that where it is not on the mediastinum the question was never asked.
 
 **No reference heart rate exists in the cohort itself.** None of the
 [[results:manifest.json:metrics.cardiac_tag_series_checked]] series retrieved for image
@@ -705,13 +835,12 @@ outcome agreed no better than chance at
 recoveries: their cost surfaces are as flat as those of the rejections, their coronal levels
 individually prefer rates spanning
 [[results:manifest.json:metrics.flatness_level_spread_accepted_min]] to
-[[results:manifest.json:metrics.flatness_level_spread_accepted_max]] bpm, and a leave-one-out
-test cannot move an argmin that nothing pins. In the single public session that records a
-heart rate, the same pipeline returned
-[[results:manifest.json:metrics.reference_rate_fitted]] bpm against a recorded
-[[results:manifest.json:metrics.reference_rate_recorded]], on a scan that wrote
-[[results:manifest.json:metrics.reference_cycles_at_recorded_rate]] cycles, and the recorded
-period is not a local minimum of its objective.
+[[results:manifest.json:metrics.flatness_level_spread_accepted_max]] bpm, and and a leave-one-out
+test moves very little on an objective that shallow. The single public session that records a
+heart rate turns out to be one on which this extraction tracks the patient's outline rather
+than the mediastinum, so the archive contains no case on which the method's recovery can be
+checked against a recorded rate — and the criterion came within two levels of certifying the
+period it fitted to that outline.
 
 An estimator trained only where recovery is possible is wrong in every trial outside that
 regime while reporting a standard deviation below

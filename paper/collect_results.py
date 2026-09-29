@@ -242,6 +242,80 @@ def reference_case_metrics() -> dict:
     }
 
 
+def border_metrics() -> dict:
+    """Was the extraction on the mediastinum, or on the patient's outline?
+
+    The pipeline never asked. Produced by analysis/check_border_position.py, which was
+    written after a figure showed the tracked border lying on the skin for the one series
+    whose heart rate is recorded.
+    """
+    data = _load("border_position.json")
+    positions = {r["series_uid"]: r for r in data["series"]
+                 if "median_fraction_of_width" in r}
+    cohort = [s for s in _load("cohort_outcome.json")["series"] if "recovered" in s]
+    reference = ("1.3.6.1.4.1.14519.5.2.1."
+                 "264532322608206684963835753501167761257")
+
+    def fraction(entry):
+        return positions.get(entry["series_uid"], {}).get("median_fraction_of_width")
+
+    admitted = [f for f in map(fraction, (s for s in cohort if s["recovered"])) if f]
+    in_cohort = [(s, fraction(s)) for s in cohort]
+    surface = [s for s, f in in_cohort if f is not None and f < 0.10]
+    doubtful = [s for s, f in in_cohort if f is not None and 0.10 <= f < 0.35]
+    sound = [f for _, f in in_cohort if f is not None and f >= 0.35]
+
+    return {
+        "border_series_checked": data["series_checked"],
+        "border_surface_threshold_percent": round(100 * data["surface_fraction"]),
+        "border_cohort_on_the_surface": len(surface),
+        "border_cohort_doubtful": len(doubtful),
+        "border_cohort_on_the_surface_all_rejected":
+            all(not s["recovered"] for s in surface + doubtful),
+        "border_sound_min_percent": round(100 * min(sound)),
+        "border_sound_max_percent": round(100 * max(sound)),
+        "border_admitted_min_percent": round(100 * min(admitted)),
+        "border_admitted_max_percent": round(100 * max(admitted)),
+        "border_reference_percent": round(100 * positions[reference]
+                                          ["median_fraction_of_width"], 1),
+        "border_reference_levels_on_surface": round(
+            100 * positions[reference]["share_of_levels_at_the_surface"]),
+    }
+
+
+def extent_metrics() -> dict:
+    """Cycles written depend on which length is used, and the paper uses two.
+
+    Section 2 defines N over L, the craniocaudal extent of the structure that can carry the
+    motion: 120 mm at the cardiac border, 300 mm along the descending aorta. The cohort code
+    divides by the z span actually analysed, which for most series is close to the aortic
+    extent but for a chin-to-pelvis acquisition is twice it. Keeping both here is what stops
+    the manuscript quoting one and meaning the other.
+    """
+    border, aorta = 120.0, 300.0
+    reference = _load("reference_case.json")
+    outcome = reference["outcome"]
+    wavelength = outcome["table_speed_mm_s"] * 60.0 / reference["reference_bpm"]
+
+    cohort = [s for s in _load("cohort_outcome.json")["series"] if "recovered" in s]
+    spans = sorted(s["z_span_mm"] for s in cohort)
+    over_span = sum(1 for s in cohort if s["cycles_written"] >= 2.5)
+    over_aorta = sum(1 for s in cohort if aorta / s["period_mm"] >= 2.5)
+
+    return {
+        "extent_border_mm": round(border),
+        "extent_aorta_mm": round(aorta),
+        "reference_wavelength_mm": round(wavelength, 1),
+        "reference_cycles_border": round(border / wavelength, 2),
+        "reference_cycles_aorta": round(aorta / wavelength, 2),
+        "cohort_span_median_mm": round(spans[len(spans) // 2]),
+        "cohort_span_min_mm": round(spans[0]),
+        "cohort_span_max_mm": round(spans[-1]),
+        "cohort_over_nmin_by_span": over_span,
+        "cohort_over_nmin_by_aorta": over_aorta,
+    }
+
+
 def flatness_metrics() -> dict:
     """How much better the chosen period fits than a typical one in the band.
 
@@ -300,7 +374,8 @@ def main() -> int:
     for section in (simulation_metrics, header_metrics, representative_protocol_metrics,
                     cohort_metrics, failure_diagnosis_metrics, learned_metrics,
                     cardiac_tag_metrics, tcia_survey_metrics, reference_case_metrics,
-                    flatness_metrics, reference_diagnosis_metrics):
+                    flatness_metrics, reference_diagnosis_metrics, extent_metrics,
+                    border_metrics):
         metrics.update(section())
 
     manifest = {

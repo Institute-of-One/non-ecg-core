@@ -102,6 +102,27 @@
     "reference_true_period_in_band": true,
     "reference_cost_true_over_fitted": 1.057,
     "reference_true_is_local_minimum": false,
-    "reference_grid_step_mm": 0.35
+    "reference_grid_step_mm": 0.35,
+    "extent_border_mm": 120,
+    "extent_aorta_mm": 300,
+    "reference_wavelength_mm": 167.0,
+    "reference_cycles_border": 0.72,
+    "reference_cycles_aorta": 1.8,
+    "cohort_span_median_mm": 324,
+    "cohort_span_min_mm": 256,
+    "cohort_span_max_mm": 654,
+    "cohort_over_nmin_by_span": 16,
+    "cohort_over_nmin_by_aorta": 16,
+    "border_series_checked": 19,
+    "border_surface_threshold_percent": 10,
+    "border_cohort_on_the_surface": 2,
+    "border_cohort_doubtful": 2,
+    "border_cohort_on_the_surface_all_rejected": true,
+    "border_sound_min_percent": 41,
+    "border_sound_max_percent": 48,
+    "border_admitted_min_percent": 41,
+    "border_admitted_max_percent": 43,
+    "border_reference_percent": 0.9,
+    "border_reference_levels_on_surface": 100
   }
 }

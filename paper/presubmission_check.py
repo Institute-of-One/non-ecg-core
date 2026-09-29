@@ -34,7 +34,7 @@ RESOLVED_REFS = HERE / "frozen" / "references_resolved.json"
 
 MAX_WORDS = 10000
 MAX_FIGURES = 12
-EXPECTED_FIGURES = 6
+EXPECTED_FIGURES = 7
 MAX_ABSTRACT_WORDS = 300
 ABSTRACT_HEADINGS = ("Objective", "Approach", "Main results", "Significance")
 REQUIRED_DECLARATIONS = ("Funding", "Competing interests", "Ethical statement",
