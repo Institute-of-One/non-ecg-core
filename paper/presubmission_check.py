@@ -101,6 +101,29 @@ def main() -> int:
     check("no header or footer text in the built document", not any(furniture),
           str([f for f in furniture if f]))
 
+    # Bold sentences in running text are the author's standing objection, and they kept coming
+    # back because nothing checked for them: the existing check only confirmed that the "**"
+    # markers had been consumed by the builder, not that the emphasis was wanted. A journal uses
+    # bold for the structured-abstract headings, the caption label, the declaration labels and
+    # Harvard volume numbers. Everywhere else it is the author's voice, not the journal's.
+    allowed = re.compile(r"^(Objective|Approach|Main results|Significance)\.$|"
+                         r"^Figure S?\d+\.$|"
+                         r"^(Author and affiliation|Funding|Competing interests|"
+                         r"Ethical statement|Data and code availability|Use of generative AI|"
+                         r"Prior contact)\.$|^\d+$")
+    stray = []
+    in_references = False
+    for paragraph in built.paragraphs:
+        if paragraph.text.strip().startswith("References"):
+            in_references = True
+        if in_references:
+            continue
+        for run in paragraph.runs:
+            text = run.text.strip()
+            if run.bold and text and not allowed.match(text):
+                stray.append(f"{paragraph.text[:40]}… -> {text[:60]}")
+    check("no bold emphasis in running text", not stray, str(stray[:4]))
+
     references = json.loads(RESOLVED_REFS.read_text(encoding="utf-8"))
     listing = resolved.split("## References")[1]
     check("every resolved reference appears in the list",

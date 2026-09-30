@@ -1,7 +1,7 @@
 # Supplementary material
 
-**Cardiac period estimation from non-gated helical CT: sampling criteria and exploratory
-evaluation**
+Cardiac period estimation from non-gated helical CT: sampling criteria and exploratory
+evaluation
 
 Shuji Yamamoto, Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan
 

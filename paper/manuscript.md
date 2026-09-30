@@ -66,8 +66,8 @@ to the cardiac period, and its maxima and minima, falling on opposite parts of t
 serve as cues to phase; a scan already acquired might then be sorted by phase and reformatted
 accordingly, and further along that road used for ventricular volumetry. Such a route would
 need no electrocardiographic hardware, no additional acquisition and no repeated overlapping
-rotations over the heart. **This paper examines one point on that route — whether the period
-can be recovered — and examines nothing beyond it.** Estimating phase without first estimating
+rotations over the heart. This paper examines one point on that route — whether the period
+can be recovered — and examines nothing beyond it. Estimating phase without first estimating
 a period is a different route and is not studied here either. Phase identification,
 phase-resolved reconstruction, volumetry and ejection fraction are not studied, and nothing
 below should be read as evidence about them.
@@ -137,7 +137,7 @@ For the heart this is the wavy left mediastinal silhouette familiar from a coron
 Below the heart the same silhouette continues as the descending aorta against the left lung,
 extending the length over which the wave is available.
 
-**Two assumptions are carried by *λ* = *ST* and neither is tested in this study.** The first
+Two assumptions are carried by *λ* = *ST* and neither is tested in this study. The first
 is that the table speed is constant across the analysed span and that the header reports it
 correctly. The second concerns reconstruction. Each reconstructed slice is formed from
 projections spanning a finite gantry interval and, on a multi-row detector, from interpolation
@@ -154,16 +154,16 @@ reconstruction that produced it.
 Whether *λ* can be recovered is a sampling question with two sides that pull against each
 other.
 
-The scan must be **slow enough** that more than one cycle is written across the structure. If
+The scan must be slow enough that more than one cycle is written across the structure. If
 the available craniocaudal extent is *L*, the number of cycles written is *N* = *L*/*λ* =
 *L*/(*ST*), and measuring a period requires *N* to exceed some *N*min. This places an upper
 limit on *S*.
 
-The scan must be **fast enough** that each cycle is spread across enough reconstructed
+The scan must be fast enough that each cycle is spread across enough reconstructed
 samples to be resolved. With reconstruction interval *dz*, the samples per cycle are *n* =
 *λ*/*dz* = *ST*/*dz*, and this must exceed some *n*min. This places a lower limit on *S*.
 
-**The value of *n*min is a judgement and is the one such number in this analysis.** Two
+The value of *n*min is a judgement and is the one such number in this analysis. Two
 samples per cycle is the formal floor and is not usable, because a two-sample sinusoid is a
 straight line to any estimator with noise in it. We take eight throughout, and the sweep of
 section 3 covers [[results:manifest.json:metrics.sweep_samples_min]], 16 and
@@ -193,8 +193,8 @@ Multiplying the two quantities removes the heart rate and the table speed at onc
 
 > *N* × *n* = (*L*/*ST*) × (*ST*/*dz*) = *L* / *dz*.
 
-**The product of cycles observed and samples per cycle is fixed by the anatomy and the
-reconstruction interval alone.** It does not depend on pitch, on rotation time, or on how
+The product of cycles observed and samples per cycle is fixed by the anatomy and the
+reconstruction interval alone. It does not depend on pitch, on rotation time, or on how
 fast the heart is beating. A protocol cannot acquire more cardiac timing by running faster or
 slower; it can only divide a fixed budget between seeing more cycles and resolving each one
 better. Making a scan slower buys cycles at the cost of resolution within a cycle, and making
@@ -256,8 +256,8 @@ makes the value a plateau rather than a point.
 Two estimators were run over the same traces: one matched to the generating model, and one
 using only the fundamental of the trace. The matched estimator reaches
 [[results:manifest.json:metrics.n_min_matched]] cycles and the fundamental estimator
-[[results:manifest.json:metrics.n_min_fundamental]] cycles. **The remainder of this paper
-uses [[results:manifest.json:metrics.n_min_fundamental]]**, because the matched value assumes
+[[results:manifest.json:metrics.n_min_fundamental]] cycles. The remainder of this paper
+uses [[results:manifest.json:metrics.n_min_fundamental]], because the matched value assumes
 knowledge of the waveform that no real trace supplies, and a bound should be stated at the
 value a usable estimator can attain.
 
@@ -330,7 +330,7 @@ longer extent available along the descending aorta, the median threshold falls t
 [[results:manifest.json:metrics.records_below_100bpm_aorta_percent]] per cent of series
 qualify.
 
-**Under the assumptions used here, most of the installed base clears the threshold** (figure 3).
+Under the assumptions used here, most of the installed base clears the threshold (figure 3).
 Because the patients’ own rates are not recorded, that is a statement about what those
 protocols could record, not a count of acquisitions that did satisfy the condition. It is
 enough to make section 5 worth performing.
@@ -387,7 +387,7 @@ amplitude it had fitted. Those thresholds were written down before any series be
 three pilots was fitted.
 
 One detail of that first condition matters and is easy to miss. The implementation counts
-cycles over the **z span actually analysed**, not over *L*, the extent of the structure that
+cycles over the z span actually analysed, not over *L*, the extent of the structure that
 section 2 says can carry the motion. For this cohort the two are close: the analysed spans
 run from [[results:manifest.json:metrics.cohort_span_min_mm]] to
 [[results:manifest.json:metrics.cohort_span_max_mm]] mm with a median of
@@ -434,7 +434,7 @@ border follows the mediastinum between the two lungs, which is the structure the
 defined on. Its position, [[results:manifest.json:metrics.border_admitted_max_percent]] per
 cent of the image width here, is what section 5.4 measures for every series.
 
-**What that criterion measures is self-consistency.** Leave-one-out movement and residual
+What that criterion measures is self-consistency. Leave-one-out movement and residual
 size both ask whether the fit holds still; neither compares the fitted rate with the
 patient's. No series here records one (section 5.4), so correctness was not available to be
 tested, and the criterion should not be read as if it had been. The count that follows is
@@ -448,8 +448,8 @@ recoverable at a ceiling of [[results:manifest.json:metrics.prediction_ceiling_b
 [[results:manifest.json:metrics.cohort_predicted_and_recovered]] of those
 [[results:manifest.json:metrics.cohort_predicted_recoverable]] were admitted.
 
-**The pre-specified summary was the agreement between prediction and outcome, not the
-admission rate.** The two agreed on [[results:manifest.json:metrics.cohort_agreement]] of
+The pre-specified summary was the agreement between prediction and outcome, not the
+admission rate. The two agreed on [[results:manifest.json:metrics.cohort_agreement]] of
 [[results:manifest.json:metrics.cohort_analysed]] series,
 [[results:manifest.json:metrics.cohort_agreement_percent]] per cent.
 
@@ -494,7 +494,7 @@ populations but reach
 percentile of the real ones, against
 [[results:manifest.json:metrics.large_steps_simulated_p90]] in simulation.
 
-**These are differences, not causes.** We did not put any of them back into the simulator to
+These are differences, not causes. We did not put any of them back into the simulator to
 see whether the failure reappears, and this section should not be read as having excluded
 them. It establishes that the signal the estimator was designed for is not the signal it is
 given, and section 5.3 reports a property of the objective that is measured rather than
@@ -514,8 +514,8 @@ period fits no better than an arbitrary one.
 Across the cohort the depth is
 [[results:manifest.json:metrics.flatness_depth_rejected_median]] at the median of the
 rejected series, ranging from [[results:manifest.json:metrics.flatness_depth_rejected_min]]
-to [[results:manifest.json:metrics.flatness_depth_rejected_max]]. **The
-[[results:manifest.json:metrics.cohort_recovered]] admitted series lie inside that range**,
+to [[results:manifest.json:metrics.flatness_depth_rejected_max]]. The
+[[results:manifest.json:metrics.cohort_recovered]] admitted series lie inside that range,
 at [[results:manifest.json:metrics.flatness_depth_accepted_min]] to
 [[results:manifest.json:metrics.flatness_depth_accepted_max]]: the period chosen in an
 accepted series reduces the weighted residual by about a tenth relative to a typical period
@@ -530,7 +530,7 @@ within that series, is [[results:manifest.json:metrics.flatness_level_spread_acc
 imposes one period on levels that individually disagree by half the physiological range, and
 returns their weighted compromise.
 
-**What follows from this is about the criterion, and we are careful about how far it goes.**
+What follows from this is about the criterion, and we are careful about how far it goes.
 Two things are measured: the minima the criterion accepted are no deeper than those it
 rejected, and the levels it combined did not agree. Neither measurement uses a true rate, so
 neither can show that the three admitted rates are *wrong*. What they do show is that the
@@ -585,7 +585,7 @@ reason. In that session a gated acquisition records
 helical series covering [[results:manifest.json:metrics.reference_z_span_mm]] mm at
 [[results:manifest.json:metrics.reference_table_speed]] mm/s begins ten seconds later.
 
-**The series could not be used.** The extraction did not return the anatomical border the
+The series could not be used. The extraction did not return the anatomical border the
 method is defined on. Its tracked position lies at
 [[results:manifest.json:metrics.border_reference_percent]] per cent of the image width, where
 a mediastinum in this cohort lies between
@@ -603,14 +603,14 @@ Having found it in one series, we measured it in all of them. Of the
 [[results:manifest.json:metrics.border_cohort_on_the_surface]] sit within
 [[results:manifest.json:metrics.border_surface_threshold_percent]] per cent of the image edge
 and [[results:manifest.json:metrics.border_cohort_doubtful]] more sit closer to the edge than
-to the middle. **All of the affected series were rejected by the frozen criterion**, and the
+to the middle. All of the affected series were rejected by the frozen criterion, and the
 [[results:manifest.json:metrics.cohort_recovered]] admitted series lie at [[results:manifest.json:metrics.border_admitted_min_percent]] to
 [[results:manifest.json:metrics.border_admitted_max_percent]] per cent. The measurement is made per coronal level and
 not per series, because a series median near the middle could hide a single level out at the
 edge, which is what happened on the reference case. All [[results:manifest.json:metrics.border_admitted_levels]] usable levels of the three
 admitted series lie between [[results:manifest.json:metrics.border_admitted_level_min_percent]] and [[results:manifest.json:metrics.border_admitted_level_max_percent]] per cent of the image width, and figure 4
-draws the border on the image for the one of the three whose border sits deepest. **What that
-establishes is the absence of the specific failure it was written to detect**, a border out at the
+draws the border on the image for the one of the three whose border sits deepest. What that
+establishes is the absence of the specific failure it was written to detect, a border out at the
 surface. It is not a test of anatomical correctness: a position near the middle of the image is
 where the mediastinum is, and also where several other structures are. Section 5.5 examines
 all three admitted series as images and reports what this check misses. The check that measures this,
@@ -623,7 +623,7 @@ To find out what the three admitted series were measuring, every usable coronal 
 images are in the supplementary material, and `analysis/audit_admitted_levels.py` produces them
 and the numbers below. Neither alters the frozen outcome of section 5.1.
 
-**No admitted level is on the skin.** None of the [[results:manifest.json:metrics.audit_levels]] lies within
+No admitted level is on the skin. None of the [[results:manifest.json:metrics.audit_levels]] lies within
 [[results:manifest.json:metrics.border_surface_threshold_percent]] per cent of the image edge, so the failure of section 5.4 does not recur
 here. Looking at the reformats shows a
 different failure that the position check cannot see. Beyond the lung base, and past the apex,
@@ -631,8 +631,8 @@ the tracker still returns a border although there is no lung there: both sides o
 tissue at about 0 HU, and no lung–mediastinum interface exists. Classifying every returned point
 by the attenuation on each side — aerated lung one side, soft tissue the other —
 [[results:manifest.json:metrics.audit_points_at_a_lung_interface]] of [[results:manifest.json:metrics.audit_points]] points, or
-[[results:manifest.json:metrics.audit_share_at_a_lung_interface_percent]] per cent, sit at such an interface. **No level is
-wholly clean**, and on the worst [[results:manifest.json:metrics.audit_worst_level_percent]] per cent are.
+[[results:manifest.json:metrics.audit_share_at_a_lung_interface_percent]] per cent, sit at such an interface. No level is
+wholly clean, and on the worst [[results:manifest.json:metrics.audit_worst_level_percent]] per cent are.
 
 The consequence is not evenly spread, and for one series it is serious. The points that do sit at
 a lung interface span a shorter stretch of *z* than the levels as a whole, and the criterion of
@@ -667,8 +667,8 @@ overconfident (Guo et al 2017), and more so away from the training distribution
 (Ovadia et al 2019); what is measured here is one such shift, produced by moving the test
 points outside the range of the target rather than by changing the dataset. Each trace has the same quartic
 baseline removed as elsewhere in this paper, is divided by its own standard deviation and is
-resampled to a fixed length, and the target is the period **as a fraction of the trace
-length** — the reciprocal of the cycles written — so the standard deviations quoted below are
+resampled to a fixed length, and the target is the period as a fraction of the trace
+length — the reciprocal of the cycles written — so the standard deviations quoted below are
 in those units. The model is a small multilayer perceptron with separate heads for the mean and
 the log variance, trained on [[results:manifest.json:metrics.learned_train_size]] traces by minimising the Gaussian
 negative log-likelihood; the architecture, the optimiser and the training schedule are set out
@@ -699,7 +699,7 @@ trial — [[results:manifest.json:metrics.above_accuracy_below_max_percent]] per
 while reporting a standard deviation no larger than [[results:manifest.json:metrics.above_reported_sd_below_max]], so its
 calibration ratio there runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
 [[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between twelve and forty times the
-uncertainty it declares. **The declared uncertainty tightens as the accuracy stays at zero**
+uncertainty it declares. The declared uncertainty tightens as the accuracy stays at zero
 (figure 6). As the number of written cycles rises towards the bound the reported standard
 deviation falls and the accuracy does not move, so at two cycles the model is at its most
 certain and still never right, and nothing in what it returns marks those points as different
@@ -767,9 +767,9 @@ reported uncertainty to [[results:manifest.json:metrics.across_reported_sd_below
 reports it where an answer is not available, while reaching
 [[results:manifest.json:metrics.across_accuracy_below_max_percent]] per cent accuracy at two
 cycles — the calibration is what changes, not a rule about when to answer. The criterion's failure is a design failure, and what section 5.3
-measures against it is diagnostic rather than decisive: **a stability statistic on its own
+measures against it is diagnostic rather than decisive: a stability statistic on its own
 does not say whether the objective it was computed on has a minimum worth being stable
-about.** Reporting the depth of the minimum, relative to the median over the searched band,
+about. Reporting the depth of the minimum, relative to the median over the searched band,
 alongside the disagreement between levels would have made the ambiguity in the three
 admissions visible where the stability statistic concealed it. It would not have decided
 them. No acceptance threshold on depth is proposed here and none is validated: doing so
@@ -805,7 +805,7 @@ that a period was found, and on inspection one of the three admissions does not 
 cycle-count condition over the stretch where its extraction is on the intended structure. The
 bound is a screen, not a promise.
 
-**Where this would sit in a route to clinical use.** A component of the undulation attributable
+Where this would sit in a route to clinical use. A component of the undulation attributable
 to cardiac motion would, if it could be separated, carry phase as well as period, its maxima and
 minima falling on opposite parts of the cycle; that is the hypothesis which makes reading timing
 out of an existing scan of interest, and it is not tested here. What the present study
@@ -833,8 +833,8 @@ estimator rather than a finding about any particular one.
 
 ## 8. Limitations
 
-**The bound was measured against prescribed periods, and applied where no reference period
-is recorded.** *N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles was obtained by
+The bound was measured against prescribed periods, and applied where no reference period
+is recorded. *N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles was obtained by
 simulation over [[results:manifest.json:metrics.sensitivity_cells]] parameter combinations,
 in which the period is prescribed and recovery can be scored against it. It was then
 evaluated against [[results:manifest.json:metrics.header_series]] real series through their
@@ -844,7 +844,7 @@ recorded. Exactly one real reconstructed image in the archive can be scored agai
 period, and on that series the extraction did not return the intended border, so it could not
 be used. No real reconstructed image in this study is scored against a known period.
 
-**A fourth candidate cause was found during this revision.** The cohort outcome remains
+A fourth candidate cause was found during this revision. The cohort outcome remains
 consistent with the acquisitions writing too little of the cycle, with the fit being inadequate
 on real anatomy, or with cardiac motion departing too far from a fixed period, and this study
 does not separate those three. To them must be added the extraction not being on the intended
@@ -861,7 +861,7 @@ levels directly, correlating whole reformats, or estimating phase without first 
 period — nor on any subsequent step such as phase-resolved reconstruction or volumetry, none
 of which is attempted here.
 
-**No reference heart rate exists in the cohort itself.** None of the
+No reference heart rate exists in the cohort itself. None of the
 [[results:manifest.json:metrics.cardiac_tag_series_checked]] series retrieved for image
 analysis records the rate by any of the
 [[results:manifest.json:metrics.cardiac_routes_checked]] routes we checked: the
@@ -877,7 +877,7 @@ the tolerance rather than ignored. The archive search that found it keys on stud
 descriptions naming a cardiac examination, so
 [[results:manifest.json:metrics.tcia_sessions_with_rate_and_helical]] is a lower bound.
 
-**What would settle it, and what would not.** Scans of a moving phantom driven at known
+What would settle it, and what would not. Scans of a moving phantom driven at known
 periods, repeated across a range of table speeds and pitches, would score recovery against
 truth in real reconstructed images and would separate the acquisition and extraction causes
 from each other. We did not have access to a scanner and a motion phantom, and this work does
@@ -887,7 +887,7 @@ than on traces and allowing acquisition conditions to be swept; it would not set
 cause, because the beat-to-beat variability of such a phantom is an assumption supplied by
 the modeller rather than a property of a patient.
 
-**Three analyses here are post-hoc, and their status differs from the rest.** The depth
+Three analyses here are post-hoc, and their status differs from the rest. The depth
 measurement of section 5.3, the reference case of section 5.4 and the anatomical audit of
 section 5.5 were all added after the cohort had been frozen, fitted and written up, in
 response to editorial feedback on a presubmission enquiry. The cohort outcome reported in
