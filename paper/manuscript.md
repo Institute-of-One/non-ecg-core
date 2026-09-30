@@ -41,8 +41,8 @@ the bound was never accurate outside it while reporting a standard deviation bel
 [[results:manifest.json:metrics.above_reported_sd_below_max]].
 
 **Significance.** The bound is computable from the header and, under stated assumptions,
-excludes acquisitions that could not have carried the signal; satisfying it does not
-guarantee recovery. A stability statistic certifies nothing unless reported with the depth of
+identifies acquisitions that do not meet the sampling criterion defined here; meeting it
+does not guarantee recovery. A stability statistic certifies nothing unless reported with the depth of
 the minimum and a check on what was fitted.
 
 ---
@@ -88,9 +88,9 @@ CT, and none that states the condition under which it could be recovered.
 
 This paper derives that condition, measures the one constant it depends on, evaluates it
 against the installed base from headers alone, tests it on images under a criterion frozen in
-advance, and examine what a learned estimator reports outside the range it was trained on
-learn from. Its central results are negative, and the most useful of them is about how
-confidently an estimator and a criterion can both be wrong.
+advance, and examines what a learned estimator reports outside its training range. Its
+central results are negative, and the most useful of them is about how much confidence a
+criterion and an estimator can express without either being warranted.
 
 ## 2. Theory
 
@@ -310,10 +310,12 @@ The exceptions are instructive. A wide-detector protocol at
 [[results:manifest.json:metrics.threshold_wide_detector]] bpm, and a dual-source high-pitch
 protocol at [[results:manifest.json:metrics.threshold_dual_source_high_pitch_speed]] mm/s a
 threshold of [[results:manifest.json:metrics.threshold_dual_source_high_pitch]] bpm. Both are
-far above any physiological rate: these acquisitions cross the heart so quickly that they
-write a fraction of one cycle, and no estimator applied to them can be measuring a period.
+far above any physiological rate: these acquisitions cross the heart so quickly that less than
+one full cycle is written, so the record contains no repetition for anything to measure. That
+is a statement about the data rather than about any particular estimator, and it is the one
+place in this paper where such a statement is available.
 
-## 5. The bound is necessary and not sufficient
+## 5. Meeting the threshold does not produce a period
 
 ### 5.1 A cohort under a frozen criterion
 
@@ -507,11 +509,10 @@ objectives sharp enough for that description to be apt.
 
 **Figure 5.** Left: depth of the minimum, defined as the median cost across the physiological
 band divided by the cost at the period returned, for the series the frozen criterion rejected
-and for those it admitted. The series of section 5.4 is not shown, because it could not be
-used there and a point beside these would read as a comparable measurement. A value
+and for those it admitted. A value
 of 1.0, the dashed line, would mean the chosen period fits no better than an arbitrary one.
 The admitted series lie inside the range of the rejected ones. Right: for each admitted
-series and for the reference case, the rate each of the six coronal levels prefers when
+series, the rate each of the six coronal levels prefers when
 fitted alone (grey), against the rate the joint fit returns (cross). The joint fit reports a
 compromise among levels that do not agree.
 
@@ -567,9 +568,9 @@ of recovery. The check that measures this,
 
 ## 6. What an estimator does past the bound
 
-Sections 2 to 5 concern what an acquisition contains. This section concerns what a method
-does outside the regime it was trained in, which is the situation a deployed estimator meets most of the
-time and the one it is least often tested in.
+Sections 2 to 5 concern what an acquisition contains. This section concerns something
+separate: what an estimator reports about its own reliability when it is asked for an
+answer outside the range it was trained on. It is a simulation experiment throughout.
 
 ### 6.1 A model that reports its own uncertainty
 
@@ -579,8 +580,9 @@ the experiment informative: a point estimate that is wrong outside the bound is 
 whereas an uncertainty that stays small while the estimate is wrong is a property one can
 measure and act on. That such reports are systematically too confident is established for
 modern networks in general (Guo et al 2017), and the gap widens when the input is drawn from
-outside the training distribution (Ovadia et al 2019); what is measured here is a case in
-which the shift is not a change of dataset but a change of what the data physically contain. Accuracy is counted at the same
+outside the training distribution (Ovadia et al 2019); what is measured here is one such
+shift, produced by moving the test points outside the range of the target the model was
+trained on. Accuracy is counted at the same
 [[results:manifest.json:metrics.tolerance_percent]] per cent tolerance used in section 3, and
 calibration is the ratio of the error actually made to the standard deviation reported, so
 that 1 is honest and larger is overconfident.
@@ -603,12 +605,12 @@ cycle counts, within the same
 [[results:manifest.json:metrics.learned_tolerance_percent]] per cent tolerance as section 3.
 The learning rate and every other setting are in `analysis/learned_estimator.py`.
 
-Two training conditions were compared: one drawing only on traces between
+Two training conditions were compared, differing only in the range of traces they saw: one drawing on traces between
 [[results:manifest.json:metrics.learned_above_low]] and
 [[results:manifest.json:metrics.learned_above_high]] cycles, at or above the bound, and one
 drawing on [[results:manifest.json:metrics.learned_across_low]] to
-[[results:manifest.json:metrics.learned_across_high]] cycles, including traces where recovery
-is impossible. Everything else about them is identical.
+[[results:manifest.json:metrics.learned_across_high]] cycles. Everything else about them
+is identical.
 
 **Because the target is a reciprocal, testing below the bound is testing outside the training
 range, and that is what this experiment measures.** The model trained at or above the bound
@@ -639,9 +641,11 @@ runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
 [[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between
 twelve and forty times the uncertainty it declares.
 
-**The confidence is worst where it is most dangerous** (figure 6). As the number of written
-cycles rises towards the bound the model's reported uncertainty tightens and its accuracy
-does not move off zero, so at two cycles it is at its most certain and still never right.
+**The declared uncertainty tightens as the accuracy stays at zero** (figure 6). As the number
+of written cycles rises towards the bound, the reported standard deviation falls and the
+accuracy does not move, so at two cycles the model is at its most certain and still never
+right. Every one of those test points asks for a target larger than any it was trained on,
+and nothing in what the model returns marks them as different from the points it can serve.
 
 ![Figure 6](figures/fig6_estimator.png)
 
@@ -652,10 +656,8 @@ across it. Bottom, on a logarithmic scale: the standard deviation each model dec
 (circles) and the error it actually makes (squares). Below *N*min, marked by the dashed
 vertical, the model trained inside the bound declares the smallest uncertainty of either
 while its error is largest — the gap between its circles and its squares is the
-overconfidence. The model trained across the boundary keeps the two together. Nothing in its
-output distinguishes that state from the regime in which it works. A model of this kind,
-applied to a chest CT that writes a fraction of a cycle, returns a number with a small error
-bar and no indication that the question was unanswerable.
+overconfidence. Those test points lie outside the range of the target that model was trained
+on. The model trained across the boundary keeps the two together.
 
 ### 6.3 Trained across the boundary, it widens its uncertainty — and pays for it
 
@@ -891,8 +893,10 @@ extrapolation rather than about the information a scan contains. Whether any dep
 
 Two things follow for anyone measuring cardiac timing in a non-gated chest CT. The bound is
 worth computing, because it is free, it comes from the header, and under stated assumptions
-about the structure length and the rate it identifies acquisitions that could not have carried
-the signal. And a fit should be reported with the depth of the
+about the structure length and the rate it identifies acquisitions that do not meet the
+sampling criterion defined here. Failing that criterion is not the same as containing no
+signal: it means the period could not be estimated to the stated tolerance by the
+estimators examined. And a fit should be reported with the depth of the
 minimum it sits in and with a check that the structure it was fitted to is the intended one —
 this study had neither, and its own frozen criterion certified nothing by having both absent.
 

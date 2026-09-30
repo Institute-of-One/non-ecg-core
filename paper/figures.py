@@ -222,7 +222,7 @@ def figure_protocols() -> Path:
     axis.set_xscale("log")
     axis.set_xlabel("lowest heart rate the protocol could record (bpm)")
     axis.set_ylabel(f"series (of {len(headers)})")
-    axis.set_title("On the installed base the acquisition condition is mostly satisfied",
+    axis.set_title("Lowest recordable rate, at the two assumed structure extents",
                    fontsize=9, loc="left")
     axis.legend(frameon=False, fontsize=7.5, loc="upper left")
     return save(figure, "fig3_protocols.png")
