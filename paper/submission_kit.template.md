@@ -4,6 +4,10 @@
 
 # PMB submission: what each field takes
 
+> **SUBMITTED 2026-09-30 as PMB-122711.** This kit is the record of what was entered.
+> Re-running the generator keeps its numbers true to the current build; the values that
+> actually went to the portal are those of commit ac16b68.
+
 Physics in Medicine and Biology, ScholarOne at `mc04.manuscriptcentral.com/pmb-ipem`
 (**not** `pmb-iop`). Article type: **Paper**.
 

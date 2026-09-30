@@ -4,6 +4,10 @@
 
 # PMB submission: what each field takes
 
+> **SUBMITTED 2026-09-30 as PMB-122711.** This kit is the record of what was entered.
+> Re-running the generator keeps its numbers true to the current build; the values that
+> actually went to the portal are those of commit ac16b68.
+
 Physics in Medicine and Biology, ScholarOne at `mc04.manuscriptcentral.com/pmb-ipem`
 (**not** `pmb-iop`). Article type: **Paper**.
 
@@ -37,7 +41,7 @@ IOP submission in this programme and the error blocked the whole batch.
 | IOP Publishing Policies | tick both |
 | Ethical statement | see below |
 | Anonymity acknowledgement | tick. The manuscript carries author-identifying information deliberately, so it is handled single-anonymous. The code and data are public under the author's name, so anonymising the text would not anonymise the work; it would only weaken the reproducibility claim. |
-| Data availability | Option: publicly available in a repository. URL `https://github.com/Institute-of-One/non-ecg-core`, release **`v0.1.1`** (commit 35b9559), archived at Zenodo with version DOI **10.5281/zenodo.23051189**. The concept DOI 10.5281/zenodo.23034327 resolves to the newest version and is the one in CITATION.cff; the manuscript cites the version DOI. |
+| Data availability | Option: publicly available in a repository. URL `https://github.com/Institute-of-One/non-ecg-core`, release **`v0.1.1`** (commit ac16b68), archived at Zenodo with version DOI **10.5281/zenodo.23051189**. The concept DOI 10.5281/zenodo.23034327 resolves to the newest version and is the one in CITATION.cff; the manuscript cites the version DOI. |
 | Accepted Manuscripts (24 hours) | Yes |
 
 ## Novelty and significance
@@ -63,7 +67,7 @@ archive.
 
 - [ ] Open `PMB_manuscript.pdf` and read it — not scan it. Figures, captions, equations,
       the author block, the reference list.
-- [x] **`v0.1.1` is cut, pushed and archived** (commit 35b9559, Zenodo 10.5281/zenodo.23051189).
+- [x] **`v0.1.1` is cut, pushed and archived** (commit ac16b68, Zenodo 10.5281/zenodo.23051189).
       `presubmission_check.py` fails if the release the manuscript names stops reproducing its
       numbers, so this stays true as long as that check is green.
 - [ ] `python paper/presubmission_check.py` is green against **this** build, not a previous one.
