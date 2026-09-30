@@ -115,6 +115,9 @@ def build_docx(markdown: str, destination=None, expected_figures: int = 6) -> No
                 raise SystemExit(f"figure missing: {path}")
             document.add_picture(str(path), width=FIGURE_WIDTH)
             document.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+            # Figure 5's caption broke across two pages, so the reader met the plot on one
+            # page and the legend on the next.
+            document.paragraphs[-1].paragraph_format.keep_with_next = True
             figures += 1
             continue
 
@@ -169,6 +172,7 @@ def build_docx(markdown: str, destination=None, expected_figures: int = 6) -> No
             fmt.space_before = Pt(4)
             fmt.space_after = Pt(14)
             fmt.line_spacing_rule = WD_LINE_SPACING.SINGLE
+            fmt.keep_together = True             # and not split across a page break itself
             add_runs(paragraph, text)
             for run in paragraph.runs:
                 run.font.size = Pt(9.5)

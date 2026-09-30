@@ -8,9 +8,17 @@ later, because a dependency removed a function that was correct when it was writ
 nothing had an upper bound.
 
 What it checks: that `paper/collect_results.py` rebuilds every manifest metric to the same
-value, and that `paper/figures.py` draws all six figures, from a copy that contains no
-figures, no virtual environment and no cached images, with only `requirements-core.txt`
-installed.
+value, and that `paper/figures.py` draws every figure that does not need an image, from a copy
+that contains no figures, no virtual environment and no cached images, with only
+`requirements-core.txt` installed.
+
+Five figures cannot be drawn that way and are not expected to be. Figure 4 of the main text and
+figures S1 and S3 to S5 of the supplementary material show a coronal reformat with the tracked
+border on it, so they need the archive series themselves; S3 to S5 come from
+analysis/audit_admitted_levels.py rather than from paper/figures.py. This repository does not
+redistribute imaging data; the code fetches it from The Cancer Imaging Archive by series
+identifier, which additionally requires `requirements.txt` and a network. The data-availability
+statement in the manuscript says exactly this, and this script exists to keep the two in step.
 
     python verify_release.py
 """
@@ -29,6 +37,8 @@ REPO = Path(__file__).resolve().parent
 COPY = ("analysis", "paper", "results", "requirements.txt", "requirements-core.txt",
         "README.md", "LICENSE", "CITATION.cff", ".zenodo.json")
 SKIP = {"__pycache__", "figures", "data_cache", "probe_cache", ".git", ".venv"}
+#: Eight figures exist; two of them draw a coronal reformat and need the archive series, which
+#: this repository does not redistribute. See the module docstring.
 EXPECTED_FIGURES = 6
 
 
@@ -73,8 +83,8 @@ def main() -> int:
             print("FAIL: the manifest cannot be rebuilt from a clean copy")
             return 1
 
-        print("drawing the figures")
-        if run([str(python), "paper/figures.py"], cwd=work).returncode:
+        print("drawing the figures that do not need an image")
+        if run([str(python), "paper/figures.py", "--without-images"], cwd=work).returncode:
             print("FAIL: the figures cannot be drawn from a clean copy")
             return 1
 
@@ -92,7 +102,11 @@ def main() -> int:
         print(f"figures drawn       : {len(figures)}")
         ok = not differing and len(figures) == EXPECTED_FIGURES
         print(f"\n{'PASS' if ok else 'FAIL'}: a clean copy with only requirements-core.txt "
-              f"reproduces the manuscript's numbers and figures")
+              f"reproduces every number in the manuscript and every figure that does not "
+              f"show an image")
+        print("figure 4 and figures S1, S3-S5 additionally need the archive series, fetched "
+              "by the code from TCIA; they are not reproducible offline and the manuscript "
+              "says so")
         return 0 if ok else 1
     finally:
         shutil.rmtree(work, ignore_errors=True)

@@ -27,22 +27,19 @@ from measure_n_min import CENTRAL, simulate  # noqa: E402
 
 RESULTS = HERE.parent / "results"
 
-TRACE_LENGTH = 128  #: every trace is resampled to this, so the model sees one input shape
-HIDDEN = 256
-EPOCHS = 40
-BATCH = 256
-TRAIN_SIZE = 60_000
-TEST_PER_POINT = 2_000
-ROOT_SEED = 20260906
-
-#: The two conditions the protocol names. (b) is the fair test.
-CONDITIONS = {
-    "trained_above_the_bound": (2.5, 8.0),
-    "trained_across_the_boundary": (0.5, 8.0),
-}
-
-TEST_CYCLES = (0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 6.0, 8.0)
-TOLERANCE = 0.05  #: same as step 3
+# One definition of each, in a module the manifest builder can import without torch.
+from learned_design import (  # noqa: E402
+    BATCH,
+    CONDITIONS,
+    EPOCHS,
+    HIDDEN,
+    ROOT_SEED,
+    TEST_CYCLES,
+    TEST_PER_POINT,
+    TOLERANCE,
+    TRACE_LENGTH,
+    TRAIN_SIZE,
+)
 
 
 def _detrend(z: np.ndarray, values: np.ndarray) -> np.ndarray:

@@ -1,6 +1,6 @@
 # non-ecg-core (IORN-011)
 
-How much of a heartbeat a non-gated helical CT records.
+Cardiac period estimation from non-gated helical CT: sampling criteria and exploratory evaluation.
 
 A helical CT moves the table at a constant speed, so the z axis of the reconstructed
 volume is also a time axis with a known scale. A periodically moving structure writes its

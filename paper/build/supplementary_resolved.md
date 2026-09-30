@@ -1,7 +1,7 @@
 # Supplementary material
 
-**How much of a heartbeat a non-gated CT records: a header-computable sampling bound, and
-what a learned estimator does beyond it**
+**Cardiac period estimation from non-gated helical CT: sampling criteria and exploratory
+evaluation**
 
 Shuji Yamamoto, Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan
 
@@ -54,7 +54,7 @@ where a lung breaks that run.
 ![Figure S1](figures/figS1_failed_extraction.png)
 
 **Figure S1.** The coronal reformat of the series under test, at its own aspect, with the
-tracked border drawn on it. Compare figure 5 of the main text, where the same code follows
+tracked border drawn on it. Compare figure 4 of the main text, where the same code follows
 the mediastinum between the two lungs.
 
 ![Figure S2](figures/figS2_reference_objective.png)
@@ -79,3 +79,47 @@ than to the middle. All were rejected by the frozen criterion, and the
 3 admitted series lie at
 41 to
 43 per cent.
+
+## S4 The learned estimator of section 6, in full
+
+Each trace has the same quartic baseline removed as every other estimator in this paper, is
+divided by its own standard deviation, and is resampled to 128 points,
+so the model sees one input shape and no absolute scale. The target is the period as a fraction
+of the trace length, that is the reciprocal of the cycles written; it is dimensionless, and the
+standard deviations reported in section 6 are in those units.
+
+The model is a multilayer perceptron with three hidden layers of
+256 units and rectified linear activations, ending in two linear heads
+for the mean and the log variance. It is trained by minimising the Gaussian negative
+log-likelihood with Adam for 40 epochs at a batch size of
+256 on 60000 simulated traces. Accuracy is scored on
+2000 independent traces at each of nine cycle counts, within the
+5 per cent tolerance used in section 3. The learning rate and
+every remaining setting are in `analysis/learned_estimator.py`.
+
+Two models were trained under this identical recipe, differing only in the range of cycle
+counts their traces spanned: 2.5 to 8.0 cycles for
+the one trained at or above the bound, and 0.5 to
+8.0 for the one trained across it.
+
+## S5 The admitted series, level by level
+
+Every usable coronal level of each series the frozen criterion admitted, drawn as a reformat at
+its own aspect with the tracked border on it. These are the images behind section 5.5. Each panel
+gives the level's position across the image, the excursion of its border, the share of slices for
+which the tracker returned nothing, and, where it occurs, the longest run of identical values.
+
+![Figure S3](figures/audit_admitted_1.png)
+
+**Figure S3.** Admitted series 1, five usable levels.
+
+![Figure S4](figures/audit_admitted_2.png)
+
+**Figure S4.** Admitted series 2, five usable levels.
+
+![Figure S5](figures/audit_admitted_3.png)
+
+**Figure S5.** Admitted series 3, six usable levels. The tracked border continues past both ends
+of the lung, where the image is soft tissue on both sides of it; that is the series whose cycles
+fall from 2.77 to 1.68 when counted over
+the stretch where the border is at a lung interface.

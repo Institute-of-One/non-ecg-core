@@ -431,10 +431,19 @@ def figure_estimator() -> Path:
     return save(figure, "fig6_estimator.png")
 
 
+#: These two draw a coronal reformat, so they need the archive series in data_cache. The rest
+#: are drawn from the frozen result files alone. verify_release.py asks for the rest.
+NEEDS_IMAGES = ("fig4_extraction", "figS1_failed_extraction")
+
+
 def main() -> int:
-    builders = (figure_window, figure_n_min, figure_protocols, figure_extraction,
+    builders = [figure_window, figure_n_min, figure_protocols, figure_extraction,
                 figure_flatness, figure_estimator,
-                figure_failed_extraction, figure_reference_case)
+                figure_failed_extraction, figure_reference_case]
+    if "--without-images" in sys.argv:
+        builders = [figure_window, figure_n_min, figure_protocols,
+                    figure_flatness, figure_estimator, figure_reference_case]
+        print(f"skipping {', '.join(NEEDS_IMAGES)}: they need the archive series")
     written = [builder() for builder in builders]
     if len(written) != len(builders):
         raise SystemExit("a figure was skipped; a missing figure must not pass silently")

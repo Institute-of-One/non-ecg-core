@@ -50,6 +50,11 @@ FASTEST_BPM = 120.0
 #: This is N_min from step 3, used here as the rejection rule it always implied.
 MIN_CYCLES = 2.5
 
+#: A coronal row is used when the tracker returns a border on at least this many slices. Rows
+#: that fail it are rows where no run above the lung threshold crosses the midline widely
+#: enough often enough — the mediastinum is not that wide at every height in every patient.
+MIN_SLICES_PER_LEVEL = 64
+
 CORONAL_FRACTIONS = (0.45, 0.50, 0.55, 0.60, 0.65, 0.70)
 
 
@@ -145,7 +150,7 @@ def main() -> int:
         for fraction in CORONAL_FRACTIONS:
             trace = left_border_trace(volume, int(height * fraction))
             finite = np.isfinite(trace)
-            if finite.sum() >= 64:
+            if finite.sum() >= MIN_SLICES_PER_LEVEL:
                 traces.append((volume.z_mm[finite], trace[finite]))
         if len(traces) < 3:
             print(f"{record['collection']}: only {len(traces)} usable levels, skipped")

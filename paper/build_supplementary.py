@@ -21,7 +21,9 @@ BUILD = HERE / "build"
 DOCX = BUILD / "supplementary.docx"
 PDF = BUILD / "PMB_supplementary.pdf"
 RESOLVED = BUILD / "supplementary_resolved.md"
-EXPECTED_FIGURES = 2
+#: S1 and S2 (the reference case) plus S3-S5, one per admitted series, from the anatomical
+#: audit of section 5.5.
+EXPECTED_FIGURES = 5
 
 
 def main() -> int:

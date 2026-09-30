@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -26,6 +27,7 @@ import fitz
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = Path(__file__).resolve().parent
+REPO = HERE.parent
 PDF = HERE / "build" / "PMB_manuscript.pdf"
 RESOLVED = HERE / "build" / "manuscript_resolved.md"
 MANUSCRIPT = HERE / "manuscript.md"
@@ -115,6 +117,35 @@ def main() -> int:
     check("affiliation is the canonical string",
           "Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan" in flat)
     check("ORCID present", "0000-0001-9211-1071" in resolved)
+
+    # check_references.py refuses to write the reference section when a citation does not
+    # match, and leaves the previous one in place. A rewrapped citation therefore failed there
+    # while every check here passed against a reference list belonging to the last good build.
+    source_citations = set(re.findall(r"\(([A-Z][A-Za-zÀ-ɏ'-]+(?: (?:et al|and "
+                                      r"[A-Z][A-Za-zÀ-ɏ'-]+))?) (\d{4})\)", source))
+    flat_source = re.sub(r"\s+", " ", source)
+    wrapped = {f"{who} {year}" for who, year in
+               re.findall(r"\(([A-Z][A-Za-zÀ-ɏ'-]+(?: (?:et al|and "
+                          r"[A-Z][A-Za-zÀ-ɏ'-]+))?)\s+(\d{4})\)", flat_source)
+               if (who, year) not in source_citations}
+    check("no citation split across a line in the source", not wrapped, str(sorted(wrapped)))
+
+    # The data-availability statement names a release. A tag that does not exist, or that points
+    # at an older commit, makes that statement false at the moment of submission — which is how
+    # v0.1.0 came to be named by a manuscript four rounds of revision newer than it.
+    named = sorted(set(re.findall(r"\bv\d+\.\d+\.\d+\b", source)))
+    for tag in named:
+        commit = subprocess.run(["git", "rev-list", "-n1", tag], cwd=REPO,
+                                capture_output=True, text=True).stdout.strip()
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO,
+                              capture_output=True, text=True).stdout.strip()
+        dirty = subprocess.run(["git", "status", "--porcelain"], cwd=REPO,
+                               capture_output=True, text=True).stdout.strip()
+        check(f"release {tag} exists and is this manuscript's commit",
+              bool(commit) and commit == head and not dirty,
+              "no such tag" if not commit else
+              ("tag is an older commit" if commit != head else "working tree is not clean"))
+    check("the manuscript names the release it is submitted with", bool(named), str(named))
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     used = {m.split(":")[-1].split(".")[-1]

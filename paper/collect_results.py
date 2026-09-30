@@ -270,7 +270,10 @@ def learned_design_metrics() -> dict:
     """
     import sys                                                      # noqa: PLC0415
     sys.path.insert(0, str(HERE.parent / "analysis"))
-    import learned_estimator as model                               # noqa: PLC0415
+    # learned_design, not learned_estimator: the constants are the same object, and importing
+    # the model would require torch, which requirements-core.txt does not install and which
+    # no number in this manifest needs. A clean-copy verification failed here once.
+    import learned_design as model                                  # noqa: PLC0415
 
     above = model.CONDITIONS["trained_above_the_bound"]
     across = model.CONDITIONS["trained_across_the_boundary"]
@@ -314,6 +317,16 @@ def border_metrics() -> dict:
         return positions.get(entry["series_uid"], {}).get("median_fraction_of_width")
 
     admitted = [f for f in map(fraction, (s for s in cohort if s["recovered"])) if f]
+    # Per level, not per series: a series median near the middle could still hide one level
+    # out at the edge, which is exactly what went wrong on the reference case.
+    admitted_levels = [level["median_fraction_of_width"]
+                       for s in cohort if s["recovered"]
+                       for level in positions.get(s["series_uid"], {}).get("levels", [])]
+    # Six rows are attempted; the number that return a usable trace varies by patient, and the
+    # manuscript said "six coronal levels" where it should have said how many there were.
+    usable = [s["levels"] for s in cohort if "levels" in s]
+    usable_admitted = sorted(s["levels"] for s in cohort
+                             if s["recovered"] and "levels" in s)
     in_cohort = [(s, fraction(s)) for s in cohort]
     surface = [s for s, f in in_cohort if f is not None and f < 0.10]
     doubtful = [s for s, f in in_cohort if f is not None and 0.10 <= f < 0.35]
@@ -330,10 +343,66 @@ def border_metrics() -> dict:
         "border_sound_max_percent": round(100 * max(sound)),
         "border_admitted_min_percent": round(100 * min(admitted)),
         "border_admitted_max_percent": round(100 * max(admitted)),
+        "border_admitted_levels": len(admitted_levels),
+        "levels_usable_min": min(usable),
+        "levels_usable_max": max(usable),
+        "levels_admitted_each": ", ".join(str(n) for n in usable_admitted[:-1])
+                                + " and " + str(usable_admitted[-1]),
+        "levels_admitted_min": min(usable_admitted),
+        "levels_admitted_max": max(usable_admitted),
+        "border_admitted_level_min_percent": round(100 * min(admitted_levels)),
+        "border_admitted_level_max_percent": round(100 * max(admitted_levels)),
         "border_reference_percent": round(100 * positions[reference]
                                           ["median_fraction_of_width"], 1),
         "border_reference_levels_on_surface": round(
             100 * positions[reference]["share_of_levels_at_the_surface"]),
+    }
+
+
+def audit_metrics() -> dict:
+    """The post-hoc anatomical audit of the admitted series.
+
+    Section 5.4's position check asks where the border sits across the image and detects one
+    failure, a border out at the skin. Drawing every usable level of every admitted series and
+    looking at them showed a second failure it cannot see: a border returned beyond the lung
+    base, where both sides are soft tissue and no lung-mediastinum interface exists at all.
+    Produced by analysis/audit_admitted_levels.py.
+    """
+    data = _load("admitted_level_audit.json")
+    summary = data["summary"]
+    flat = {r["series_uid"]: r for r in _load("flatness.json")["series"]}
+
+    rows = []
+    for series in data["series"]:
+        record = flat[series["series_uid"]]
+        wavelength = record["table_speed_mm_s"] * 60.0 / record["fitted_bpm"]
+        usable = [level for level in series["levels"] if level["usable"]]
+        # The longest span a level covers, and the longest it covers with points that sit at a
+        # genuine lung interface. Cycles are counted over each, at the period the fit returned.
+        analysed = max(level["z_span_all_mm"] for level in usable)
+        valid = max(level["z_span_valid_mm"] for level in usable)
+        rows.append({
+            "cycles_over_analysed_span": analysed / wavelength,
+            "cycles_over_valid_span": valid / wavelength,
+            "valid_share_of_span": valid / analysed,
+        })
+
+    below = [r for r in rows if r["cycles_over_valid_span"] < 2.5]
+    worst = min(rows, key=lambda r: r["cycles_over_valid_span"])
+    return {
+        "audit_levels": summary["levels_audited"],
+        "audit_points": summary["border_points"],
+        "audit_points_at_a_lung_interface": summary["border_points_at_a_lung_interface"],
+        "audit_share_at_a_lung_interface_percent":
+            round(100 * summary["share_at_a_lung_interface"]),
+        "audit_worst_level_percent": round(100 * summary["worst_level_share"]),
+        "audit_levels_wholly_valid": summary["levels_wholly_at_a_lung_interface"],
+        "audit_levels_on_the_surface": summary["levels_below_the_surface_threshold"],
+        "audit_max_gap_percent": round(100 * summary["max_gap_share"]),
+        "audit_series_below_nmin_on_valid_span": len(below),
+        "audit_worst_cycles_analysed": round(worst["cycles_over_analysed_span"], 2),
+        "audit_worst_cycles_valid": round(worst["cycles_over_valid_span"], 2),
+        "audit_worst_valid_share_percent": round(100 * worst["valid_share_of_span"]),
     }
 
 
@@ -381,6 +450,7 @@ def extraction_metrics() -> dict:
         "lung_threshold_hu": round(extraction.LUNG_THRESHOLD_HU),
         "min_mediastinum_mm": round(extraction.MIN_MEDIASTINUM_MM),
         "coronal_levels": len(fit.CORONAL_FRACTIONS),
+        "min_slices_per_level": fit.MIN_SLICES_PER_LEVEL,
         "coronal_fraction_low": min(fit.CORONAL_FRACTIONS),
         "coronal_fraction_high": max(fit.CORONAL_FRACTIONS),
         "band_slowest_bpm": round(fit.SLOWEST_BPM),
@@ -474,7 +544,7 @@ def main() -> int:
                     cohort_metrics, failure_diagnosis_metrics, learned_metrics,
                     cardiac_tag_metrics, tcia_survey_metrics, reference_case_metrics,
                     flatness_metrics, reference_diagnosis_metrics, extent_metrics,
-                    border_metrics, learned_design_metrics,
+                    border_metrics, audit_metrics, learned_design_metrics,
                     sweep_and_selection_metrics, extraction_metrics):
         metrics.update(section())
 

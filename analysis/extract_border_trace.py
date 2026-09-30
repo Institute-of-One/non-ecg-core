@@ -23,7 +23,6 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 import numpy as np
-import pydicom
 
 HERE = Path(__file__).resolve().parent
 CACHE = HERE.parent / "data_cache"
@@ -49,7 +48,14 @@ class Volume:
 
 
 def load_series(directory: Path) -> Volume:
-    """Read a cached series into a volume, sorted by true slice position."""
+    """Read a cached series into a volume, sorted by true slice position.
+
+    pydicom is imported here rather than at module scope so that the module's constants can be
+    read — paper/collect_results.py quotes them — in an environment holding only
+    requirements-core.txt. Reading an image needs pydicom; reproducing a number does not.
+    """
+    import pydicom                                                  # noqa: PLC0415
+
     slices = []
     for path in sorted(directory.iterdir()):
         try:
