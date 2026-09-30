@@ -72,8 +72,8 @@ cohort demonstrates that a self-consistency criterion can certify a fit to a fla
 
 All analysis code, the frozen decision rules and every result file behind the figures and
 numbers are public at https://github.com/Institute-of-One/non-ecg-core, at the tagged release
-this manuscript accompanies. An archived copy with a DOI is being deposited and I will
-provide the identifier at revision. No imaging data is redistributed; the analysis retrieves
+this manuscript accompanies. The same release is archived at
+Zenodo under https://doi.org/10.5281/zenodo.23051189. No imaging data is redistributed; the analysis retrieves
 it from the archive by series identifier.
 
 The manuscript has not been published elsewhere and is not under consideration by another

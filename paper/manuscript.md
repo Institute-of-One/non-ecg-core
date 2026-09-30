@@ -980,8 +980,9 @@ checks it. Five figures do show one — figure 4 in the main text and figures S1
 the supplementary material, all of them coronal reformats — and those need the archive series
 themselves. No imaging data is redistributed here: the code retrieves it from The Cancer Imaging
 Archive by series identifier, which requires the full `requirements.txt` and a network
-connection. The collections used are cited above. An archived, DOI-bearing copy is
-being deposited with Zenodo and the identifier will be supplied at revision.
+connection. The collections used are cited above. The same release is archived at Zenodo,
+https://doi.org/10.5281/zenodo.23051189; the concept identifier 10.5281/zenodo.23034327 resolves to the
+most recent version.
 
 **Use of generative AI.** The research question, the physical argument of section 2, the
 study design and the decision rules recorded in the repository are the author's, and predate

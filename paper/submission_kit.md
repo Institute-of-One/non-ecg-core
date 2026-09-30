@@ -33,7 +33,7 @@ IOP submission in this programme and the error blocked the whole batch.
 | IOP Publishing Policies | tick both |
 | Ethical statement | see below |
 | Anonymity acknowledgement | tick. The manuscript carries author-identifying information deliberately, so it is handled single-anonymous. The code and data are public under the author's name, so anonymising the text would not anonymise the work; it would only weaken the reproducibility claim. |
-| Data availability | Option: publicly available in a repository. URL `https://github.com/Institute-of-One/non-ecg-core`, release **`v0.1.1`** — the tag this manuscript names. It must exist and point at the commit the submitted PDF was built from before this field is filled in; `v0.1.0` predates the revisions and is not it. A Zenodo DOI is being minted and will be supplied at revision. |
+| Data availability | Option: publicly available in a repository. URL `https://github.com/Institute-of-One/non-ecg-core`, release **`v0.1.1`** (commit 40bdcfd), archived at Zenodo with version DOI **10.5281/zenodo.23051189**. The concept DOI 10.5281/zenodo.23034327 resolves to the newest version and is the one in CITATION.cff; the manuscript cites the version DOI. |
 | Accepted Manuscripts (24 hours) | Yes |
 
 ## Novelty and significance

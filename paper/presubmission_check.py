@@ -130,21 +130,28 @@ def main() -> int:
                if (who, year) not in source_citations}
     check("no citation split across a line in the source", not wrapped, str(sorted(wrapped)))
 
-    # The data-availability statement names a release. A tag that does not exist, or that points
-    # at an older commit, makes that statement false at the moment of submission — which is how
-    # v0.1.0 came to be named by a manuscript four rounds of revision newer than it.
+    # The data-availability statement names a release and promises that a clean copy of it
+    # rebuilds every number here. What has to hold is not that the tag is HEAD — the manuscript
+    # goes on being edited, and the DOI it cites cannot be inside the snapshot it names — but
+    # that nothing which produces a number has moved since the tag was cut. v0.1.0 was named by
+    # a manuscript four rounds of revision newer than it, and that is what this catches.
+    PRODUCES_NUMBERS = ("analysis", "results", "paper/frozen", "paper/collect_results.py",
+                        "paper/figures.py")
     named = sorted(set(re.findall(r"\bv\d+\.\d+\.\d+\b", source)))
     for tag in named:
         commit = subprocess.run(["git", "rev-list", "-n1", tag], cwd=REPO,
                                 capture_output=True, text=True).stdout.strip()
-        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO,
-                              capture_output=True, text=True).stdout.strip()
-        dirty = subprocess.run(["git", "status", "--porcelain"], cwd=REPO,
-                               capture_output=True, text=True).stdout.strip()
-        check(f"release {tag} exists and is this manuscript's commit",
-              bool(commit) and commit == head and not dirty,
-              "no such tag" if not commit else
-              ("tag is an older commit" if commit != head else "working tree is not clean"))
+        if not commit:
+            check(f"release {tag} exists and still produces this manuscript's numbers",
+                  False, "no such tag")
+            continue
+        ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", tag, "HEAD"],
+                                  cwd=REPO, capture_output=True).returncode == 0
+        moved = subprocess.run(["git", "diff", "--name-only", tag, "--", *PRODUCES_NUMBERS],
+                               cwd=REPO, capture_output=True, text=True).stdout.split()
+        check(f"release {tag} exists and still produces this manuscript's numbers",
+              ancestor and not moved,
+              "the tag is not an ancestor of HEAD" if not ancestor else str(sorted(moved)))
     check("the manuscript names the release it is submitted with", bool(named), str(named))
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))

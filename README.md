@@ -1,5 +1,7 @@
 # non-ecg-core (IORN-011)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23034327.svg)](https://doi.org/10.5281/zenodo.23034327)
+
 Cardiac period estimation from non-gated helical CT: sampling criteria and exploratory evaluation.
 
 A helical CT moves the table at a constant speed, so the z axis of the reconstructed

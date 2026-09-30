@@ -14,7 +14,7 @@ version: 0.1.1
 # a date-released that disagrees with the release is the kind of small untruth that is
 # never noticed until someone checks.
 date-released: 2026-09-30
-# Added after the first release. Zenodo mints two DOIs: a version DOI, which the manuscript
-# cites, and a concept DOI, which always resolves to the newest version and belongs here
-# and in the README badge.
-# doi: "10.5281/zenodo.XXXXXXX"
+# Zenodo mints two DOIs. The version DOI of this release, 10.5281/zenodo.23051189,
+# is what the manuscript cites. The concept DOI below always resolves to the newest version,
+# which is what someone citing the software should get.
+doi: "10.5281/zenodo.23034327"
