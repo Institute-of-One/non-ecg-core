@@ -13,12 +13,12 @@ ORCID 0000-0001-9211-1071. E-mail: yamamoto@lisit.jp
 
 **Objective.** In a non-gated helical chest CT, cardiac motion shapes the undulation of the
 mediastinal border. If separable, its period and extrema would be cues to timing, and an
-existing scan might be sorted by phase. We ask what sampling conditions make the period
+existing scan might be sorted by phase. I ask what sampling conditions make the period
 recoverable and how far an image-based estimate can be trusted. Phase and ejection fraction are
 not examined.
 
 **Approach.** A constant table speed makes the axial coordinate a nominal time axis, along which
-periodic motion writes a spatial period. We state the two requirements, measure the cycles one
+periodic motion writes a spatial period. I state the two requirements, measure the cycles one
 needs over [[results:manifest.json:metrics.sensitivity_cells]] simulated conditions, evaluate them on [[results:manifest.json:metrics.header_series]]
 real series from headers, and test recovery on [[results:manifest.json:metrics.cohort_analysed]] image series under a frozen
 criterion.
@@ -46,7 +46,7 @@ need a reference measurement.
 ## 1. Introduction
 
 <!-- The framing decision, made deliberately: the subject of the opening sentence is what a
-     scan can contain, not what we tried to measure. The cohort appears in section 5 as
+     scan can contain, not what I tried to measure. The cohort appears in section 5 as
      corroboration that the bound is necessary but not sufficient, never as the claim. The
      motivating application is named once, in the second paragraph, and is stated as a
      hypothesis: the step from an undulating border to a usable phase signal is not
@@ -83,10 +83,10 @@ learning is also used to remove cardiac motion from the images themselves (Ren e
 A method of that kind makes a claim about a heart that was never synchronised to the scanner.
 The obvious way to check such a claim is to compare it with the rate the scanner recorded,
 and that comparison is not available. Of the
-[[results:manifest.json:metrics.cardiac_tag_series_checked]] series whose images we analysed, none records the rate
+[[results:manifest.json:metrics.cardiac_tag_series_checked]] series whose images I analysed, none records the rate
 by any of [[results:manifest.json:metrics.cardiac_routes_checked]] routes through which a CT acquisition can write one.
 
-Rather than assess any particular method, we ask what the acquisition can contain. Recovering
+Rather than assess any particular method, I ask what the acquisition can contain. Recovering
 timing from the image itself is not a new idea in CT. Reconstruction correlated with a
 recorded electrocardiogram came first (Kachelrieß and Kalender 1998), and was then replaced
 by a signal read out of the projection data — the kymogram (Kachelrieß et al 2002) — and
@@ -100,18 +100,17 @@ A separate literature treats the heart in non-gated chest CT, but structurally �
 calcification, aortic root, incidental infarct, epicardial fat. Gating inferred from the data
 rather than from a monitor has continued elsewhere, in MRI (Larson et al 2003) and in PET,
 where it now outperforms device-based gating (Walker et al 2020), but not in helical CT of
-the chest. We found no indexed report that recovers cardiac timing from a non-gated helical
+the chest. I found no indexed report that recovers cardiac timing from a non-gated helical
 CT, and none that states the condition under which it could be recovered.
 
 This paper sets out the two sampling requirements recovery has to satisfy, shows that their
 product is fixed by anatomy and reconstruction interval alone, and measures the constant one
 of them needs for one estimator on simulated traces. It then evaluates the requirements
 against the installed base from acquisition headers, and tests recovery on images under a
-criterion frozen in advance. That image test is exploratory: no public acquisition we could
-find pairs a reconstructed helical chest series with a recorded rate, so a self-consistent
-estimate cannot be confirmed as a correct one, and we report which further measurements
-separate the two. A closing simulation asks what uncertainty a learned estimator declares
-outside its training range. The contribution is a way of connecting acquisition parameters
+criterion frozen in advance. That image test is exploratory: no public acquisition I could find pairs a reconstructed helical chest series with a recorded rate, so a self-consistent
+estimate cannot be confirmed as a correct one, and I report which further measurements
+separate the two. A simulation in the supplementary material asks what uncertainty a learned
+estimator declares outside its training range. The contribution is a way of connecting acquisition parameters
 to the interpretation of an estimate: a framework for choosing the acquisitions on which a future
 period or phase estimator could be tested, and for reading what its output means. It is not a
 limit on the cardiac information a CT can hold, and it is not a demonstration of clinical
@@ -165,7 +164,7 @@ samples to be resolved. With reconstruction interval *dz*, the samples per cycle
 
 The value of *n*min is a judgement and is the one such number in this analysis. Two
 samples per cycle is the formal floor and is not usable, because a two-sample sinusoid is a
-straight line to any estimator with noise in it. We take eight throughout, and the sweep of
+straight line to any estimator with noise in it. I take eight throughout, and the sweep of
 section 3 covers [[results:manifest.json:metrics.sweep_samples_min]], 16 and
 [[results:manifest.json:metrics.sweep_samples_max]] samples per cycle so that the effect of
 the choice on *N*min can be read off rather than assumed. Nothing in the budget identity
@@ -453,15 +452,14 @@ admission rate. The two agreed on [[results:manifest.json:metrics.cohort_agreeme
 [[results:manifest.json:metrics.cohort_analysed]] series,
 [[results:manifest.json:metrics.cohort_agreement_percent]] per cent.
 
-That number needs reading carefully, and we state it descriptively rather than as a test. The
+That number needs reading carefully, and I state it descriptively rather than as a test. The
 prediction is a header-level statement about whether a rate below
 [[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm could in principle be written;
 the outcome is a self-consistency verdict that never sees a true rate. They are not two
 measurements of the same thing, so their disagreement is not evidence that either is wrong,
-and we attach no null distribution to it. With [[results:manifest.json:metrics.cohort_analysed]] series and two
+and I attach no null distribution to it. With [[results:manifest.json:metrics.cohort_analysed]] series and two
 quantities that are not measurements of the same thing, the figure is not strong enough to
-establish a relation between criterion and acquisition parameters, nor the absence of one; we
-report it because it was the pre-specified summary. What the admissions are responding to is
+establish a relation between criterion and acquisition parameters, nor the absence of one; I report it because it was the pre-specified summary. What the admissions are responding to is
 examined directly in sections 5.3 and 5.4, which is the more informative route.
 
 ### 5.2 How real traces differ from the simulated ones
@@ -494,7 +492,7 @@ populations but reach
 percentile of the real ones, against
 [[results:manifest.json:metrics.large_steps_simulated_p90]] in simulation.
 
-These are differences, not causes. We did not put any of them back into the simulator to
+These are differences, not causes. I did not put any of them back into the simulator to
 see whether the failure reappears, and this section should not be read as having excluded
 them. It establishes that the signal the estimator was designed for is not the signal it is
 given, and section 5.3 reports a property of the objective that is measured rather than
@@ -530,7 +528,7 @@ within that series, is [[results:manifest.json:metrics.flatness_level_spread_acc
 imposes one period on levels that individually disagree by half the physiological range, and
 returns their weighted compromise.
 
-What follows from this is about the criterion, and we are careful about how far it goes.
+What follows from this is about the criterion, and I am careful about how far it goes.
 Two things are measured: the minima the criterion accepted are no deeper than those it
 rejected, and the levels it combined did not agree. Neither measurement uses a true rate, so
 neither can show that the three admitted rates are *wrong*. What they do show is that the
@@ -541,9 +539,8 @@ A natural explanation of how that happens is that a flat objective leaves the mi
 unpinned, so removing one level moves it very little, and the leave-one-out test then reports
 stability that reflects the shape of the objective rather than the strength of a signal. That
 account is consistent with everything reported here — shallow minima, disagreeing levels, and
-stable leave-one-out values occurring together — but co-occurrence is not demonstration, and
-we have not constructed the experiment that would separate the flatness from the stability.
-We therefore offer it as an explanation to be tested, and rest the conclusion on the
+stable leave-one-out values occurring together — but co-occurrence is not demonstration, and I have not constructed the experiment that would separate the flatness from the stability.
+I therefore offer it as an explanation to be tested, and rest the conclusion on the
 measurements rather than on the mechanism.
 
 One reading it does weaken is that the extraction simply locks onto the wrong peak. With the
@@ -564,7 +561,7 @@ compromise among levels that do not agree.
 ### 5.4 A candidate session with a recorded rate, which could not be used
 
 A criterion that cannot be compared with a true rate can be characterised but not scored for
-accuracy, so we searched for a session that records one. Of
+accuracy, so I searched for a session that records one. Of
 [[results:manifest.json:metrics.tcia_collections_surveyed]] collections in The Cancer Imaging
 Archive, [[results:manifest.json:metrics.tcia_collections_with_ct]] hold CT and
 [[results:manifest.json:metrics.tcia_cardiac_studies]] studies are described as a cardiac
@@ -598,7 +595,7 @@ levels departing to the edge of the physiological band kept the series out. The 
 reported in the supplementary material with the protocol that was fixed before it, and it
 does not enter any estimate of recovery accuracy.
 
-Having found it in one series, we measured it in all of them. Of the
+Having found it in one series, I measured it in all of them. Of the
 [[results:manifest.json:metrics.cohort_analysed]] analysed cohort series,
 [[results:manifest.json:metrics.border_cohort_on_the_surface]] sit within
 [[results:manifest.json:metrics.border_surface_threshold_percent]] per cent of the image edge
@@ -651,92 +648,7 @@ the tracked line is smooth where the method expects an undulation — the same t
 reads off the objective. For all three admissions, then, the fitted period rests on a partial
 trace of a partly correct border.
 
-## 6. An auxiliary experiment: the uncertainty an estimator declares outside its training range
-
-Sections 2 to 5 concern what an acquisition contains. This section asks a smaller and separate
-question, in simulation throughout: when an estimator is asked for an answer outside the range
-it was trained on, what does it report about its own reliability? It is included because an
-estimate is acted on together with whatever uncertainty accompanies it, so that uncertainty is
-itself something that has to be checked.
-
-### 6.1 The experiment
-
-An estimator was trained on the same simulated traces to predict the period and, alongside it,
-its own standard deviation (Kendall and Gal 2017). Modern networks are systematically
-overconfident (Guo et al 2017), and more so away from the training distribution
-(Ovadia et al 2019); what is measured here is one such shift, produced by moving the test
-points outside the range of the target rather than by changing the dataset. Each trace has the same quartic
-baseline removed as elsewhere in this paper, is divided by its own standard deviation and is
-resampled to a fixed length, and the target is the period as a fraction of the trace
-length — the reciprocal of the cycles written — so the standard deviations quoted below are
-in those units. The model is a small multilayer perceptron with separate heads for the mean and
-the log variance, trained on [[results:manifest.json:metrics.learned_train_size]] traces by minimising the Gaussian
-negative log-likelihood; the architecture, the optimiser and the training schedule are set out
-in the supplementary material and in `analysis/learned_estimator.py`. Accuracy is scored on
-[[results:manifest.json:metrics.learned_test_per_point]] independent traces at each of nine cycle counts within the same
-[[results:manifest.json:metrics.tolerance_percent]] per cent tolerance as section 3, and calibration is the ratio of the
-error actually made to the standard deviation reported, so that 1 is honest and larger is
-overconfident.
-
-Two models were trained, differing only in the range of traces they saw: one on
-[[results:manifest.json:metrics.learned_above_low]] to [[results:manifest.json:metrics.learned_above_high]] cycles, at or above the bound, and one
-on [[results:manifest.json:metrics.learned_across_low]] to [[results:manifest.json:metrics.learned_across_high]] cycles.
-
-Because the target is a reciprocal, testing below the bound is testing outside the first
-model's training range. It saw targets between [[results:manifest.json:metrics.learned_above_target_low]] and
-[[results:manifest.json:metrics.learned_above_target_high]]; at two cycles the correct answer is
-[[results:manifest.json:metrics.learned_target_at_two_cycles]] and at half a cycle [[results:manifest.json:metrics.learned_target_at_half_cycle]],
-five times the largest value it was ever shown. Its failures there are failures of
-extrapolation and establish nothing about the information in the trace. Both models are trained
-and tested on simulated traces only, and nothing in this section is evidence about real chest
-CT.
-
-### 6.2 What the two models report
-
-At and above the bound the model trained there works, reaching
-[[results:manifest.json:metrics.above_accuracy_at_bound_percent]] per cent accuracy. Below the bound it is wrong in every
-trial — [[results:manifest.json:metrics.above_accuracy_below_max_percent]] per cent accuracy at every cycle count tested —
-while reporting a standard deviation no larger than [[results:manifest.json:metrics.above_reported_sd_below_max]], so its
-calibration ratio there runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
-[[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between twelve and forty times the
-uncertainty it declares. The declared uncertainty tightens as the accuracy stays at zero
-(figure 6). As the number of written cycles rises towards the bound the reported standard
-deviation falls and the accuracy does not move, so at two cycles the model is at its most
-certain and still never right, and nothing in what it returns marks those points as different
-from the ones it can serve.
-
-![Figure 6](figures/fig6_estimator.png)
-
-**Figure 6.** Top: the fraction of estimates within [[results:manifest.json:metrics.tolerance_percent]] per cent of the
-prescribed period, against cycles written, for a model trained only at or above the bound and
-for one trained across it. Bottom, on a logarithmic scale: the standard deviation each model
-declares (circles) and the error it actually makes (squares). Below *N*min, marked by the
-dashed vertical, the model trained inside the bound declares the smallest uncertainty of either
-while its error is largest — the gap between its circles and its squares is the overconfidence.
-Those test points lie outside the range of the target that model was trained on. The model
-trained across the boundary keeps the two together.
-
-The model trained across the boundary behaves differently below the bound: its reported
-standard deviation widens to [[results:manifest.json:metrics.across_reported_sd_below_max]] as the cycles run out and its
-calibration ratio falls into [[results:manifest.json:metrics.across_calibration_below_min]] to
-[[results:manifest.json:metrics.across_calibration_below_max]], which is honest to conservative. Neither model abstains —
-both always return an estimate, and what differs is the uncertainty attached to it — so whether
-a scan is declined or flagged remains a decision for whoever deploys such an estimator, and one
-available to them only if the uncertainty means something.
-
-Two qualifications limit what this comparison supports. The across-trained model also becomes
-*accurate* below [[results:manifest.json:metrics.n_min_fundamental]] cycles, reaching
-[[results:manifest.json:metrics.across_accuracy_below_max_percent]] per cent at two. That is not a violation of the bound
-but the bound at a different value: *N*min depends on what the estimator knows about the
-waveform, and a network trained on this exact family of traces has been handed knowledge it
-would not have in a patient, which is why [[results:manifest.json:metrics.n_min_fundamental]] remains the value at which
-we state the bound. Second, above the bound that model is the less accurate of the two,
-[[results:manifest.json:metrics.across_accuracy_at_bound_percent]] against [[results:manifest.json:metrics.above_accuracy_at_bound_percent]] per
-cent. That pair of numbers describes one architecture under one training protocol on one family
-of traces. It is a reason to measure the trade-off in a given estimator, not a general result
-that calibration costs accuracy.
-
-## 7. Discussion
+## 6. Discussion
 
 This study establishes four things, and they rest on evidence of different kinds. The two sampling
 requirements follow from the geometry of a helical acquisition, and their product is fixed by the
@@ -754,8 +666,7 @@ In section 5 a stability criterion admitted [[results:manifest.json:metrics.coho
 series whose coronal levels, taken separately, preferred rates spread over
 [[results:manifest.json:metrics.flatness_level_spread_accepted_min]] to
 [[results:manifest.json:metrics.flatness_level_spread_accepted_max]] bpm, on cost surfaces
-whose minima are no deeper than those of the series it rejected. In section 6 an estimator
-trained only inside the recoverable regime reported a standard deviation of
+whose minima are no deeper than those of the series it rejected. In the supplementary material an estimator trained only inside the recoverable regime reported a standard deviation of
 [[results:manifest.json:metrics.above_reported_sd_below_max]] while achieving
 [[results:manifest.json:metrics.above_accuracy_below_max_percent]] per cent accuracy outside
 it. In both, a diagnostic internal to the method reported confidence in a regime the method
@@ -785,8 +696,7 @@ acquisition. It is the firmest thing here.
 *N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles is an empirical threshold,
 measured for one estimator reading one family of simulated traces at one tolerance and one
 success rate. It is not a universal limit: the matched estimator of section 3.2 reaches
-[[results:manifest.json:metrics.n_min_matched]] cycles on the same traces, and the network of
-section 6.2, trained on that family, is accurate at two. What the bound supports is a
+[[results:manifest.json:metrics.n_min_matched]] cycles on the same traces, and the network of the supplementary material (S4.2), trained on that family, is accurate at two. What the bound supports is a
 practical screen — under the conditions studied here, an acquisition writing appreciably
 fewer cycles than this should not be expected to yield a period — rather than a statement
 about every possible estimator.
@@ -827,11 +737,11 @@ reference validation: one session in [[results:manifest.json:metrics.tcia_collec
 both a recorded rate and a free-running helical series, and [[results:manifest.json:metrics.collections_without_parameters]] of [[results:manifest.json:metrics.collections_probed]] collections
 probed do not publish acquisition parameters at all, so for those the requirements cannot
 even be evaluated. And the failure mode
-of section 6 — a confident report from outside the regime a model was trained in — exists and is
+of the supplementary material — a confident report from outside the regime a model was trained in — exists and is
 invisible from the model's own output, which is an argument for measuring it in a deployed
 estimator rather than a finding about any particular one.
 
-## 8. Limitations
+## 7. Limitations
 
 The bound was measured against prescribed periods, and applied where no reference period
 is recorded. *N*min = [[results:manifest.json:metrics.n_min_fundamental]] cycles was obtained by
@@ -852,8 +762,7 @@ structure, which sections 5.4 and 5.5 show for the rejected series and for part 
 admitted level respectively. Nothing in the pipeline indicated either. Before this revision the
 study had no check that it was measuring the right thing.
 
-What the evidence does not support is any claim that no method could recover the period. We
-can say that this extraction finds no peak worth locking onto in the traces where it is on
+What the evidence does not support is any claim that no method could recover the period. I can say that this extraction finds no peak worth locking onto in the traces where it is on
 the mediastinum, and that where it is not on the mediastinum the question was never asked.
 The result is a property of one border tracker and one joint sinusoidal fit on seventeen
 series. It does not bear on other ways of reading the same undulation — selecting extremal
@@ -864,7 +773,7 @@ of which is attempted here.
 No reference heart rate exists in the cohort itself. None of the
 [[results:manifest.json:metrics.cardiac_tag_series_checked]] series retrieved for image
 analysis records the rate by any of the
-[[results:manifest.json:metrics.cardiac_routes_checked]] routes we checked: the
+[[results:manifest.json:metrics.cardiac_routes_checked]] routes I checked: the
 [[results:manifest.json:metrics.cardiac_standard_fields_checked]] standard DICOM cardiac
 fields, and the free text of ScanOptions, where a Siemens cardiac acquisition writes the rate
 while leaving the standard fields empty. The one session that does record it is not in the
@@ -880,7 +789,7 @@ descriptions naming a cardiac examination, so
 What would settle it, and what would not. Scans of a moving phantom driven at known
 periods, repeated across a range of table speeds and pitches, would score recovery against
 truth in real reconstructed images and would separate the acquisition and extraction causes
-from each other. We did not have access to a scanner and a motion phantom, and this work does
+from each other. I did not have access to a scanner and a motion phantom, and this work does
 not include such a study. A digital phantom carried through helical forward projection and
 reconstruction would reach part of the same ground, testing the extraction on images rather
 than on traces and allowing acquisition conditions to be swept; it would not settle the third
@@ -893,11 +802,10 @@ section 5.5 were all added after the cohort had been frozen, fitted and written 
 response to editorial feedback on a presubmission enquiry. The cohort outcome reported in
 section 5.1 is the frozen one; the audit re-counts cycles for interpretation and does not
 alter which series were admitted. For the reference case the acceptance interval was fixed in the repository before the
-images were downloaded, and the repository history shows that order; we make no claim to an
-independently attested timestamp, because a local file and a local commit are both under the
+images were downloaded, and the repository history shows that order; I make no claim to an independently attested timestamp, because a local file and a local commit are both under the
 author's control.
 
-## 9. Conclusions
+## 8. Conclusions
 
 The axial coordinate of a helical CT is a time axis whose scale the header states, so a
 periodically moving structure writes its period into the volume as a spatial period. Recovering
@@ -937,8 +845,7 @@ not reached under the conditions studied, and not that the acquisition holds no 
 no estimator could succeed. And a fitted period should be reported together with the depth of
 the minimum it sits in and with a check that the structure fitted was the intended one. This
 study began with neither, and adding them is what changed how it reads its own results. The
-auxiliary simulation of section 6 makes the same point about an estimator's declared
-uncertainty: a model trained only where recovery was possible reported its smallest
+auxiliary simulation of the supplementary material makes the same point about an estimator's declared uncertainty: a model trained only where recovery was possible reported its smallest
 uncertainty exactly where it was never right, so that uncertainty too is a quantity to be
 checked rather than taken at face value. Taken together, the sampling requirements and the
 image evaluation are useful for the next step rather than being a conclusion about it: they
@@ -976,7 +883,7 @@ https://github.com/Institute-of-One/non-ecg-core, at the tagged release v0.1.1, 
 accompanies this manuscript. A clean copy of that release, unpacked into an empty directory and installed from
 `requirements-core.txt` alone, rebuilds every number in this paper to the same value and draws
 every figure that does not show an image; `verify_release.py`, in the release, is the script that
-checks it. Five figures do show one — figure 4 in the main text and figures S1 and S3 to S5 in
+checks it. Five figures do show one — figure 4 in the main text and figures S1 and S4 to S6 in
 the supplementary material, all of them coronal reformats — and those need the archive series
 themselves. No imaging data is redistributed here: the code retrieves it from The Cancer Imaging
 Archive by series identifier, which requires the full `requirements.txt` and a network

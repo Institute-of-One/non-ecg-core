@@ -1,0 +1,52 @@
+{
+ "Medical Physics": {
+  "abbreviation": "Med Phys",
+  "europepmc_title": "Medical physics",
+  "resolved_from_doi": "10.1118/1.598453"
+ },
+ "Investigative Radiology": {
+  "abbreviation": "Invest Radiol",
+  "europepmc_title": "Investigative radiology",
+  "resolved_from_doi": "10.1097/rli.0b013e318070dcad"
+ },
+ "Magnetic Resonance in Medicine": {
+  "abbreviation": "Magn Reson Med",
+  "europepmc_title": "Magnetic resonance in medicine",
+  "resolved_from_doi": "10.1002/mrm.10664"
+ },
+ "Journal of Nuclear Medicine": {
+  "abbreviation": "J Nucl Med",
+  "europepmc_title": "Journal of nuclear medicine : official publication, Society of Nuclear Medicine",
+  "resolved_from_doi": "10.2967/jnumed.120.242248"
+ },
+ "BMC Medical Imaging": {
+  "abbreviation": "BMC Med Imaging",
+  "europepmc_title": "BMC medical imaging",
+  "resolved_from_doi": "10.1186/s12880-022-00914-2"
+ },
+ "European Radiology": {
+  "abbreviation": "Eur Radiol",
+  "europepmc_title": "European radiology",
+  "resolved_from_doi": "10.1007/s00330-025-11559-4"
+ },
+ "Physics in Medicine and Biology": {
+  "abbreviation": "Phys Med Biol",
+  "europepmc_title": "Physics in medicine and biology",
+  "resolved_from_doi": "10.1088/0031-9155/51/13/R03"
+ },
+ "IEEE Transactions on Information Theory": {
+  "abbreviation": null,
+  "europepmc_title": null,
+  "resolved_from_doi": "10.1109/TIT.1974.1055282"
+ },
+ "New England Journal of Medicine": {
+  "abbreviation": "N Engl J Med",
+  "europepmc_title": "The New England journal of medicine",
+  "resolved_from_doi": "10.1056/NEJMoa1102873"
+ },
+ "Journal of Digital Imaging": {
+  "abbreviation": "J Digit Imaging",
+  "europepmc_title": "Journal of digital imaging",
+  "resolved_from_doi": "10.1007/s10278-013-9622-7"
+ }
+}

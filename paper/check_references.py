@@ -178,6 +178,16 @@ def main() -> int:
 
     text = MANUSCRIPT.read_text(encoding="utf-8")
     body = text.split("## References")[0]
+    # A reference may be cited in the supplement rather than in the body. The
+    # auxiliary experiment moved there, and with it the three references it
+    # cites; read against the manuscript alone, the rule then said those three
+    # were never cited, which was true of the body and false of the work.
+    # Where a citation lives decides which reference list it belongs to, and
+    # the Sage build makes two lists; this rule only asks that nothing is
+    # resolved and then left uncited anywhere.
+    supplement = (HERE / "supplementary.md")
+    cited_anywhere = body + ("\n" + supplement.read_text(encoding="utf-8")
+                             if supplement.is_file() else "")
 
     # Every citation in the prose must be one of these, and every reference must be used.
     problems = []
@@ -185,7 +195,7 @@ def main() -> int:
     for record in records:
         if record["dataset"]:
             continue
-        if citation_string(record) in body:
+        if citation_string(record) in cited_anywhere:
             cited.add(record["key"])
         else:
             problems.append(f"never cited in the text: {record['key']} "

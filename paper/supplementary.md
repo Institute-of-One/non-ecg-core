@@ -80,7 +80,91 @@ than to the middle. All were rejected by the frozen criterion, and the
 [[results:manifest.json:metrics.border_admitted_min_percent]] to
 [[results:manifest.json:metrics.border_admitted_max_percent]] per cent.
 
-## S4 The learned estimator of section 6, in full
+## S4 The uncertainty an estimator declares outside its training range
+
+Sections 2 to 5 of the main text concern what an acquisition contains. This section asks a smaller and separate
+question, in simulation throughout: when an estimator is asked for an answer outside the range
+it was trained on, what does it report about its own reliability? It is included because an
+estimate is acted on together with whatever uncertainty accompanies it, so that uncertainty is
+itself something that has to be checked.
+
+### S4.1 The experiment
+
+An estimator was trained on the same simulated traces to predict the period and, alongside it,
+its own standard deviation (Kendall and Gal 2017). Modern networks are systematically
+overconfident (Guo et al 2017), and more so away from the training distribution
+(Ovadia et al 2019); what is measured here is one such shift, produced by moving the test
+points outside the range of the target rather than by changing the dataset. Each trace has the same quartic
+baseline removed as elsewhere in this paper, is divided by its own standard deviation and is
+resampled to a fixed length, and the target is the period as a fraction of the trace
+length — the reciprocal of the cycles written — so the standard deviations quoted below are
+in those units. The model is a small multilayer perceptron with separate heads for the mean and
+the log variance, trained on [[results:manifest.json:metrics.learned_train_size]] traces by minimising the Gaussian
+negative log-likelihood; the architecture, the optimiser and the training schedule are set out
+in the supplementary material and in `analysis/learned_estimator.py`. Accuracy is scored on
+[[results:manifest.json:metrics.learned_test_per_point]] independent traces at each of nine cycle counts within the same
+[[results:manifest.json:metrics.tolerance_percent]] per cent tolerance as section 3, and calibration is the ratio of the
+error actually made to the standard deviation reported, so that 1 is honest and larger is
+overconfident.
+
+Two models were trained, differing only in the range of traces they saw: one on
+[[results:manifest.json:metrics.learned_above_low]] to [[results:manifest.json:metrics.learned_above_high]] cycles, at or above the bound, and one
+on [[results:manifest.json:metrics.learned_across_low]] to [[results:manifest.json:metrics.learned_across_high]] cycles.
+
+Because the target is a reciprocal, testing below the bound is testing outside the first
+model's training range. It saw targets between [[results:manifest.json:metrics.learned_above_target_low]] and
+[[results:manifest.json:metrics.learned_above_target_high]]; at two cycles the correct answer is
+[[results:manifest.json:metrics.learned_target_at_two_cycles]] and at half a cycle [[results:manifest.json:metrics.learned_target_at_half_cycle]],
+five times the largest value it was ever shown. Its failures there are failures of
+extrapolation and establish nothing about the information in the trace. Both models are trained
+and tested on simulated traces only, and nothing in this section is evidence about real chest
+CT.
+
+### S4.2 What the two models report
+
+At and above the bound the model trained there works, reaching
+[[results:manifest.json:metrics.above_accuracy_at_bound_percent]] per cent accuracy. Below the bound it is wrong in every
+trial — [[results:manifest.json:metrics.above_accuracy_below_max_percent]] per cent accuracy at every cycle count tested —
+while reporting a standard deviation no larger than [[results:manifest.json:metrics.above_reported_sd_below_max]], so its
+calibration ratio there runs from [[results:manifest.json:metrics.above_calibration_below_min]] to
+[[results:manifest.json:metrics.above_calibration_below_max]]: the error it makes is between twelve and forty times the
+uncertainty it declares. The declared uncertainty tightens as the accuracy stays at zero
+(figure 6). As the number of written cycles rises towards the bound the reported standard
+deviation falls and the accuracy does not move, so at two cycles the model is at its most
+certain and still never right, and nothing in what it returns marks those points as different
+from the ones it can serve.
+
+![Figure S3](figures/fig6_estimator.png)
+
+**Figure S3.** Top: the fraction of estimates within [[results:manifest.json:metrics.tolerance_percent]] per cent of the
+prescribed period, against cycles written, for a model trained only at or above the bound and
+for one trained across it. Bottom, on a logarithmic scale: the standard deviation each model
+declares (circles) and the error it actually makes (squares). Below *N*min, marked by the
+dashed vertical, the model trained inside the bound declares the smallest uncertainty of either
+while its error is largest — the gap between its circles and its squares is the overconfidence.
+Those test points lie outside the range of the target that model was trained on. The model
+trained across the boundary keeps the two together.
+
+The model trained across the boundary behaves differently below the bound: its reported
+standard deviation widens to [[results:manifest.json:metrics.across_reported_sd_below_max]] as the cycles run out and its
+calibration ratio falls into [[results:manifest.json:metrics.across_calibration_below_min]] to
+[[results:manifest.json:metrics.across_calibration_below_max]], which is honest to conservative. Neither model abstains —
+both always return an estimate, and what differs is the uncertainty attached to it — so whether
+a scan is declined or flagged remains a decision for whoever deploys such an estimator, and one
+available to them only if the uncertainty means something.
+
+Two qualifications limit what this comparison supports. The across-trained model also becomes
+*accurate* below [[results:manifest.json:metrics.n_min_fundamental]] cycles, reaching
+[[results:manifest.json:metrics.across_accuracy_below_max_percent]] per cent at two. That is not a violation of the bound
+but the bound at a different value: *N*min depends on what the estimator knows about the
+waveform, and a network trained on this exact family of traces has been handed knowledge it
+would not have in a patient, which is why [[results:manifest.json:metrics.n_min_fundamental]] remains the value at which I state the bound. Second, above the bound that model is the less accurate of the two,
+[[results:manifest.json:metrics.across_accuracy_at_bound_percent]] against [[results:manifest.json:metrics.above_accuracy_at_bound_percent]] per
+cent. That pair of numbers describes one architecture under one training protocol on one family
+of traces. It is a reason to measure the trade-off in a given estimator, not a general result
+that calibration costs accuracy.
+
+### S4.3 The estimator in full
 
 Each trace has the same quartic baseline removed as every other estimator in this paper, is
 divided by its own standard deviation, and is resampled to [[results:manifest.json:metrics.learned_trace_length]] points,
@@ -109,17 +193,17 @@ its own aspect with the tracked border on it. These are the images behind sectio
 gives the level's position across the image, the excursion of its border, the share of slices for
 which the tracker returned nothing, and, where it occurs, the longest run of identical values.
 
-![Figure S3](figures/audit_admitted_1.png)
+![Figure S4](figures/audit_admitted_1.png)
 
-**Figure S3.** Admitted series 1, five usable levels.
+**Figure S4.** Admitted series 1, five usable levels.
 
-![Figure S4](figures/audit_admitted_2.png)
+![Figure S5](figures/audit_admitted_2.png)
 
-**Figure S4.** Admitted series 2, five usable levels.
+**Figure S5.** Admitted series 2, five usable levels.
 
-![Figure S5](figures/audit_admitted_3.png)
+![Figure S6](figures/audit_admitted_3.png)
 
-**Figure S5.** Admitted series 3, six usable levels. The tracked border continues past both ends
+**Figure S6.** Admitted series 3, six usable levels. The tracked border continues past both ends
 of the lung, where the image is soft tissue on both sides of it; that is the series whose cycles
 fall from [[results:manifest.json:metrics.audit_worst_cycles_analysed]] to [[results:manifest.json:metrics.audit_worst_cycles_valid]] when counted over
 the stretch where the border is at a lung interface.

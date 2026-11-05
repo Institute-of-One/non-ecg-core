@@ -1,0 +1,25 @@
+{
+ "_note": "The author's own accepted papers in Technology and Health Care, read from Crossref on 2026-11-05 by querying the journal's ISSNs with the author's name (filter=issn:0928-7329&query.author=Yamamoto). The cover letter cites these two as the reason the subject fits the journal, so the letter's strings are checked against this file by paper/check_thc_submission.py rather than against anyone's memory. Re-verify with the same query if the letter changes.",
+ "_verified": "2026-11-05",
+ "_query": "https://api.crossref.org/works?filter=issn:0928-7329&query.author=Yamamoto",
+ "papers": [
+  {
+   "doi": "10.3233/thc-2007-15208",
+   "title": "Design of a DICOM image-based program for estimating patient exposure dose in computed tomography",
+   "authors": "Shuji Yamamoto; Tetsuya Horiuchi; Junko Sekiguchi; Shigeo Wada; Mitsuru Komizu; Takami Yamaguchi",
+   "year": 2007,
+   "volume": "15",
+   "pages": "147-156",
+   "author_position": "first"
+  },
+  {
+   "doi": "10.3233/thc-130746",
+   "title": "Development of DICOM image-based CT low dose simulator using fan-beam transform",
+   "authors": "Tetsuya Horiuchi; Shuji Yamamoto; Kenya Murase",
+   "year": 2013,
+   "volume": "21",
+   "pages": "441-454",
+   "author_position": "second"
+  }
+ ]
+}
