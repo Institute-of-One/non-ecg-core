@@ -21,15 +21,15 @@ Cardiac period estimation from non-gated helical CT: sampling criteria and explo
 
 ## Abstract
 
-**BACKGROUND:** Cardiac motion undulates the mediastinal border in a non-gated helical chest CT; a recoverable period would let an existing scan be sorted by phase.
+**BACKGROUND:** Cardiac motion marks the mediastinal border of a non-gated chest CT; a recoverable period would sort it by phase.
 
-**OBJECTIVE:** To state the sampling conditions that make the period recoverable, test them against real acquisitions, and measure how far an image-based estimate can be trusted.
+**OBJECTIVE:** To state the conditions that make the period recoverable, and how far an image estimate can be trusted.
 
-**METHODS:** The cycles needed were measured over [[results:manifest.json:metrics.sensitivity_cells]] simulated conditions, evaluated against [[results:manifest.json:metrics.header_series]] real series through their headers alone, and tested on [[results:manifest.json:metrics.cohort_analysed]] image series under a criterion frozen in advance.
+**METHODS:** The cycles needed were measured over [[results:manifest.json:metrics.sensitivity_cells]] simulated conditions, applied to [[results:manifest.json:metrics.header_series]] real series by header, and tested on [[results:manifest.json:metrics.cohort_analysed]] image series under a frozen criterion.
 
-**RESULTS:** Cycles written and samples per cycle multiply to L/dz, so speed only divides a fixed budget. The threshold is [[results:manifest.json:metrics.n_min_fundamental]] written cycles, [[results:manifest.json:metrics.n_min_matched]] for a matched estimator — empirical, not universal. At an assumed cardiac extent, [[results:manifest.json:metrics.records_below_100bpm_border_percent]] per cent of real series meet the requirements below [[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm. On images, [[results:manifest.json:metrics.cohort_recovered]] of [[results:manifest.json:metrics.cohort_analysed]] met the self-consistency criterion, yet their cost minima are no deeper than the rejections' and their levels prefer rates differing by [[results:manifest.json:metrics.flatness_level_spread_accepted_min]] to [[results:manifest.json:metrics.flatness_level_spread_accepted_max]] bpm.
+**RESULTS:** Cycles written and samples per cycle multiply to L/dz, so speed only divides a fixed budget. The threshold is [[results:manifest.json:metrics.n_min_fundamental]] cycles, [[results:manifest.json:metrics.n_min_matched]] matched, empirical not universal. At an assumed cardiac extent, [[results:manifest.json:metrics.records_below_100bpm_border_percent]] per cent of real series meet it below [[results:manifest.json:metrics.prediction_ceiling_bpm]] bpm. On images [[results:manifest.json:metrics.cohort_recovered]] of [[results:manifest.json:metrics.cohort_analysed]] met the criterion, their cost minima no deeper than the rejections'.
 
-**CONCLUSIONS:** The requirements are computable from headers before any image is analysed. Self-consistency alone does not establish that a period was found: a fit needs the depth of its minimum and a check on what it fitted.
+**CONCLUSIONS:** Whether a scan can carry cardiac timing follows from its header, before any image is analysed. A period estimated from images should not be accepted on self-consistency alone: no level of the admitted series tracked the intended border throughout, and re-counting over the stretch where it did put one of the three below the cycle threshold. Before clinical use a period needs the depth of its minimum and a check of what was tracked.
 
 ## Keywords
 

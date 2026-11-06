@@ -12,11 +12,11 @@ Editor-in-Chief: Kuan-Ching Li.
 
 | Requirement (from the journal's submission guidelines, read 2026-11-05) | This submission |
 |---|---|
-| Structured abstract of 200 words | **198 words**, headed BACKGROUND / OBJECTIVE / METHODS / RESULTS / CONCLUSIONS |
+| Structured abstract of 200 words | **200 words**, headed BACKGROUND / OBJECTIVE / METHODS / RESULTS / CONCLUSIONS |
 | 4 to 7 keywords | **6 keywords** |
 | Statements and Declarations in the article, every heading present | six headings, each present |
 | Sage Vancouver references, superscript numerals after the punctuation | **21 references** in the article, **3** in the supplement |
-| No word limit for an Original Research Article | **19 pages** as exported |
+| No word limit for an Original Research Article | **20 pages** as exported |
 | Figures 300 dpi, numbered consecutively, uploaded separately | **5 figures** at 600 dpi as `Fig1.png` ... `Fig5.png`, each with 0.5 in of headroom for the portal's label |
 | Tables | none; the article's results are in figures and text |
 | Review single-anonymized | nothing withheld; no blinded copy |
@@ -28,7 +28,7 @@ Editor-in-Chief: Kuan-Ching Li.
 |---|---|---|
 | 1 | `paper/build/THC_cover_letter.pdf` | cover letter (2 pages) |
 | 2 | `paper/build/THC_title_page.docx` | title page with the author's identifying information |
-| 3 | `paper/build/THC_manuscript.docx` | the article (19 pages as exported) |
+| 3 | `paper/build/THC_manuscript.docx` | the article (20 pages as exported) |
 | 4 | `paper/build/figures_thc/Fig1.png` ... `Fig5.png` | the figures, one file each |
 | 5 | `paper/build/THC_supplementary.docx` | supplementary material (9 pages), including the auxiliary uncertainty experiment moved out of the body |
 

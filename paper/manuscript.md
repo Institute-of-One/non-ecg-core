@@ -844,7 +844,8 @@ header, but failing it means only that the recovery rate defining *N*min —
 not reached under the conditions studied, and not that the acquisition holds no signal or that
 no estimator could succeed. And a fitted period should be reported together with the depth of
 the minimum it sits in and with a check that the structure fitted was the intended one. This
-study began with neither, and adding them is what changed how it reads its own results. The
+study began with neither, and adding them is what changed how it reads its own results.
+ The
 auxiliary simulation of the supplementary material makes the same point about an estimator's declared uncertainty: a model trained only where recovery was possible reported its smallest
 uncertainty exactly where it was never right, so that uncertainty too is a quantity to be
 checked rather than taken at face value. Taken together, the sampling requirements and the
@@ -854,6 +855,17 @@ output would have to show before being believed. Whether a period can be recover
 from reconstructed non-gated images is not settled here, and the uses that would follow from
 it — phase identification, phase-resolved reconstruction, ventricular volumetry — are neither
 demonstrated nor ruled out.
+
+Until that is settled, a reader who would use such an estimate rather than build one has two
+things to ask for before acting on it, and both are available now. The first is whether the
+acquisition could have carried the timing at all: the header answers that before any image is
+opened, and it costs nothing. The second is whether the reported period sits in a deep minimum
+of the structure it was meant to follow, which the fit and one reformat answer together. The
+series admitted here met the first on paper and did not meet the second — no level tracked the
+intended border throughout, and re-counting over the stretch where it did put one of the three
+below *N*min — while the criterion that admitted them looked at neither. A cardiac period or
+phase offered from a routine non-gated chest CT should therefore not be carried into clinical
+use on the strength of a stable fit alone.
 
 ## Declarations
 

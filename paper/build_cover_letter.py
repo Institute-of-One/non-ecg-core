@@ -16,6 +16,7 @@ to the Word the author already has open and closes their document at the final `
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 
 import docx
@@ -65,6 +66,13 @@ def main() -> int:
     docx_path, pdf_path = args.docx.resolve(), args.pdf.resolve()
 
     text = source.read_text(encoding="utf-8")
+    # The source file names itself on its first line. That is a title for the
+    # file, not a line of the letter, and it was being printed: the editor's
+    # first line read "# Cover letter -- Technology and Health Care".
+    text = re.sub(r"\A#{1,6} [^\n]*\n+", "", text)
+    # An em dash, not two hyphens. The letter is set in Times and the rest of
+    # the submission uses the dash; only the letter was printing "--".
+    text = re.sub(r"(?<=\s)--(?=\s)", "—", text)
     document = docx.Document()
     for section in document.sections:
         section.page_width, section.page_height = Inches(8.27), Inches(11.69)

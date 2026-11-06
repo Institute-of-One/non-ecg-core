@@ -56,7 +56,12 @@ import check_references as C      # noqa: E402  the author-year form of each rec
 BUILD = HERE / "build"
 MANIFEST = HERE / "frozen" / "manifest.json"
 RESOLVED = HERE / "frozen" / "references_resolved.json"
-ABBREVIATIONS = HERE / "frozen" / "journal_abbreviations.json"
+# Not under `frozen/`: that directory holds what produces the numbers, and
+# `presubmission_check.py` requires none of it to have moved since the release
+# the manuscript names. This is a table of Index Medicus journal names for the
+# reference list -- it formats a citation and computes nothing -- so keeping it
+# there made the gate red for a reason that was not true.
+ABBREVIATIONS = HERE / "journal_abbreviations.json"
 
 ABSTRACT_WORDS = 200
 KEYWORDS = (4, 7)

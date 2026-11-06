@@ -4,7 +4,7 @@ Shuji Yamamoto
 Institute of One, LISIT Co., Ltd., Tokyo 150-0044, Japan
 yamamoto@lisit.jp | ORCID 0000-0001-9211-1071
 
-5 November 2026
+6 November 2026
 
 Dear Professor Li,
 
@@ -40,7 +40,12 @@ border was not the structure intended. I report this as what it is. The
 conclusion the evidence supports is about the criterion, not about the
 measurement: self-consistency alone does not establish that a period was
 found, and a fit needs the depth of its minimum and a check on what was
-fitted.
+fitted. For a reader of this journal that has a practical form, and the
+article now ends on it: a cardiac period or phase offered from a routine
+non-gated chest CT should not be carried into clinical use on the strength of
+a stable fit, and the two checks that would justify one are available -- the
+sampling requirement, from the header before any image is opened, and the
+depth of the minimum together with the reformat the trace was taken from.
 
 What would settle it, and what this study does not do. Scans of a moving
 phantom driven at known periods, across a range of table speeds and pitches,
